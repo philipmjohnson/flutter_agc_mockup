@@ -35,7 +35,7 @@ class _SignupViewState extends State<SignupView> {
                 ),
                 const SizedBox(height: 16.0),
                 Text(
-                  "Your name and email is shared only with members of your AGC Chapter."
+                  "Your name and email is shared only with members of your AGC Chapter and AGC Administrators."
                 ),
               ],
             ),
