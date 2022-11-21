@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_agc_mockup/src/signin/signin_view.dart';
+import 'package:flutter_agc_mockup/src/pages/list_gardens/list_gardens_view.dart';
+import 'package:flutter_agc_mockup/src/pages/signin/signin_view.dart';
+import 'package:flutter_agc_mockup/src/pages/signup/signup_view.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-import 'sample_feature/sample_item_details_view.dart';
-import 'sample_feature/sample_item_list_view.dart';
-import 'settings/settings_controller.dart';
-import 'settings/settings_view.dart';
+import 'pages/sample_feature/sample_item_details_view.dart';
+import 'pages/sample_feature/sample_item_list_view.dart';
+import 'pages/settings/settings_controller.dart';
+import 'pages/settings/settings_view.dart';
 import 'theme/color_schemes.g.dart';
 
 
@@ -72,6 +74,10 @@ class MyApp extends StatelessWidget {
                 switch (routeSettings.name) {
                   case SigninView.routeName:
                     return const SigninView();
+                  case SignupView.routeName:
+                    return const SignupView();
+                  case ListGardensView.routeName:
+                    return const ListGardensView();
                   case SettingsView.routeName:
                     return SettingsView(controller: settingsController);
                   case SampleItemDetailsView.routeName:

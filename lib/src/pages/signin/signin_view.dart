@@ -11,7 +11,7 @@ class SigninView extends StatefulWidget {
 }
 
 class _SigninViewState extends State<SigninView> {
-  final _usernameController = TextEditingController();
+  final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
   @override
@@ -21,7 +21,7 @@ class _SigninViewState extends State<SigninView> {
         child: ListView(
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
           children: <Widget>[
-            const SizedBox(height: 80.0),
+            const SizedBox(height: 40.0),
             Column(
               children: <Widget>[
                 Image.asset('assets/images/vegetables.png', width: 100),
@@ -39,9 +39,9 @@ class _SigninViewState extends State<SigninView> {
             const SizedBox(height: 120.0),
             // [Name]
             TextField(
-              controller: _usernameController,
+              controller: _emailController,
               decoration: const InputDecoration(
-                labelText: 'Username',
+                labelText: 'Email',
               ),
             ),
             const SizedBox(height: 12.0),
@@ -62,17 +62,21 @@ class _SigninViewState extends State<SigninView> {
             const SizedBox(height: 12.0),
             ElevatedButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/sample');
+                  // Eventually: pushReplacementNamed
+                  Navigator.pushNamed(context, '/list_gardens');
                 },
                 child: const Text('Sign in')),
             const SizedBox(height: 12.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text("Don't have an account? "),
-                TextButton(onPressed: () {}, child: const Text("Sign up")),
-              ],
-            ),
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              const Text("Don't have an account? "),
+              TextButton(
+                child: const Text('Sign up'),
+                onPressed: () {
+                  // Eventually: pushReplacementNamed
+                  Navigator.pushNamed(context, '/signup');
+                },
+              )
+            ]),
           ],
         ),
       ),
