@@ -63,7 +63,7 @@ class _SigninViewState extends State<SigninView> {
             ElevatedButton(
                 onPressed: () {
                   // Eventually: pushReplacementNamed
-                  Navigator.pushNamed(context, '/list_gardens');
+                  Navigator.pushNamed(context, '/home');
                 },
                 child: const Text('Sign in')),
             const SizedBox(height: 12.0),
