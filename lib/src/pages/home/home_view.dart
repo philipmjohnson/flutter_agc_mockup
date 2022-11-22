@@ -30,6 +30,7 @@ class HomeView extends StatelessWidget {
       ),
       bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed, // needed when more than 3 items
+
           items: [
             BottomNavigationBarItem(
               label: 'Home',
