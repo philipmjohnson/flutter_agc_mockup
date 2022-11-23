@@ -32,15 +32,15 @@ class HomeView extends StatelessWidget {
           type: BottomNavigationBarType.fixed, // needed when more than 3 items
 
           items: [
-            BottomNavigationBarItem(
+            const BottomNavigationBarItem(
               label: 'Home',
               icon: Icon(Icons.home),
             ),
-            BottomNavigationBarItem(
+            const BottomNavigationBarItem(
               label: 'Chapter',
               icon: Icon(Icons.groups),
             ),
-            BottomNavigationBarItem(
+            const BottomNavigationBarItem(
               label: 'Seeds',
               icon: Icon(Icons.water_drop_outlined),
             ),
