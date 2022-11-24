@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'bodies/chapter_body_view.dart';
 import 'bodies/home_body_view.dart';
 import '../settings/settings_view.dart';
-import '../sample_feature/sample_item.dart';
-import '../sample_feature/sample_item_details_view.dart';
 import 'bodies/notifications_body_view.dart';
 import 'bodies/seeds_body_view.dart';
 
@@ -15,6 +13,8 @@ class HomeLayoutView extends StatefulWidget {
   });
 
   static const routeName = '/home';
+  // This data structure will eventually become stateful and thus will
+  // need to be moved into the state widget.
   final Map pages = {
     0: {
       'title': const Text('Home'),
