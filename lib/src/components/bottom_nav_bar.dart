@@ -12,25 +12,27 @@ class _BottomNavBarState extends State<BottomNavBar> {
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-    switch (index) {
-      case 0:
-        {
-          Navigator.pushNamed(context, '/home');
-        }
-        break;
-      case 1:
-        {
-          Navigator.pushNamed(context, '/list_gardens');
-        }
-        break;
-      default:
-        {
-          Navigator.pushNamed(context, '/home');
-        }
-        break;
+    if (index != _selectedIndex) {
+      setState(() {
+        _selectedIndex = index;
+      });
+      switch (index) {
+        case 0:
+          {
+            Navigator.pushNamed(context, '/home');
+          }
+          break;
+        case 1:
+          {
+            Navigator.pushNamed(context, '/list_gardens');
+          }
+          break;
+        default:
+          {
+            Navigator.pushNamed(context, '/home');
+          }
+          break;
+      }
     }
   }
 

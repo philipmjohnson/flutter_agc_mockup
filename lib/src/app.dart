@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_agc_mockup/src/pages/home/home_view.dart';
+import 'package:flutter_agc_mockup/src/pages/home/home_layout_view.dart';
 import 'package:flutter_agc_mockup/src/pages/list_gardens/list_gardens_view.dart';
 import 'package:flutter_agc_mockup/src/pages/signin/signin_view.dart';
 import 'package:flutter_agc_mockup/src/pages/signup/signup_view.dart';
@@ -40,8 +40,8 @@ class MyApp extends StatelessWidget {
                     return const SigninView();
                   case SignupView.routeName:
                     return const SignupView();
-                  case HomeView.routeName:
-                    return const HomeView();
+                  case HomeLayoutView.routeName:
+                    return const HomeLayoutView();
                   case ListGardensView.routeName:
                     return const ListGardensView();
                   case SettingsView.routeName:
