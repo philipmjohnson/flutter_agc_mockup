@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
                   case SignupView.routeName:
                     return const SignupView();
                   case HomeLayoutView.routeName:
-                    return const HomeLayoutView();
+                    return HomeLayoutView();
                   case ListGardensView.routeName:
                     return const ListGardensView();
                   case SettingsView.routeName:
