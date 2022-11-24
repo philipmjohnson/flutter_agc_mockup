@@ -3,13 +3,13 @@ import '../../sample_feature/sample_item.dart';
 import '../../sample_feature/sample_item_details_view.dart';
 
 /// Displays a list of Gardens.
-class HomeBodyView extends StatelessWidget {
-  const HomeBodyView({
+class GardensBodyView extends StatelessWidget {
+  const GardensBodyView({
     super.key,
     this.items = const [SampleItem(1), SampleItem(2), SampleItem(3)],
   });
   final List<SampleItem> items;
-  final String title = 'Home';
+  final String title = 'Gardens';
 
   @override
   Widget build(BuildContext context) {

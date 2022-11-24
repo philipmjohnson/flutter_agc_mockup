@@ -1,10 +1,11 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'bodies/chapter_body_view.dart';
-import 'bodies/home_body_view.dart';
+import 'bodies/gardens_body_view.dart';
+import 'bodies/news_body_view.dart';
 import '../settings/settings_view.dart';
-import 'bodies/notifications_body_view.dart';
 import 'bodies/seeds_body_view.dart';
+import 'home_drawer_view.dart';
 
 /// Top-level Layout for all of the "Home" related
 class HomeLayoutView extends StatefulWidget {
@@ -13,18 +14,27 @@ class HomeLayoutView extends StatefulWidget {
   });
 
   static const routeName = '/home';
+
   // This data structure will eventually become stateful and thus will
   // need to be moved into the state widget.
   final Map pages = {
     0: {
-      'title': const Text('Home'),
-      'body': const HomeBodyView(),
+      'title': const Text('News'),
+      'body': const NewsBodyView(),
       'navItem': const BottomNavigationBarItem(
-        label: 'Home',
-        icon: Icon(Icons.home),
+        label: 'News',
+        icon: Icon(Icons.newspaper),
       ),
     },
     1: {
+      'title': const Text('Gardens'),
+      'body': const GardensBodyView(),
+      'navItem': const BottomNavigationBarItem(
+        label: 'Gardens',
+        icon: Icon(Icons.yard_outlined),
+      ),
+    },
+    2: {
       'title': const Text('Chapter'),
       'body': const ChapterBodyView(),
       'navItem': const BottomNavigationBarItem(
@@ -32,23 +42,12 @@ class HomeLayoutView extends StatefulWidget {
         icon: Icon(Icons.groups),
       ),
     },
-    2: {
+    3: {
       'title': const Text('Seeds'),
       'body': const SeedsBodyView(),
       'navItem': const BottomNavigationBarItem(
         label: 'Seeds',
         icon: Icon(Icons.water_drop_outlined),
-      ),
-    },
-    3: {
-      'title': const Text('Notifications'),
-      'body': const NotificationsBodyView(),
-      'navItem': BottomNavigationBarItem(
-        label: 'Notifications',
-        icon: Badge(
-            badgeContent:
-                const Text('2', style: TextStyle(color: Colors.white)),
-            child: const Icon(Icons.notifications)),
       ),
     },
   };
@@ -71,8 +70,17 @@ class _HomeLayoutViewState extends State<HomeLayoutView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const HomeDrawer(),
       appBar: AppBar(
-        title: widget.pages[_selectedIndex]['title'],
+        title: const Padding(
+          padding: EdgeInsets.all(10.0),
+          child: Chip(
+            avatar: CircleAvatar(
+              backgroundImage: AssetImage('assets/images/jenna-deane.jpg'),
+            ),
+            label: Text('Jenna Deane'),
+          )
+        ),
         actions: [
           IconButton(
             icon: const Icon(Icons.settings),

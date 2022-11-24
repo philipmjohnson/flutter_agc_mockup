@@ -15,7 +15,6 @@ class _SignupViewState extends State<SignupView> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _mobileController = TextEditingController();
-  final _zipCodeController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -67,13 +66,6 @@ class _SignupViewState extends State<SignupView> {
               controller: _mobileController,
               decoration: const InputDecoration(
                 labelText: 'Mobile',
-              ),
-            ),
-            const SizedBox(height: 12.0),
-            TextField(
-              controller: _zipCodeController,
-              decoration: const InputDecoration(
-                labelText: 'Zip Code',
               ),
             ),
             const SizedBox(height: 12.0),
