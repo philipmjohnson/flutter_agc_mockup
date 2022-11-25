@@ -8,13 +8,13 @@ class HomeDrawer extends StatelessWidget {
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
-        children: const <Widget>[
+        children: <Widget>[
           DrawerHeader(
             decoration: BoxDecoration(
-              color: Colors.blue,
+              color: Theme.of(context).primaryColorDark,
             ),
             child: Text(
-              'Contents',
+              'Agile Garden Club',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 24,
@@ -27,11 +27,19 @@ class HomeDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(Icons.account_circle),
-            title: Text('Profile'),
+            title: Text('Gardens'),
           ),
           ListTile(
-            leading: Icon(Icons.settings),
-            title: Text('Directory'),
+            leading: Icon(Icons.account_circle),
+            title: Text('Seeds'),
+          ),
+          ListTile(
+            leading: Icon(Icons.account_circle),
+            title: Text('Members'),
+          ),
+          ListTile(
+            leading: Icon(Icons.account_circle),
+            title: Text('Discussions'),
           ),
           ListTile(
             leading: Icon(Icons.settings),

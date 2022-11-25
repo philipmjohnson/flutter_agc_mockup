@@ -22,7 +22,7 @@ class HomeLayoutView extends StatefulWidget {
       'title': const Text('News'),
       'body': const NewsBodyView(),
       'navItem': const BottomNavigationBarItem(
-        label: 'News',
+        label: 'My News',
         icon: Icon(Icons.newspaper),
       ),
     },
@@ -30,7 +30,7 @@ class HomeLayoutView extends StatefulWidget {
       'title': const Text('Gardens'),
       'body': const GardensBodyView(),
       'navItem': const BottomNavigationBarItem(
-        label: 'Gardens',
+        label: 'My Gardens',
         icon: Icon(Icons.yard_outlined),
       ),
     },
@@ -38,7 +38,7 @@ class HomeLayoutView extends StatefulWidget {
       'title': const Text('Chapter'),
       'body': const ChapterBodyView(),
       'navItem': const BottomNavigationBarItem(
-        label: 'Chapter',
+        label: 'My Discussions',
         icon: Icon(Icons.groups),
       ),
     },
@@ -46,7 +46,7 @@ class HomeLayoutView extends StatefulWidget {
       'title': const Text('Seeds'),
       'body': const SeedsBodyView(),
       'navItem': const BottomNavigationBarItem(
-        label: 'Seeds',
+        label: 'My Seeds',
         icon: Icon(Icons.water_drop_outlined),
       ),
     },
