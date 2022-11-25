@@ -45,7 +45,7 @@ class NewsBodyView extends StatelessWidget {
       ),
       Divider(),
       ListTile(
-        leading: Icon(Icons.dining_outlined, color: Theme.of(context).primaryColor),
+        leading: Icon(Icons.yard_outlined, color: Theme.of(context).primaryColor),
         title: Text('First Harvest expected'),
         subtitle: Text('Alderwood Garden: Week of Nov 15: Pepper (Bridge to Paris), Pumpkin (Winter Luxury)'),
         trailing: NewsBodyItemActions(),
