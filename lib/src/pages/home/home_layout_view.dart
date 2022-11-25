@@ -39,7 +39,7 @@ class HomeLayoutView extends StatefulWidget {
       'body': const ChapterBodyView(),
       'navItem': const BottomNavigationBarItem(
         label: 'My Discussions',
-        icon: Icon(Icons.groups),
+        icon: Icon(Icons.chat),
       ),
     },
     3: {
@@ -74,12 +74,7 @@ class _HomeLayoutViewState extends State<HomeLayoutView> {
       appBar: AppBar(
         title: const Padding(
           padding: EdgeInsets.all(10.0),
-          child: Chip(
-            avatar: CircleAvatar(
-              backgroundImage: AssetImage('assets/images/jenna-deane.jpg'),
-            ),
-            label: Text('Jenna Deane'),
-          )
+          child: Text('Home'),
         ),
         actions: [
           IconButton(

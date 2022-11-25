@@ -7,18 +7,15 @@ class HomeDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       child: ListView(
-        padding: EdgeInsets.zero,
-        children: <Widget>[
-          DrawerHeader(
+        children: [
+          UserAccountsDrawerHeader(
+            accountName: Text("Jenna Deane"),
+            accountEmail: Text("jennacorindeane@gmail.com"),
+            currentAccountPicture: CircleAvatar(
+              backgroundImage: AssetImage('assets/images/jenna-deane.jpg'),
+            ),
             decoration: BoxDecoration(
               color: Theme.of(context).primaryColorDark,
-            ),
-            child: Text(
-              'Agile Garden Club',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 24,
-              ),
             ),
           ),
           ListTile(
@@ -26,19 +23,27 @@ class HomeDrawer extends StatelessWidget {
             title: Text('Home'),
           ),
           ListTile(
-            leading: Icon(Icons.account_circle),
+            leading: Icon(Icons.yard_outlined),
             title: Text('Gardens'),
           ),
           ListTile(
-            leading: Icon(Icons.account_circle),
+            leading: Icon(Icons.groups),
+            title: Text('Chapters'),
+          ),
+          ListTile(
+            leading: Icon(Icons.trending_up),
+            title: Text('Outcomes'),
+          ),
+          ListTile(
+            leading: Icon(Icons.water_drop_outlined),
             title: Text('Seeds'),
           ),
           ListTile(
-            leading: Icon(Icons.account_circle),
+            leading: Icon(Icons.person),
             title: Text('Members'),
           ),
           ListTile(
-            leading: Icon(Icons.account_circle),
+            leading: Icon(Icons.chat),
             title: Text('Discussions'),
           ),
           ListTile(
