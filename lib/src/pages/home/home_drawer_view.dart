@@ -50,6 +50,10 @@ class HomeDrawer extends StatelessWidget {
             leading: Icon(Icons.settings),
             title: Text('Settings'),
           ),
+          ListTile(
+            leading: Icon(Icons.logout),
+            title: Text('Sign out'),
+          ),
         ],
       ),
     );

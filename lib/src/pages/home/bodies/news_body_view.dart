@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_agc_mockup/src/pages/home/bodies/news_body_item_actions.dart';
 import '../../sample_feature/sample_item.dart';
 import '../../sample_feature/sample_item_details_view.dart';
 
@@ -8,36 +9,47 @@ class NewsBodyView extends StatelessWidget {
     super.key,
     this.items = const [SampleItem(1), SampleItem(2), SampleItem(3)],
   });
+
   final List<SampleItem> items;
   final String title = 'Home';
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      // Providing a restorationId allows the ListView to restore the
-      // scroll position when a user leaves and returns to the app after it
-      // has been killed while running in the background.
-        restorationId: 'sampleItemListView',
-        itemCount: items.length,
-        itemBuilder: (BuildContext context, int index) {
-          final item = items[index];
-
-          return ListTile(
-              title: Text('SampleItem ${item.id}'),
-              leading: const CircleAvatar(
-                // Display the Flutter Logo image asset.
-                foregroundImage: AssetImage('assets/images/flutter_logo.png'),
-              ),
-              onTap: () {
-                // Navigate to the details page. If the user leaves and returns to
-                // the app after it has been killed while running in the
-                // background, the navigation stack is restored.
-                Navigator.restorablePushNamed(
-                  context,
-                  SampleItemDetailsView.routeName,
-                );
-              });
-        }
-    );
+    return ListView(children: [
+      ListTile(
+        leading: Icon(Icons.severe_cold, color: Theme.of(context).primaryColor),
+        title: Text('Frost Alert'),
+        subtitle: Text('Bellingham Chapter: Predicted overnight low of 37\u00B0 for 11/15/22'),
+        trailing: NewsBodyItemActions(),
+      ),
+      Divider(),
+      ListTile(
+        leading: Icon(Icons.image_search, color: Theme.of(context).primaryColor,),
+        title: Text('Reply to: "Something is eating these bean sprouts..."'),
+        subtitle: Text('Alderwood Garden: ... Looks like it could be a rabbit or...'),
+        trailing: NewsBodyItemActions(),
+      ),
+      Divider(),
+      ListTile(
+        leading: Icon(Icons.group_add, color: Theme.of(context).primaryColor),
+        title: Text('New Chapter Members'),
+        subtitle: Text('Bellingham Chapter: Asa Deane, Cypress Deane.'),
+        trailing: NewsBodyItemActions(),
+      ),
+      Divider(),
+      ListTile(
+        leading: Icon(Icons.water_drop, color: Theme.of(context).primaryColor),
+        title: Text('New seed(s) available'),
+        subtitle: Text("Bellingham Chapter: Lettuce (Flashy Trout's Back), Bean (Tanya's Pink Pod), Squash (Zepplin Delicata)"),
+        trailing: NewsBodyItemActions(),
+      ),
+      Divider(),
+      ListTile(
+        leading: Icon(Icons.dining_outlined, color: Theme.of(context).primaryColor),
+        title: Text('First Harvest expected'),
+        subtitle: Text('Alderwood Garden: Week of Nov 15: Pepper (Bridge to Paris), Pumpkin (Winter Luxury)'),
+        trailing: NewsBodyItemActions(),
+      ),
+    ]);
   }
 }
