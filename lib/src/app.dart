@@ -7,17 +7,17 @@ import 'pages/sample_feature/sample_item_details_view.dart';
 import 'pages/sample_feature/sample_item_list_view.dart';
 import 'pages/settings/settings_controller.dart';
 import 'pages/settings/settings_view.dart';
-import 'theme/color_schemes.g.dart';
-
 
 /// The Widget that configures your application.
 class MyApp extends StatelessWidget {
   const MyApp({
     super.key,
     required this.settingsController,
+    required this.theme
   });
 
   final SettingsController settingsController;
+  final ThemeData theme;
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +27,7 @@ class MyApp extends StatelessWidget {
       animation: settingsController,
       builder: (BuildContext context, Widget? child) {
         return MaterialApp(
-          theme: ThemeData(useMaterial3: true, colorScheme: lightColorScheme),
-          darkTheme: ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
+          theme: theme,
           themeMode: settingsController.themeMode,
 
           onGenerateRoute: (RouteSettings routeSettings) {

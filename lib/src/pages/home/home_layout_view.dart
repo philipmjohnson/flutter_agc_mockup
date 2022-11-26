@@ -73,7 +73,7 @@ class _HomeLayoutViewState extends State<HomeLayoutView> {
       drawer: const HomeDrawer(),
       appBar: AppBar(
         title: const Padding(
-          padding: EdgeInsets.all(10.0),
+          padding: EdgeInsets.all(30.0),
           child: Text('Home'),
         ),
         actions: [
