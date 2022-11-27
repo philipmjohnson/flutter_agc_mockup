@@ -72,10 +72,7 @@ class _HomeLayoutViewState extends State<HomeLayoutView> {
     return Scaffold(
       drawer: const HomeDrawer(),
       appBar: AppBar(
-        title: const Padding(
-          padding: EdgeInsets.all(30.0),
-          child: Text('Home'),
-        ),
+        title: const Text('Home'),
         actions: [
           IconButton(
             icon: const Icon(Icons.settings),
@@ -92,7 +89,6 @@ class _HomeLayoutViewState extends State<HomeLayoutView> {
           widget.pages[0]['navItem'],
           widget.pages[1]['navItem'],
           widget.pages[2]['navItem'],
-          widget.pages[3]['navItem'],
         ],
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
