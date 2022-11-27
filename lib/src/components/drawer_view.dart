@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class HomeDrawer extends StatelessWidget {
-  const HomeDrawer({Key? key}) : super(key: key);
+class DrawerView extends StatelessWidget {
+  const DrawerView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +21,9 @@ class HomeDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.home),
             title: Text('Home'),
+            onTap: () {
+              Navigator.pushReplacementNamed(context, '/home');
+            },
           ),
           ListTile(
             leading: Icon(Icons.yard_outlined),
@@ -29,6 +32,9 @@ class HomeDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.groups),
             title: Text('Chapters'),
+            onTap: () {
+              Navigator.pushReplacementNamed(context, '/chapter');
+            },
           ),
           ListTile(
             leading: Icon(Icons.trending_up),

@@ -1,11 +1,11 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_agc_mockup/src/components/drawer_view.dart';
 import 'bodies/chapter_body_view.dart';
 import 'bodies/gardens_body_view.dart';
 import 'bodies/news_body_view.dart';
 import '../settings/settings_view.dart';
 import 'bodies/seeds_body_view.dart';
-import 'home_drawer_view.dart';
 
 /// Top-level Layout for all of the "Home" related
 class HomeLayoutView extends StatefulWidget {
@@ -70,7 +70,7 @@ class _HomeLayoutViewState extends State<HomeLayoutView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const HomeDrawer(),
+      drawer: const DrawerView(),
       appBar: AppBar(
         title: const Text('Home'),
         actions: [

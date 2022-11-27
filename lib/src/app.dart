@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_agc_mockup/src/pages/chapter/chapter_view.dart';
 import 'package:flutter_agc_mockup/src/pages/home/home_layout_view.dart';
 import 'package:flutter_agc_mockup/src/pages/list_gardens/list_gardens_view.dart';
 import 'package:flutter_agc_mockup/src/pages/signin/signin_view.dart';
@@ -10,14 +11,14 @@ import 'pages/settings/settings_view.dart';
 
 /// The Widget that configures your application.
 class MyApp extends StatelessWidget {
-  const MyApp({
-    super.key,
-    required this.settingsController,
-    required this.theme
-  });
+  MyApp(
+      {super.key, required this.settingsController, required this.theme});
 
   final SettingsController settingsController;
   final ThemeData theme;
+
+  final theme2 =
+      ThemeData(colorSchemeSeed: const Color(0xFF33691e), useMaterial3: true);
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +28,8 @@ class MyApp extends StatelessWidget {
       animation: settingsController,
       builder: (BuildContext context, Widget? child) {
         return MaterialApp(
-          theme: theme,
+          theme: theme, // or could be theme
           themeMode: settingsController.themeMode,
-
           onGenerateRoute: (RouteSettings routeSettings) {
             return MaterialPageRoute<void>(
               settings: routeSettings,
@@ -41,6 +41,8 @@ class MyApp extends StatelessWidget {
                     return const SignupView();
                   case HomeLayoutView.routeName:
                     return HomeLayoutView();
+                  case ChapterView.routeName:
+                    return ChapterView();
                   case ListGardensView.routeName:
                     return const ListGardensView();
                   case SettingsView.routeName:

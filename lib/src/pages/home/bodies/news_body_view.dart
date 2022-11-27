@@ -35,7 +35,7 @@ class NewsBodyView extends StatelessWidget {
         ListTile(
           leading: Icon(Icons.group_add, color: Theme.of(context).primaryColor),
           title: Text('New Chapter Members'),
-          subtitle: Text('Bellingham Chapter: @HikerD, @CyTheGuy.'),
+          subtitle: Text('Bellingham Chapter: @AsaD, @CyTheGuy.'),
           trailing: NewsBodyItemActions(),
         ),
         Divider(),
@@ -56,7 +56,7 @@ class NewsBodyView extends StatelessWidget {
         ListTile(
           leading: Icon(Icons.pest_control, color: Theme.of(context).primaryColor),
           title: Text('Pest Alert: Aphids'),
-          subtitle: Text('Bellingham Chapter: 10 Aphid observations this week'),
+          subtitle: Text('Bellingham Chapter: 10 gardens with Aphid pest observations this week'),
           trailing: NewsBodyItemActions(),
         ),
       ]),
