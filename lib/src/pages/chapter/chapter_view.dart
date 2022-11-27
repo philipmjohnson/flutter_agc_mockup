@@ -8,13 +8,29 @@ class ChapterView extends StatelessWidget {
   const ChapterView({
     super.key,
   });
-  final String title = 'Chapter';
+  final String title = 'Chapters';
   static const routeName = '/chapter';
 
   final data = '''
-# Chapter
+# Chapters Page Specification
 
-This is the documentation for the chapter page. 
+This page provides a set of cards for each Chapter that the user is a member of.
+
+Usually, the user is a member of only one Chapter.
+
+Each card should contain:
+
+* The Chapter name
+* The number of members in the chapter.
+* The zip code(s) associated with the chapter.
+* A representative photo of the chapter. Maybe a map image delineating the chapter boundaries?
+
+Possible actions associated with this card:
+
+* See the gardens associated with this Chapter.
+* See the members associated with this Chapter.
+
+
 ''';
 
   @override
