@@ -14,9 +14,13 @@ class ChapterView extends StatelessWidget {
   final data = '''
 # Chapters Page Specification
 
+## Motivation/Goals
+
 This page provides a set of cards for each Chapter that the user is a member of.
 
 Usually, the user is a member of only one Chapter.
+
+## Contents 
 
 Each card should contain:
 
@@ -24,6 +28,8 @@ Each card should contain:
 * The number of members in the chapter.
 * The zip code(s) associated with the chapter.
 * A representative photo of the chapter. Maybe a map image delineating the chapter boundaries?
+
+## Actions 
 
 Possible actions associated with this card:
 
