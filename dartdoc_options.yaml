@@ -1,0 +1,3 @@
+dartdoc:
+  includeExternal:
+    - 'lib/src/pages/chapters/chapters_view.dart'

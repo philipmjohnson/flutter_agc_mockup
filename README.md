@@ -1,15 +1,9 @@
 # flutter_agc_mockup
 
-Initial mockup of the Agile Garden Club mobile app.
+This repository contains the first increment of work on a mockup of the Agile Garden Club application. It contains around a dozen pages along with simple navigation. 
 
-First, install Flutter.
-
-Second, bring up project inside IntelliJ.
-
-Third, run the iOS simulator (for example) within IntelliJ to see the mockup.
-
-<p align="center">
-  <img alt="Light" src="./light.png" width="45%">
+<p style="text-align: center">
+  <img src="./README-screenshots/splash.png" width="45%">
 &nbsp; &nbsp; &nbsp; &nbsp;
-  <img alt="Dark" src="./dark.png" width="45%">
+  <img src="./README-screenshots/signin.png" width="45%">
 </p>
