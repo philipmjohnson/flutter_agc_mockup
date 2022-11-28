@@ -21,3 +21,13 @@ This repository contains the first increment of work on a mockup of the Agile Ga
 &nbsp; &nbsp; 
   <img src="./README-screenshots/home-my-discussions.png" width="30%">
 </p>
+
+## Navigation Drawer, Gardens, and Chapters pages
+
+<p style="text-align: center">
+  <img src="./README-screenshots/drawer.png" width="30%">
+&nbsp; &nbsp; 
+  <img src="./README-screenshots/gardens.png" width="30%">
+&nbsp; &nbsp; 
+  <img src="./README-screenshots/chapters.png" width="30%">
+</p>
