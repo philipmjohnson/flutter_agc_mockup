@@ -6,11 +6,20 @@ const pageSpecification = '''
 
 ## Motivation/Goals
 
+Another important part of creating a community of practice within a Chapter is by facilitating conversations. 
+
+So, we need some sort of simple discussion board. 
+
+Would be nice to find some sort of plugin for this.
+
 ## Contents 
+
+* Discussion Board 
 
 ## Actions 
 
-Possible actions associated with this card:
+* Ability to read, post, mark as read, etc. 
+
 
 ''';
 

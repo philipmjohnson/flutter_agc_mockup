@@ -3,6 +3,7 @@ import 'package:flutter_agc_mockup/src/pages/outcomes/outcomes_view.dart';
 import '../pages/chapters/chapters_view.dart';
 import '../pages/discussions/discussions_view.dart';
 import '../pages/gardens/gardens_view.dart';
+import '../pages/help/help_view.dart';
 import '../pages/home/home_view.dart';
 import '../pages/members/members_view.dart';
 import '../pages/seeds/seeds_view.dart';
@@ -22,7 +23,7 @@ class DrawerView extends StatelessWidget {
               backgroundImage: AssetImage('assets/images/jenna-deane.jpg'),
             ),
             decoration: BoxDecoration(
-              color: Theme.of(context).primaryColorDark,
+              color: Theme.of(context).primaryColor,
             ),
           ),
           ListTile(
@@ -75,12 +76,18 @@ class DrawerView extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: Icon(Icons.settings),
-            title: Text('Settings'),
+            leading: Icon(Icons.help_outline),
+            title: Text('Help'),
+            onTap: () {
+              Navigator.pushReplacementNamed(context, HelpView.routeName);
+            },
           ),
           ListTile(
             leading: Icon(Icons.logout),
             title: Text('Sign out'),
+            onTap: () {
+              Navigator.pushReplacementNamed(context, 'bad page');
+            },
           ),
         ],
       ),

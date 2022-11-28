@@ -6,11 +6,25 @@ const pageSpecification = '''
 
 ## Motivation/Goals
 
-## Contents 
+We want this page to facilitate the creation of a local "Community of Practice".
+
+On the other hand, we want to preserve privacy. 
+
+So, we will need to ability for members to manage how much of their information is made available to others. 
+
+## Contents
+
+Since people can be part of more than one Chapter, we might have to have a top-level card or maybe an expandable card? 
+
+It should list the "public profile" for a member, which could include their username, the gardens they own, maybe something about their crops.  
 
 ## Actions 
 
-Possible actions associated with this card:
+It should be possible to message members.  This seems crucial to create a community of practice.
+
+If folks can be messaged, then it should also be possible for a member to block messages from another person. 
+
+Maybe you can request "messaging privilege" or something from another member, so by default you can't message others? 
 
 ''';
 

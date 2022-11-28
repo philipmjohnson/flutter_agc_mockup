@@ -24,10 +24,10 @@ Then a set of cards, one per Chapter, each containing:
 
 ## Actions 
 
-Possible actions associated with this card:
+Possible actions associated with each Chapter card:
 
-* See the gardens associated with this Chapter.
-* See the members associated with this Chapter.
+* See the gardens associated with the Chapter.
+* See the members associated with the Chapter.
 
 ''';
 

@@ -6,21 +6,20 @@ const pageSpecification = '''
 
 ## Motivation/Goals
 
-It seems to me that Outcomes should have a top-level page. 
+Outcomes are one of the most important value-added features of AGC, so we want to highlight them with their own page.
 
-There are outcomes both at the individual garden level, and aggregate outcomes for an entire chapter. 
+There are many ways to present outcomes:
+  * At the variety and crop levels.
+  * Aggregated over years, gardens, and (maybe) Chapters.
 
 ## Contents 
 
-Not sure how to organize outcomes beyond the mockup.
+We will need to have a kind of "Explorer" for Outcome data, probably modeled on the React mockup.
 
 ## Actions 
 
-I don't think there are any actions
+You might want the ability to "drill-down" from an Outcome to the planting(s) that generated it.
 
-## Issues
-
-* Should there be an expandable card to provide more details about a garden for those gardens that are not yours?
 
 ''';
 

@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_agc_mockup/src/pages/chapters/chapters_view.dart';
 import 'package:flutter_agc_mockup/src/pages/discussions/discussions_view.dart';
 import 'package:flutter_agc_mockup/src/pages/gardens/gardens_view.dart';
+import 'package:flutter_agc_mockup/src/pages/help/help_view.dart';
 import 'package:flutter_agc_mockup/src/pages/home/home_view.dart';
-import 'package:flutter_agc_mockup/src/pages/list_gardens/list_gardens_view.dart';
 import 'package:flutter_agc_mockup/src/pages/members/members_view.dart';
 import 'package:flutter_agc_mockup/src/pages/outcomes/outcomes_view.dart';
+import 'package:flutter_agc_mockup/src/pages/page_not_found/page_not_found_view.dart';
 import 'package:flutter_agc_mockup/src/pages/seeds/seeds_view.dart';
 import 'package:flutter_agc_mockup/src/pages/signin/signin_view.dart';
 import 'package:flutter_agc_mockup/src/pages/signup/signup_view.dart';
@@ -58,17 +59,16 @@ class MyApp extends StatelessWidget {
                     return MembersView();
                   case DiscussionsView.routeName:
                     return DiscussionsView();
-                  case ListGardensView.routeName:
-                    return const ListGardensView();
+                  case HelpView.routeName:
+                    return HelpView();
                   case SettingsView.routeName:
                     return SettingsView(controller: settingsController);
                   case SampleItemDetailsView.routeName:
                     return const SampleItemDetailsView();
                   case SigninView.routeName:
                     return const SampleItemDetailsView();
-                  case SampleItemListView.routeName:
                   default:
-                    return const SampleItemListView();
+                    return const PageNotFoundView();
                 }
               },
             );
