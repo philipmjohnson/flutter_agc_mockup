@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../pages/chapters/chapters_view.dart';
+
 class DrawerView extends StatelessWidget {
   const DrawerView({Key? key}) : super(key: key);
 
@@ -33,7 +35,7 @@ class DrawerView extends StatelessWidget {
             leading: Icon(Icons.groups),
             title: Text('Chapters'),
             onTap: () {
-              Navigator.pushReplacementNamed(context, '/chapter');
+              Navigator.pushReplacementNamed(context, ChaptersView.routeName);
             },
           ),
           ListTile(

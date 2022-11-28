@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_agc_mockup/src/pages/chapter/chapter_view.dart';
-import 'package:flutter_agc_mockup/src/pages/home/home_layout_view.dart';
+import 'package:flutter_agc_mockup/src/pages/chapters/chapters_view.dart';
+import 'package:flutter_agc_mockup/src/pages/gardens/gardens_view.dart';
+import 'package:flutter_agc_mockup/src/pages/home/home_view.dart';
 import 'package:flutter_agc_mockup/src/pages/list_gardens/list_gardens_view.dart';
 import 'package:flutter_agc_mockup/src/pages/signin/signin_view.dart';
 import 'package:flutter_agc_mockup/src/pages/signup/signup_view.dart';
@@ -39,10 +40,12 @@ class MyApp extends StatelessWidget {
                     return const SigninView();
                   case SignupView.routeName:
                     return const SignupView();
-                  case HomeLayoutView.routeName:
-                    return HomeLayoutView();
-                  case ChapterView.routeName:
-                    return ChapterView();
+                  case HomeView.routeName:
+                    return HomeView();
+                  case GardensView.routeName:
+                    return GardensView();
+                  case ChaptersView.routeName:
+                    return ChaptersView();
                   case ListGardensView.routeName:
                     return const ListGardensView();
                   case SettingsView.routeName:
