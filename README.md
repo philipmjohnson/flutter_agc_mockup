@@ -31,3 +31,19 @@ This repository contains the first increment of work on a mockup of the Agile Ga
 &nbsp; &nbsp; 
   <img src="./README-screenshots/chapters.png" width="30%">
 </p>
+
+## Outcomes, Seeds, Members pages
+
+<p style="text-align: center">
+  <img src="./README-screenshots/outcomes.png" width="30%">
+&nbsp; &nbsp; 
+  <img src="./README-screenshots/seeds.png" width="30%">
+&nbsp; &nbsp; 
+  <img src="./README-screenshots/members.png" width="30%">
+</p>
+
+## Discussions page
+
+<p style="text-align: center">
+  <img src="./README-screenshots/discussions.png" width="30%">
+</p>
