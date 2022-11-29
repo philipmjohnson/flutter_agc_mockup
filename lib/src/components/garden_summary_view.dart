@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_agc_mockup/src/components/garden_summary_users_view.dart';
 
 class GardenSummaryView extends StatelessWidget {
-  GardenSummaryView({Key? key, required this.title, required this.subtitle, required this.imagePath}) : super(key: key);
+  GardenSummaryView({Key? key, required this.title, required this.subtitle, required this.imagePath, required this.ownerID, required this.editorIDs, required this.viewerIDs}) : super(key: key);
 
   String title;
   String subtitle;
   String imagePath;
+  String ownerID;
+  List<String> editorIDs;
+  List<String> viewerIDs;
 
   @override
   Widget build(BuildContext context) {
@@ -32,28 +36,7 @@ class GardenSummaryView extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
-            Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-              Column(children: [
-                CircleAvatar(
-                  backgroundImage: AssetImage('assets/images/jenna-deane.jpg'),
-                ),
-                Text("Owner"),
-              ]),
-              const SizedBox(width: 10),
-              Column(children: [
-                CircleAvatar(
-                  child: const Text("JB"),
-                ),
-                Text("Editor"),
-              ]),
-              const SizedBox(width: 10),
-              Column(children: [
-                CircleAvatar(
-                  child: const Text("JA"),
-                ),
-                Text("Viewer"),
-              ]),
-            ]),
+            GardenSummaryUsersView(gardenID: 'garden-001'),
             const SizedBox(width: 8),
             Row(mainAxisAlignment: MainAxisAlignment.end, children: <Widget>[
               TextButton(

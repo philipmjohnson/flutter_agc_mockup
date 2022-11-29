@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_agc_mockup/src/components/garden_summary_card.dart';
-import '../../../entities/garden/garden_data.dart';
+import '../../../components/garden_summary_view.dart';
+import '../../../data/garden/garden_data.dart';
 
 /// Displays a list of Gardens.
 class GardensBodyView extends StatelessWidget {
@@ -15,11 +15,15 @@ class GardensBodyView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
         padding: const EdgeInsets.all(10.0),
-        child: ListView(children: [
-          GardenSummaryCard(
-              title: 'Alderwood Garden',
-              subtitle: '19 beds, 162 plantings',
-              imagePath: 'assets/images/garden-001.jpg'),
-        ]));
+        child: ListView(
+            children: gardens
+                .map((gardenData) => GardenSummaryView(
+                    title: gardenData.name,
+                    subtitle: gardenData.description,
+                    imagePath: gardenData.imagePath,
+                    ownerID: gardenData.ownerID,
+                    editorIDs: gardenData.editorIDs,
+                    viewerIDs: gardenData.viewerIDs))
+                .toList()));
   }
 }
