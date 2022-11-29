@@ -28,7 +28,7 @@ class HomeView extends StatefulWidget {
     },
     1: {
       'title': const Text('Gardens'),
-      'body': const GardensBodyView(),
+      'body': GardensBodyView(),
       'navItem': const BottomNavigationBarItem(
         label: 'My Gardens',
         icon: Icon(Icons.yard_outlined),

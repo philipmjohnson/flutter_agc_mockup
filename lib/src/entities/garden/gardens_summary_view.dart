@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class GardenSummaryCard extends StatelessWidget {
-  GardenSummaryCard({Key? key, required this.title, required this.subtitle, required this.imagePath}) : super(key: key);
+class GardenSummaryView extends StatelessWidget {
+  GardenSummaryView({Key? key, required this.title, required this.subtitle, required this.imagePath}) : super(key: key);
 
   String title;
   String subtitle;
