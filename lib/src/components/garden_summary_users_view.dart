@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_agc_mockup/src/components/user_access_view.dart';
 import '../data/garden/garden_db.dart';
 import '../data/user/user_db.dart';
 
@@ -17,25 +18,12 @@ class GardenSummaryUsersView extends StatelessWidget {
 
     return Row(mainAxisAlignment: MainAxisAlignment.start, children: [
       Column(children: [
-        CircleAvatar(
-          backgroundImage: AssetImage('assets/images/jenna-deane.jpg'),
-        ),
-        Text("Owner2"),
+        UserAccessView(userID: 'user-001', label: 'Owner'),
       ]),
       const SizedBox(width: 10),
-      Column(children: [
-        CircleAvatar(
-          child: const Text("JB"),
-        ),
-        Text("Editor"),
-      ]),
+      UserAccessView(userID: 'user-002', label: 'Editor'),
       const SizedBox(width: 10),
-      Column(children: [
-        CircleAvatar(
-          child: const Text("JA"),
-        ),
-        Text("Viewer"),
-      ]),
+      UserAccessView(userID: 'user-003', label: 'Viewer'),
     ]);
   }
 }
