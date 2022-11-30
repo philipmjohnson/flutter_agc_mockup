@@ -1,30 +1,19 @@
 import 'package:flutter/material.dart';
-
-import '../data/garden/garden_data.dart';
-import '../data/user/user_data.dart';
+import '../data/garden/garden_db.dart';
+import '../data/user/user_db.dart';
 
 class GardenSummaryUsersView extends StatelessWidget {
   GardenSummaryUsersView({Key? key, required String this.gardenID})
       : super(key: key);
 
   String gardenID;
-  List<GardenData> gardens = gardenDatas;
-  List<UserData> users = userDatas;
 
   @override
   Widget build(BuildContext context) {
-    GardenData gardenData =
-        gardens.firstWhere((gardenData) => gardenData.id == this.gardenID);
-    print(gardenData);
-    print(gardenData.ownerID);
-    UserData ownerData =
-        users.firstWhere((UserData) => UserData.id == gardenData.ownerID);
-    List<UserData> editorDatas = users
-        .where((UserData) => gardenData.editorIDs.contains(UserData.id))
-        .toList();
-    List<UserData> viewerDatas = users
-        .where((UserData) => gardenData.viewerIDs.contains(UserData.id))
-        .toList();
+    GardenData gardenData = gardenDB.getGarden(gardenID);
+    UserData ownerData = userDB.getUser(gardenData.ownerID);
+    List<UserData> editorDatas = userDB.getUsers(gardenData.editorIDs);
+    List<UserData> viewerDatas = userDB.getUsers(gardenData.viewerIDs);
 
     return Row(mainAxisAlignment: MainAxisAlignment.start, children: [
       Column(children: [
