@@ -3,6 +3,7 @@ import 'package:flutter_agc_mockup/src/pages/chapters/chapters_view.dart';
 import 'package:flutter_agc_mockup/src/pages/discussions/discussions_view.dart';
 import 'package:flutter_agc_mockup/src/pages/gardens/gardens_view.dart';
 import 'package:flutter_agc_mockup/src/pages/help/help_view.dart';
+import 'package:flutter_agc_mockup/src/pages/help/help_view_local.dart';
 import 'package:flutter_agc_mockup/src/pages/home/home_view.dart';
 import 'package:flutter_agc_mockup/src/pages/members/members_view.dart';
 import 'package:flutter_agc_mockup/src/pages/outcomes/outcomes_view.dart';
@@ -61,6 +62,8 @@ class MyApp extends StatelessWidget {
                     return DiscussionsView();
                   case HelpView.routeName:
                     return HelpView();
+                  case HelpViewLocal.routeName:
+                    return HelpViewLocal();
                   case SettingsView.routeName:
                     return SettingsView(controller: settingsController);
                   case SampleItemDetailsView.routeName:

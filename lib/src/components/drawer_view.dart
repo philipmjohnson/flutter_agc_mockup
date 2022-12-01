@@ -9,6 +9,7 @@ import '../pages/help/help_view.dart';
 import '../pages/home/home_view.dart';
 import '../pages/members/members_view.dart';
 import '../pages/seeds/seeds_view.dart';
+import '../pages/settings/settings_view.dart';
 
 class DrawerView extends StatelessWidget {
   const DrawerView({Key? key}) : super(key: key);
@@ -81,6 +82,13 @@ class DrawerView extends StatelessWidget {
             title: Text('Help'),
             onTap: () {
               Navigator.pushReplacementNamed(context, HelpView.routeName);
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.settings),
+            title: Text('Settings'),
+            onTap: () {
+              Navigator.pushReplacementNamed(context, SettingsView.routeName);
             },
           ),
           ListTile(

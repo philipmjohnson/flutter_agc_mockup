@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../components/drawer_view.dart';
 import 'settings_controller.dart';
 
 /// Displays the various settings that can be customized by the user.
@@ -16,6 +17,7 @@ class SettingsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const DrawerView(),
       appBar: AppBar(
         title: const Text('Settings'),
       ),

@@ -3,6 +3,7 @@ import 'package:flutter_agc_mockup/src/components/drawer_view.dart';
 import 'package:flutter_agc_mockup/src/data_model/user_db.dart';
 import '../../data_model/garden_db.dart';
 import '../../data_model/news_db.dart';
+import '../help/help_view_local.dart';
 import 'bodies/chapter_body_view.dart';
 import 'bodies/gardens_body_view.dart';
 import 'bodies/news_body_view.dart';
@@ -73,9 +74,9 @@ class _HomeViewState extends State<HomeView> {
         title: const Text('Home'),
         actions: [
           IconButton(
-            icon: const Icon(Icons.settings),
+            icon: const Icon(Icons.help_outline),
             onPressed: () {
-              Navigator.restorablePushNamed(context, SettingsView.routeName);
+              Navigator.restorablePushNamed(context, HelpViewLocal.routeName, arguments: HomeView.routeName);
             },
           ),
         ],
