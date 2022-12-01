@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_agc_mockup/src/components/user_avatar.dart';
 import 'package:flutter_agc_mockup/src/pages/outcomes/outcomes_view.dart';
 import '../data_model/user_db.dart';
 import '../pages/chapters/chapters_view.dart';
@@ -21,9 +22,7 @@ class DrawerView extends StatelessWidget {
           UserAccountsDrawerHeader(
             accountName: Text(user.name),
             accountEmail: Text(user.email),
-            currentAccountPicture: CircleAvatar(
-              backgroundImage: AssetImage('assets/images/jenna-deane.jpg'),
-            ),
+            currentAccountPicture: UserAvatar(userID: user.id),
             decoration: BoxDecoration(
               color: Theme.of(context).primaryColor,
             ),

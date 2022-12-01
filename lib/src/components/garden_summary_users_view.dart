@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_agc_mockup/src/components/user_avatar.dart';
+import 'package:flutter_agc_mockup/src/components/user_labeled_avatar.dart';
 import '../data_model/garden_db.dart';
-import '../data_model/user_db.dart';
 
 class GardenSummaryUsersView extends StatelessWidget {
   GardenSummaryUsersView({Key? key, required String this.gardenID})
@@ -15,14 +14,14 @@ class GardenSummaryUsersView extends StatelessWidget {
     double padding = 10;
 
     return Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-      UserAvatar(
+      UserLabeledAvatar(
           userID: gardenData.ownerID, label: 'Owner', rightPadding: padding),
       ...gardenData.editorIDs
-          .map((editorID) => UserAvatar(
+          .map((editorID) => UserLabeledAvatar(
               userID: editorID, label: 'Editor', rightPadding: padding))
           .toList(),
       ...gardenData.viewerIDs
-          .map((editorID) => UserAvatar(
+          .map((editorID) => UserLabeledAvatar(
               userID: editorID, label: 'Viewer', rightPadding: padding))
           .toList(),
     ]);
