@@ -12,42 +12,38 @@ class GardenSummaryView extends StatelessWidget {
     GardenData gardenData = gardenDB.getGarden(gardenID);
     String title = gardenData.name;
     String subtitle = gardenData.description;
+    String lastUpdate = gardenData.lastUpdate;
     String imagePath = gardenData.imagePath;
+    String chapterName = gardenDB.getChapter(gardenID).name;
     AssetImage image = AssetImage(imagePath);
     return Card(
       elevation: 9,
-      child: InkWell(
-        splashColor: Colors.blue.withAlpha(30),
-        onTap: () {
-          debugPrint('Card tapped.');
-        },
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ListTile(
-              title: Text(title),
-              subtitle: Text(subtitle),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          ListTile(
+            isThreeLine: true,
+            title: Text('$title Garden'),
+            subtitle: Text('$subtitle\n$chapterName Chapter'),
+            trailing: Icon(Icons.more_vert),
+          ),
+          Container(
+            height: 150.0,
+            child: Ink.image(
+              image: image,
+              fit: BoxFit.cover,
             ),
-            Container(
-              height: 100.0,
-              child: Ink.image(
-                image: image,
-                fit: BoxFit.cover,
-              ),
-            ),
-            const SizedBox(height: 10),
-            GardenSummaryUsersView(gardenID: gardenID),
-            const SizedBox(width: 8),
-            Row(mainAxisAlignment: MainAxisAlignment.end, children: <Widget>[
-              TextButton(
-                child: const Text('Edit'),
-                onPressed: () {
-                  /* ... */
-                },
-              ),
-            ]),
-          ],
-        ),
+          ),
+          const SizedBox(height: 10),
+          GardenSummaryUsersView(gardenID: gardenID),
+          const SizedBox(height: 10),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Align(
+                alignment: Alignment.centerRight,
+                child: Text('Last updated: $lastUpdate')),
+          ),
+        ],
       ),
     );
   }

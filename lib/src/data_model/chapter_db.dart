@@ -24,14 +24,14 @@ class ChapterDB {
         name: 'Bellingham, WA',
         zipCodes: ['98225', '98226', '98227', '98228', '98229'],
         imagePath: 'assets/images/chapter-001.png',
-        hardinessZones: ['Zone 8a', 'Zone 8b']
+        hardinessZones: ['8a', '8b']
         ),
     ChapterData(
         id: 'chapter-002',
         name: 'Kailua, HI',
         zipCodes: ['98734'],
-        imagePath: 'assets/images/bellingham-chapter-map.jpg',
-        hardinessZones: ['Zone 8a', 'Zone 8b']
+        imagePath: 'assets/images/chapter-002.png',
+        hardinessZones: ['10b', '11a', '11b', '12a', '12b', '13a']
     ),
   ];
 

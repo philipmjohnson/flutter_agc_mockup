@@ -10,6 +10,7 @@ class GardenData {
       required this.ownerID,
       required this.imagePath,
       required this.chapterID,
+      required this.lastUpdate,
       List<String>? editorIDs,
       List<String>? viewerIDs})
       : editorIDs = editorIDs ?? [],
@@ -21,6 +22,7 @@ class GardenData {
   String imagePath;
   String ownerID;
   String chapterID;
+  String lastUpdate;
   List<String> editorIDs;
   List<String> viewerIDs;
 }
@@ -30,21 +32,32 @@ class GardenDB {
   final List<GardenData> _gardens = [
     GardenData(
         id: 'garden-001',
-        name: 'Alderwood Garden',
-        description: '19 beds, 162 plantings',
+        name: 'Alderwood Hill',
+        description: '19 beds, 162 plantings (2022)',
         imagePath: 'assets/images/garden-001.jpg',
         ownerID: 'user-001',
         chapterID: 'chapter-001',
+        lastUpdate: '11/15/22',
         editorIDs: ['user-002'],
         viewerIDs: ['user-003']),
     GardenData(
         id: 'garden-002',
-        name: 'SuperKale Garden',
-        description: '17 beds, 149 plantings',
+        name: 'Kale is for Kids',
+        description: '17 beds, 149 plantings (2022)',
         imagePath: 'assets/images/garden-002.jpg',
         chapterID: 'chapter-001',
+        lastUpdate: '10/10/22',
         ownerID: 'user-002',
-        viewerIDs: ['user-001'])
+        viewerIDs: ['user-001']),
+    GardenData(
+        id: 'garden-003',
+        name: 'Kaimake Loop',
+        description: '1 beds, 5 plantings (2022)',
+        imagePath: 'assets/images/garden-003.jpg',
+        chapterID: 'chapter-002',
+        lastUpdate: '8/10/22',
+        ownerID: 'user-004',
+        editorIDs: ['user-003'])
   ];
 
   GardenData getGarden(String gardenID) {
@@ -53,6 +66,19 @@ class GardenDB {
 
   List<String> getGardenIDs() {
     return _gardens.map((data) => data.id).toList();
+  }
+
+  List<String> getAssociatedGardenIDs(String userID) {
+    return getGardenIDs()
+        .where((gardenID) => _isAssociated(gardenID, userID))
+        .toList();
+  }
+
+  bool _isAssociated(String gardenID, String userID) {
+    GardenData data = getGarden(gardenID);
+    return ((data.ownerID == userID) ||
+        (data.viewerIDs.contains(userID)) ||
+        (data.editorIDs.contains(userID)));
   }
 
   UserData getOwner(String gardenID) {

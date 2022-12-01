@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_agc_mockup/src/data_model/user_db.dart';
 import '../../../components/garden_summary_view.dart';
 import '../../../data_model/garden_db.dart';
 
@@ -15,7 +16,7 @@ class GardensBodyView extends StatelessWidget {
     return Padding(
         padding: const EdgeInsets.all(10.0),
         child: ListView(
-            children: gardenDB.getGardenIDs()
+            children: gardenDB.getAssociatedGardenIDs(currentUserID)
                 .map((gardenID) => GardenSummaryView(gardenID: gardenID)).toList()
                 .toList()));
   }

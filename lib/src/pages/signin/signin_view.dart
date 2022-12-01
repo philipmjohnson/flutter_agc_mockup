@@ -60,12 +60,15 @@ class _SigninViewState extends State<SigninView> {
               ),
             ),
             const SizedBox(height: 12.0),
-            ElevatedButton(
-                onPressed: () {
-                  // Eventually: pushReplacementNamed
-                  Navigator.pushReplacementNamed(context, '/home');
-                },
-                child: const Text('Sign in')),
+            Container(
+              height: 40,
+              child: ElevatedButton(
+                  onPressed: () {
+                    // Eventually: pushReplacementNamed
+                    Navigator.pushReplacementNamed(context, '/home');
+                  },
+                  child: const Text('Sign in')),
+            ),
             const SizedBox(height: 12.0),
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               const Text("Don't have an account? "),

@@ -22,7 +22,8 @@ class UserDB {
         imagePath: 'assets/images/jenna-deane.jpg',
         initials: 'JD'),
     UserData(id: 'user-002', name: 'Jesse Beck', initials: 'JB'),
-    UserData(id: 'user-003', name: 'Joanne Amberg', initials: 'JA')
+    UserData(id: 'user-003', name: 'Joanne Amberg', initials: 'JA'),
+    UserData(id: 'user-004', name: 'Philip Johnson', initials: 'PJ')
   ];
 
   UserData getUser(String userID) {
