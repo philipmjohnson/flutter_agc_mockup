@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_agc_mockup/src/pages/outcomes/outcomes_view.dart';
+import '../data_model/user_db.dart';
 import '../pages/chapters/chapters_view.dart';
 import '../pages/discussions/discussions_view.dart';
 import '../pages/gardens/gardens_view.dart';
@@ -13,12 +14,13 @@ class DrawerView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    UserData user = userDB.getUser(currentUserID);
     return Drawer(
       child: ListView(
         children: [
           UserAccountsDrawerHeader(
-            accountName: Text("Jenna Deane"),
-            accountEmail: Text("jennacorindeane@gmail.com"),
+            accountName: Text(user.name),
+            accountEmail: Text(user.email),
             currentAccountPicture: CircleAvatar(
               backgroundImage: AssetImage('assets/images/jenna-deane.jpg'),
             ),

@@ -3,7 +3,7 @@ import '../data_model/user_db.dart';
 
 /// Returns a CircleAvatar with either an image if available or initials, plus a label.
 class UserAvatar extends StatelessWidget {
-  const UserAvatar({Key? key, required String this.userID, required String this.label, double this.rightPadding = 0}) : super(key: key);
+  const UserAvatar({Key? key, required String this.userID, String this.label = '', double this.rightPadding = 0}) : super(key: key);
 
   final String userID;
   final String label;
