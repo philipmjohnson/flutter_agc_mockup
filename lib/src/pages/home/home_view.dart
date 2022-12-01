@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_agc_mockup/src/components/drawer_view.dart';
 import 'package:flutter_agc_mockup/src/data_model/user_db.dart';
+import '../../components/help_button.dart';
 import '../../data_model/garden_db.dart';
 import '../../data_model/news_db.dart';
-import '../help/help_view_local.dart';
 import 'bodies/chapter_body_view.dart';
 import 'bodies/gardens_body_view.dart';
 import 'bodies/news_body_view.dart';
-import '../settings/settings_view.dart';
 
 /// Top-level Layout for all of the "Home" related
 class HomeView extends StatefulWidget {
@@ -72,14 +71,7 @@ class _HomeViewState extends State<HomeView> {
       drawer: const DrawerView(),
       appBar: AppBar(
         title: const Text('Home'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.help_outline),
-            onPressed: () {
-              Navigator.restorablePushNamed(context, HelpViewLocal.routeName, arguments: HomeView.routeName);
-            },
-          ),
-        ],
+        actions: [HelpButton(routeName: HomeView.routeName)],
       ),
       body: pages[_selectedIndex]['body'],
       bottomNavigationBar: BottomNavigationBar(

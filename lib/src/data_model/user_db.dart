@@ -4,12 +4,14 @@ class UserData {
       {required this.id,
       required this.name,
       required this.email,
+      required this.username,
       this.imagePath,
       required this.initials});
 
   String id;
   String name;
   String email;
+  String username;
   String? imagePath;
   String initials;
 }
@@ -20,22 +22,26 @@ class UserDB {
     UserData(
         id: 'user-001',
         name: 'Jenna Deane',
+        username: '@fluke',
         email: 'jennacorindeane@gmail.com',
         imagePath: 'assets/images/jenna-deane.jpg',
         initials: 'JD'),
     UserData(
         id: 'user-002',
         name: 'Jesse Beck',
+        username: '@jesse',
         email: 'jessebeck@gmail.com',
         initials: 'JB'),
     UserData(
         id: 'user-003',
         name: 'Joanne Amberg',
+        username: '@joanne',
         email: 'joanne.amberg@gmail.com',
         initials: 'JA'),
     UserData(
         id: 'user-004',
         name: 'Philip Johnson',
+        username: '@fiveclockphil',
         email: 'johnson@hawaii.edu',
         initials: 'PJ')
   ];
