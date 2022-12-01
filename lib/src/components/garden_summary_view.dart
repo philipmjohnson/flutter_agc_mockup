@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_agc_mockup/src/components/garden_summary_users_view.dart';
-import '../data/garden/garden_db.dart';
+import '../data_model/garden_db.dart';
 
 class GardenSummaryView extends StatelessWidget {
   GardenSummaryView({Key? key, required this.gardenID}) : super(key: key);
@@ -13,9 +13,6 @@ class GardenSummaryView extends StatelessWidget {
     String title = gardenData.name;
     String subtitle = gardenData.description;
     String imagePath = gardenData.imagePath;
-    String ownerID = gardenData.ownerID;
-    List<String> editorIDs = gardenData.editorIDs;
-    List<String> viewerIDs = gardenData.viewerIDs;
     AssetImage image = AssetImage(imagePath);
     return Card(
       elevation: 9,
@@ -32,7 +29,7 @@ class GardenSummaryView extends StatelessWidget {
               subtitle: Text(subtitle),
             ),
             Container(
-              height: 200.0,
+              height: 100.0,
               child: Ink.image(
                 image: image,
                 fit: BoxFit.cover,

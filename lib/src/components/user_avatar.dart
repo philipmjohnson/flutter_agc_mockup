@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../data/user/user_db.dart';
+import '../data_model/user_db.dart';
 
 /// Returns a CircleAvatar with either an image if available or initials, plus a label.
 class UserAvatar extends StatelessWidget {

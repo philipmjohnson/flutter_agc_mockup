@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_agc_mockup/src/components/user_avatar.dart';
-import '../data/garden/garden_db.dart';
-import '../data/user/user_db.dart';
+import '../data_model/garden_db.dart';
+import '../data_model/user_db.dart';
 
 class GardenSummaryUsersView extends StatelessWidget {
   GardenSummaryUsersView({Key? key, required String this.gardenID})

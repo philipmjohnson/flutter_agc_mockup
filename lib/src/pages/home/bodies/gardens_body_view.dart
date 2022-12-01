@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../components/garden_summary_view.dart';
-import '../../../data/garden/garden_db.dart';
+import '../../../data_model/garden_db.dart';
 
 /// Displays a list of Gardens.
 class GardensBodyView extends StatelessWidget {
