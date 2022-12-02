@@ -1,5 +1,6 @@
 import '../pages/gardens/gardens_view.dart';
 import '../pages/home/home_view.dart';
+import '../pages/users/users_view.dart';
 
 /// Provides a help string (if available) for each page.
 /// Pages are identified by their routeName because that's guaranteed to be unique.
@@ -22,8 +23,12 @@ The "My Gardens" subsection provides cards with summaries for each Garden that y
 
 The "My Discussions" subsection provides summaries for each Discussion that you are currently participating in (or is a new Discussion).  Tap the card to go to the discussion, or else swipe right to remove it from this Home View. 
         ''',
-    GardensView.routeName: '''
-# About the Gardens Page.        
+    UsersView.routeName: '''
+# About the Members Page.
+
+This page provides a list of all of the Members in the Chapters associated with your Gardens.         
+
+It also includes your listing, so you can see how your information appears in the public directory.
         ''',
   };
 
