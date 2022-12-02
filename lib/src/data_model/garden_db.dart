@@ -73,7 +73,7 @@ class GardenDB {
       return getGardenIDs()
           .where((gardenID) => _userIsAssociated(gardenID, userID))
           .toList();
-    };
+    }
     if (chapterID != null) {
       return getGardenIDs()
           .where((gardenID) => getGarden(gardenID).chapterID == chapterID)

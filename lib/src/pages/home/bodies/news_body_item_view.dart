@@ -6,12 +6,12 @@ import '../../../data_model/news_db.dart';
 
 /// Displays a news item given its ID.
 class NewsBodyItemView extends StatelessWidget {
-  NewsBodyItemView({
+  const NewsBodyItemView({
     super.key,
     required this.newsID,
   });
 
-  String newsID;
+  final String newsID;
 
   @override
   Widget build(BuildContext context) {
@@ -33,9 +33,9 @@ class NewsBodyItemView extends StatelessWidget {
         leading: Icon(icon, color: Theme.of(context).primaryColor),
         title: Text('$title ($date)'),
         subtitle: Text('$bodyPrefix\n$body'),
-        trailing: NewsBodyItemActions(),
+        trailing: const NewsBodyItemActions(),
       ),
-      Divider(),
+      const Divider(),
     ]);
   }
 }

@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import '../pages/help/help_view_local.dart';
 
 class HelpButton extends StatelessWidget {
-  HelpButton({Key? key, required this.routeName}) : super(key: key);
+  const HelpButton({Key? key, required this.routeName}) : super(key: key);
 
-  String routeName;
+  final String routeName;
 
   @override
   Widget build(BuildContext context) {

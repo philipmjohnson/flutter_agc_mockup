@@ -3,10 +3,10 @@ import 'package:flutter_agc_mockup/src/components/user_labeled_avatar.dart';
 import '../data_model/garden_db.dart';
 
 class GardenSummaryUsersView extends StatelessWidget {
-  GardenSummaryUsersView({Key? key, required String this.gardenID})
+  const GardenSummaryUsersView({Key? key, required this.gardenID})
       : super(key: key);
 
-  String gardenID;
+  final String gardenID;
 
   @override
   Widget build(BuildContext context) {

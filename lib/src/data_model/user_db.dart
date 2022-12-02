@@ -61,9 +61,10 @@ class UserDB {
   // Then build the set of all userIDs associated with the chapterIDs.
   List<String> getAssociatedUserIDs(String userID) {
     List<String> chapterIDs = chapterDB.getAssociatedChapterIDs(userID);
-    print(chapterIDs);
     Set<String> userIDs = {};
-    chapterIDs.forEach((chapterID) => userIDs.addAll(chapterDB.getAssociatedUserIDs(chapterID)));
+    for (var chapterID in chapterIDs) {
+      userIDs.addAll(chapterDB.getAssociatedUserIDs(chapterID));
+    }
     return userIDs.toList();
   }
 }

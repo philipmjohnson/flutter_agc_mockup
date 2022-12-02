@@ -5,7 +5,7 @@ import '../../../data_model/garden_db.dart';
 
 /// Displays a list of Gardens.
 class GardensBodyView extends StatelessWidget {
-  GardensBodyView({
+  const GardensBodyView({
     super.key,
   });
 

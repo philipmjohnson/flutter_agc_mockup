@@ -12,7 +12,6 @@ import 'package:flutter_agc_mockup/src/pages/seeds/seeds_view.dart';
 import 'package:flutter_agc_mockup/src/pages/signin/signin_view.dart';
 import 'package:flutter_agc_mockup/src/pages/signup/signup_view.dart';
 import 'pages/sample_feature/sample_item_details_view.dart';
-import 'pages/sample_feature/sample_item_list_view.dart';
 import 'pages/settings/settings_controller.dart';
 import 'pages/settings/settings_view.dart';
 
@@ -47,28 +46,26 @@ class MyApp extends StatelessWidget {
                   case SignupView.routeName:
                     return const SignupView();
                   case HomeView.routeName:
-                    return HomeView();
+                    return const HomeView();
                   case GardensView.routeName:
-                    return GardensView();
+                    return const GardensView();
                   case ChaptersView.routeName:
-                    return ChaptersView();
+                    return const ChaptersView();
                   case OutcomesView.routeName:
-                    return OutcomesView();
+                    return const OutcomesView();
                   case SeedsView.routeName:
-                    return SeedsView();
+                    return const SeedsView();
                   case UsersView.routeName:
-                    return UsersView();
+                    return const UsersView();
                   case DiscussionsView.routeName:
-                    return DiscussionsView();
+                    return const DiscussionsView();
                   case HelpView.routeName:
-                    return HelpView();
+                    return const HelpView();
                   case HelpViewLocal.routeName:
-                    return HelpViewLocal();
+                    return const HelpViewLocal();
                   case SettingsView.routeName:
                     return SettingsView(controller: settingsController);
                   case SampleItemDetailsView.routeName:
-                    return const SampleItemDetailsView();
-                  case SigninView.routeName:
                     return const SampleItemDetailsView();
                   default:
                     return const PageNotFoundView();

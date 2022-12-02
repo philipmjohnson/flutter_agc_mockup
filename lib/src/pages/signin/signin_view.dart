@@ -7,10 +7,10 @@ class SigninView extends StatefulWidget {
   static const routeName = '/';
 
   @override
-  _SigninViewState createState() => _SigninViewState();
+  SigninViewState createState() => SigninViewState();
 }
 
-class _SigninViewState extends State<SigninView> {
+class SigninViewState extends State<SigninView> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
@@ -60,7 +60,7 @@ class _SigninViewState extends State<SigninView> {
               ),
             ),
             const SizedBox(height: 12.0),
-            Container(
+            SizedBox(
               height: 40,
               child: ElevatedButton(
                   onPressed: () {

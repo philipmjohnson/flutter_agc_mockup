@@ -1,5 +1,4 @@
 import 'garden_db.dart';
-import 'user_db.dart';
 
 /// The data associated with each chapter.
 class ChapterData {
@@ -36,8 +35,8 @@ class ChapterDB {
     ),
   ];
 
-  ChapterData getChapter(String ChapterID) {
-    return _chapters.firstWhere((data) => data.id == ChapterID);
+  ChapterData getChapter(String chapterID) {
+    return _chapters.firstWhere((data) => data.id == chapterID);
   }
 
   List<String> getChapterIDs() {
@@ -47,14 +46,18 @@ class ChapterDB {
   List<String> getAssociatedChapterIDs(String userID) {
     List<String> gardenIDs = gardenDB.getAssociatedGardenIDs(userID: userID);
     Set<String> chapterIDs = {};
-    gardenIDs.forEach((gardenID) => chapterIDs.add(gardenDB.getGarden(gardenID).chapterID));
+    for (var gardenID in gardenIDs) {
+      chapterIDs.add(gardenDB.getGarden(gardenID).chapterID);
+    }
     return chapterIDs.toList();
   }
 
   List<String> getAssociatedUserIDs(String chapterID) {
     List<String> gardenIDs = gardenDB.getAssociatedGardenIDs(chapterID: chapterID);
     Set<String> userIDs = {};
-    gardenIDs.forEach((gardenID) => userIDs.addAll(gardenDB.getAssociatedUserIDs(gardenID)));
+    for (var gardenID in gardenIDs) {
+      userIDs.addAll(gardenDB.getAssociatedUserIDs(gardenID));
+    }
     return userIDs.toList();
   }
 }

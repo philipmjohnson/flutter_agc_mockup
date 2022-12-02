@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_agc_mockup/src/pages/users/user_card_view.dart';
 import '../../components/drawer_view.dart';
 import '../../components/help_button.dart';
-import '../../data_model/chapter_db.dart';
 import '../../data_model/user_db.dart';
 
 const pageSpecification = '''
@@ -43,12 +42,11 @@ class UsersView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(userDB.getAssociatedUserIDs(currentUserID));
     return Scaffold(
       drawer: const DrawerView(),
       appBar: AppBar(
         title: const Text('Members'),
-        actions: [HelpButton(routeName: UsersView.routeName)],
+        actions: const [HelpButton(routeName: UsersView.routeName)],
       ),
       body: ListView(
           children: [

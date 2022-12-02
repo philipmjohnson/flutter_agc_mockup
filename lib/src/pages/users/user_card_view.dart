@@ -4,9 +4,9 @@ import '../../components/user_avatar.dart';
 import '../../data_model/user_db.dart';
 
 class UserCardView extends StatelessWidget {
-  UserCardView({Key? key, required String this.userID}) : super(key: key);
+  const UserCardView({Key? key, required this.userID}) : super(key: key);
 
-  String userID;
+  final String userID;
 
   @override
   Widget build(BuildContext context) {
@@ -16,15 +16,15 @@ class UserCardView extends StatelessWidget {
           children: [
             ListTile(
                 leading: UserAvatar(userID: userID),
-                trailing: Icon(Icons.more_vert),
+                trailing: const Icon(Icons.more_vert),
                 title: Text(data.username,
                     style: Theme.of(context).textTheme.headline6)),
-            Padding(
-              padding: const EdgeInsets.only(left: 15.0),
+            const Padding(
+              padding: EdgeInsets.only(left: 15.0),
               child: Align(alignment: Alignment.centerLeft, child: Text('Gardens2: xxx')),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 15.0),
+            const Padding(
+              padding: EdgeInsets.only(left: 15.0),
               child: Align(alignment: Alignment.centerLeft, child: Text('Chapters: xxx')),
             ),
           ],

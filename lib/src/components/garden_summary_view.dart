@@ -3,9 +3,9 @@ import 'package:flutter_agc_mockup/src/components/garden_summary_users_view.dart
 import '../data_model/garden_db.dart';
 
 class GardenSummaryView extends StatelessWidget {
-  GardenSummaryView({Key? key, required this.gardenID}) : super(key: key);
+  const GardenSummaryView({Key? key, required this.gardenID}) : super(key: key);
 
-  String gardenID;
+  final String gardenID;
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +25,9 @@ class GardenSummaryView extends StatelessWidget {
             isThreeLine: true,
             title: Text('$title Garden'),
             subtitle: Text('$subtitle\n$chapterName Chapter'),
-            trailing: Icon(Icons.more_vert),
+            trailing: const Icon(Icons.more_vert),
           ),
-          Container(
+          SizedBox(
             height: 150.0,
             child: Ink.image(
               image: image,

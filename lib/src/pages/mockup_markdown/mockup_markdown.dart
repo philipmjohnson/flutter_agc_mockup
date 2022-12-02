@@ -3,10 +3,10 @@ import 'package:flutter_agc_mockup/src/components/drawer_view.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 
 class MockupMarkdownView extends StatelessWidget {
-  MockupMarkdownView({Key? key, String this.title = "Title", String this.data = "Data"}) : super(key: key);
+  const MockupMarkdownView({Key? key, this.title = "Title", this.data = "Data"}) : super(key: key);
 
-  var title;
-  var data;
+  final String title;
+  final String data;
 
   @override
   Widget build(BuildContext context) {

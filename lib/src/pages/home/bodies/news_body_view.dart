@@ -17,7 +17,7 @@ class NewsBodyView extends StatelessWidget {
     return Padding(
         padding: const EdgeInsets.only(top: 10.0),
         child: (newsIDs.isEmpty)
-            ? Align(alignment: Alignment.center, child: Text("No news is good news!"))
+            ? const Align(alignment: Alignment.center, child: Text("No news is good news!"))
             : ListView(children: [
                 ...newsIDs
                     .map((newsID) => NewsBodyItemView(newsID: newsID))

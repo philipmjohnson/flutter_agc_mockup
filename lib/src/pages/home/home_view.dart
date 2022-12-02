@@ -10,7 +10,7 @@ import 'bodies/news_body_view.dart';
 
 /// Top-level Layout for all of the "Home" related
 class HomeView extends StatefulWidget {
-  HomeView({
+  const HomeView({
     super.key,
   });
 
@@ -47,15 +47,15 @@ class _HomeViewState extends State<HomeView> {
         'body': const NewsBodyView(),
         'navItem': BottomNavigationBarItem(
           label: 'My News ($numNews)',
-          icon: Icon(Icons.newspaper),
+          icon: const Icon(Icons.newspaper),
         ),
       },
       1: {
         'title': const Text('Gardens'),
-        'body': GardensBodyView(),
+        'body': const GardensBodyView(),
         'navItem': BottomNavigationBarItem(
           label: 'My Gardens ($numGardens)',
-          icon: Icon(Icons.yard_outlined),
+          icon: const Icon(Icons.yard_outlined),
         ),
       },
       2: {
@@ -63,7 +63,7 @@ class _HomeViewState extends State<HomeView> {
         'body': const ChapterBodyView(),
         'navItem': BottomNavigationBarItem(
           label: 'My Discussions ($numDiscussions)',
-          icon: Icon(Icons.chat),
+          icon: const Icon(Icons.chat),
         ),
       },
     };
@@ -71,7 +71,7 @@ class _HomeViewState extends State<HomeView> {
       drawer: const DrawerView(),
       appBar: AppBar(
         title: const Text('Home'),
-        actions: [HelpButton(routeName: HomeView.routeName)],
+        actions: const [HelpButton(routeName: HomeView.routeName)],
       ),
       body: pages[_selectedIndex]['body'],
       bottomNavigationBar: BottomNavigationBar(
