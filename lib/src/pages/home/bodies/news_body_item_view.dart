@@ -24,9 +24,9 @@ class NewsBodyItemView extends StatelessWidget {
     String? gardenID = data.gardenID;
     /// Only one of chapterID or gardenID is defined.
     String chapterName =
-        (chapterID == null) ? '' : '${chapterDB.getChapter(chapterID!).name} Chapter';
+        (chapterID == null) ? '' : '${chapterDB.getChapter(chapterID).name} Chapter';
     String gardenName =
-        (gardenID == null) ? '' : '${gardenDB.getGarden(gardenID!).name} Garden';
+        (gardenID == null) ? '' : '${gardenDB.getGarden(gardenID).name} Garden';
     String bodyPrefix = '$chapterName$gardenName';
     return Column(children: [
       ListTile(

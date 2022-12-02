@@ -68,13 +68,30 @@ class GardenDB {
     return _gardens.map((data) => data.id).toList();
   }
 
-  List<String> getAssociatedGardenIDs(String userID) {
-    return getGardenIDs()
-        .where((gardenID) => _isAssociated(gardenID, userID))
-        .toList();
+  List<String> getAssociatedGardenIDs({String? userID, String? chapterID}) {
+    if (userID != null) {
+      return getGardenIDs()
+          .where((gardenID) => _userIsAssociated(gardenID, userID))
+          .toList();
+    };
+    if (chapterID != null) {
+      return getGardenIDs()
+          .where((gardenID) => getGarden(gardenID).chapterID == chapterID)
+          .toList();
+    }
+    return [];
   }
 
-  bool _isAssociated(String gardenID, String userID) {
+  List<String> getAssociatedUserIDs(gardenID) {
+    GardenData data = gardenDB.getGarden(gardenID);
+    return [
+      data.ownerID,
+      ...data.viewerIDs,
+      ...data.editorIDs
+    ];
+  }
+
+  bool _userIsAssociated(String gardenID, String userID) {
     GardenData data = getGarden(gardenID);
     return ((data.ownerID == userID) ||
         (data.viewerIDs.contains(userID)) ||

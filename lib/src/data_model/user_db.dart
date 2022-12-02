@@ -1,3 +1,5 @@
+import 'chapter_db.dart';
+
 /// The data associated with users.
 class UserData {
   UserData(
@@ -52,6 +54,17 @@ class UserDB {
 
   List<UserData> getUsers(List<String> userIDs) {
     return _users.where((userData) => userIDs.contains(userData.id)).toList();
+  }
+
+  // Return the userIDs of users who are in the same Chapter(s) as [userID].
+  // First, get all of the chapterIDs that this [userID] is associated with.
+  // Then build the set of all userIDs associated with the chapterIDs.
+  List<String> getAssociatedUserIDs(String userID) {
+    List<String> chapterIDs = chapterDB.getAssociatedChapterIDs(userID);
+    print(chapterIDs);
+    Set<String> userIDs = {};
+    chapterIDs.forEach((chapterID) => userIDs.addAll(chapterDB.getAssociatedUserIDs(chapterID)));
+    return userIDs.toList();
   }
 }
 

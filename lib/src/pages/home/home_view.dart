@@ -36,7 +36,7 @@ class _HomeViewState extends State<HomeView> {
     String numNews =
         newsDB.getAssociatedNewsIDs(currentUserID).length.toString();
     String numGardens =
-        gardenDB.getAssociatedGardenIDs(currentUserID).length.toString();
+        gardenDB.getAssociatedGardenIDs(userID: currentUserID).length.toString();
     String numDiscussions = 0.toString();
 
     // This data structure will eventually become stateful and thus will

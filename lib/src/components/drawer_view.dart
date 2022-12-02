@@ -7,7 +7,7 @@ import '../pages/discussions/discussions_view.dart';
 import '../pages/gardens/gardens_view.dart';
 import '../pages/help/help_view.dart';
 import '../pages/home/home_view.dart';
-import '../pages/members/members_view.dart';
+import '../pages/users/users_view.dart';
 import '../pages/seeds/seeds_view.dart';
 import '../pages/settings/settings_view.dart';
 
@@ -29,71 +29,72 @@ class DrawerView extends StatelessWidget {
             ),
           ),
           ListTile(
-            leading: Icon(Icons.home),
-            title: Text('Home'),
+            leading: const Icon(Icons.home),
+            title: const Text('Home'),
             onTap: () {
               Navigator.pushReplacementNamed(context, HomeView.routeName);
             },
           ),
           ListTile(
-            leading: Icon(Icons.yard_outlined),
-            title: Text('Gardens'),
+            leading: const Icon(Icons.yard_outlined),
+            title: const Text('Gardens'),
             onTap: () {
               Navigator.pushReplacementNamed(context, GardensView.routeName);
             },
           ),
           ListTile(
-            leading: Icon(Icons.groups),
-            title: Text('Chapters'),
+            leading: const Icon(Icons.person),
+            title: const Text('Members'),
+            onTap: () {
+              Navigator.pushReplacementNamed(context, UsersView.routeName);
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.groups),
+            title: const Text('Chapters'),
             onTap: () {
               Navigator.pushReplacementNamed(context, ChaptersView.routeName);
             },
           ),
           ListTile(
-            leading: Icon(Icons.trending_up),
-            title: Text('Outcomes'),
+            leading: const Icon(Icons.trending_up),
+            title: const Text('Outcomes'),
             onTap: () {
               Navigator.pushReplacementNamed(context, OutcomesView.routeName);
             },
           ),
           ListTile(
-            leading: Icon(Icons.water_drop_outlined),
-            title: Text('Seeds'),
+            leading: const Icon(Icons.water_drop_outlined),
+            title: const Text('Seeds'),
             onTap: () {
               Navigator.pushReplacementNamed(context, SeedsView.routeName);
             },
           ),
           ListTile(
-            leading: Icon(Icons.person),
-            title: Text('Members'),
+            leading: const Icon(Icons.chat),
+            title: const Text('Discussions'),
             onTap: () {
-              Navigator.pushReplacementNamed(context, MembersView.routeName);
+              Navigator.pushReplacementNamed(
+                  context, DiscussionsView.routeName);
             },
           ),
           ListTile(
-            leading: Icon(Icons.chat),
-            title: Text('Discussions'),
-            onTap: () {
-              Navigator.pushReplacementNamed(context, DiscussionsView.routeName);
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.help_outline),
-            title: Text('Help'),
+            leading: const Icon(Icons.help_outline),
+            title: const Text('Help'),
             onTap: () {
               Navigator.pushReplacementNamed(context, HelpView.routeName);
             },
           ),
           ListTile(
-            leading: Icon(Icons.settings),
-            title: Text('Settings'),
+            leading: const Icon(Icons.settings),
+            title: const Text('Settings'),
             onTap: () {
               Navigator.pushReplacementNamed(context, SettingsView.routeName);
             },
           ),
           ListTile(
-            leading: Icon(Icons.logout),
-            title: Text('Sign out'),
+            leading: const Icon(Icons.logout),
+            title: const Text('Sign out'),
             onTap: () {
               Navigator.pushReplacementNamed(context, 'bad page');
             },

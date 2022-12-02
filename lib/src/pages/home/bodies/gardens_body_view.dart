@@ -16,7 +16,7 @@ class GardensBodyView extends StatelessWidget {
     return Padding(
         padding: const EdgeInsets.all(10.0),
         child: ListView(
-            children: gardenDB.getAssociatedGardenIDs(currentUserID)
+            children: gardenDB.getAssociatedGardenIDs(userID: currentUserID)
                 .map((gardenID) => GardenSummaryView(gardenID: gardenID)).toList()
                 .toList()));
   }

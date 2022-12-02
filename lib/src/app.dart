@@ -5,7 +5,7 @@ import 'package:flutter_agc_mockup/src/pages/gardens/gardens_view.dart';
 import 'package:flutter_agc_mockup/src/pages/help/help_view.dart';
 import 'package:flutter_agc_mockup/src/pages/help/help_view_local.dart';
 import 'package:flutter_agc_mockup/src/pages/home/home_view.dart';
-import 'package:flutter_agc_mockup/src/pages/members/members_view.dart';
+import 'package:flutter_agc_mockup/src/pages/users/users_view.dart';
 import 'package:flutter_agc_mockup/src/pages/outcomes/outcomes_view.dart';
 import 'package:flutter_agc_mockup/src/pages/page_not_found/page_not_found_view.dart';
 import 'package:flutter_agc_mockup/src/pages/seeds/seeds_view.dart';
@@ -56,8 +56,8 @@ class MyApp extends StatelessWidget {
                     return OutcomesView();
                   case SeedsView.routeName:
                     return SeedsView();
-                  case MembersView.routeName:
-                    return MembersView();
+                  case UsersView.routeName:
+                    return UsersView();
                   case DiscussionsView.routeName:
                     return DiscussionsView();
                   case HelpView.routeName:
