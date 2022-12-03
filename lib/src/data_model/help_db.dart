@@ -1,4 +1,4 @@
-import '../pages/gardens/gardens_view.dart';
+import '../pages/chapters/chapters_view.dart';
 import '../pages/home/home_view.dart';
 import '../pages/users/users_view.dart';
 
@@ -29,6 +29,19 @@ The "My Discussions" subsection provides summaries for each Discussion that you 
 This page provides a list of all of the Members in the Chapters associated with your Gardens.         
 
 It also includes your listing, so you can see how your information appears in the public directory.
+
+The buttons at the bottom enable you to filter or sort the list of members. 
+        ''',
+    ChaptersView.routeName: '''
+# About the Chapters Page.
+
+This page provides a list of all of the Chapters with which you have membership.        
+
+You become a member of a Chapter by being associated with a garden in that Chapter as an owner, editor, or viewer.
+
+Most people will only be a member of a single Chapter.
+
+The buttons at the bottom enable you to filter or sort the list of Chapters. 
         ''',
   };
 

@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import '../mockup_markdown/mockup_markdown.dart';
+import '../../components/drawer_view.dart';
+import '../../components/help_button.dart';
+import '../../data_model/chapter_db.dart';
+import '../../data_model/user_db.dart';
+import 'chapter_card_view.dart';
 
 const pageSpecification = '''
 # Chapters Page Specification
@@ -31,8 +35,6 @@ Possible actions associated with each Chapter card:
 
 ''';
 
-
-
 /// Displays Chapter information.
 class ChaptersView extends StatelessWidget {
   const ChaptersView({
@@ -44,6 +46,30 @@ class ChaptersView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MockupMarkdownView(title: title, data: pageSpecification);
+    return Scaffold(
+      drawer: const DrawerView(),
+      appBar: AppBar(
+        title: const Text('Chapters'),
+        actions: const [HelpButton(routeName: ChaptersView.routeName)],
+      ),
+      body: ListView(
+          children: [
+            ...chapterDB.getAssociatedChapterIDs(currentUserID).map((chapterID) => ChapterCardView(chapterID: chapterID))
+          ]
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        // type: BottomNavigationBarType.fixed, // needed when more than 3 items
+        items: const [
+          BottomNavigationBarItem(
+            label: 'Filter',
+            icon: Icon(Icons.filter_list),
+          ),
+          BottomNavigationBarItem(
+            label: 'Sort',
+            icon: Icon(Icons.sort),
+          ),
+        ],
+      ),
+    );
   }
 }
