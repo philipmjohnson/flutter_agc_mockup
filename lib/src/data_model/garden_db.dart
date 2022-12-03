@@ -39,7 +39,7 @@ class GardenDB {
         chapterID: 'chapter-001',
         lastUpdate: '11/15/22',
         editorIDs: ['user-002'],
-        viewerIDs: ['user-003']),
+        viewerIDs: ['user-003', 'user-005']),
     GardenData(
         id: 'garden-002',
         name: 'Kale is for Kids',
@@ -48,7 +48,7 @@ class GardenDB {
         chapterID: 'chapter-001',
         lastUpdate: '10/10/22',
         ownerID: 'user-002',
-        viewerIDs: ['user-001']),
+        viewerIDs: ['user-001', 'user-005']),
     GardenData(
         id: 'garden-003',
         name: 'Kaimake Loop',
@@ -57,6 +57,7 @@ class GardenDB {
         chapterID: 'chapter-002',
         lastUpdate: '8/10/22',
         ownerID: 'user-004',
+        viewerIDs: ['user-005'],
         editorIDs: ['user-003'])
   ];
 

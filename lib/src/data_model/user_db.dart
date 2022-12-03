@@ -26,7 +26,7 @@ class UserDB {
         name: 'Jenna Deane',
         username: '@fluke',
         email: 'jennacorindeane@gmail.com',
-        imagePath: 'assets/images/jenna-deane.jpg',
+        imagePath: 'assets/images/user-001.jpg',
         initials: 'JD'),
     UserData(
         id: 'user-002',
@@ -45,7 +45,14 @@ class UserDB {
         name: 'Philip Johnson',
         username: '@fiveclockphil',
         email: 'johnson@hawaii.edu',
-        initials: 'PJ')
+        initials: 'PJ'),
+    UserData(
+        id: 'user-005',
+        name: 'Katie Amberg-Johnson',
+        username: '@katiekai',
+        email: 'katieambergjohnson@gmail.com',
+        imagePath: 'assets/images/user-005.jpg',
+        initials: 'KAJ')
   ];
 
   UserData getUser(String userID) {
@@ -73,4 +80,4 @@ class UserDB {
 UserDB userDB = UserDB();
 
 /// The currently logged in user.
-String currentUserID = 'user-003';
+String currentUserID = 'user-005';
