@@ -43,7 +43,7 @@ class UserDB {
     UserData(
         id: 'user-004',
         name: 'Philip Johnson',
-        username: '@fiveclockphil',
+        username: '@fiveoclockphil',
         email: 'johnson@hawaii.edu',
         initials: 'PJ'),
     UserData(
