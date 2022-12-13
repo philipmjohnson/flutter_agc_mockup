@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 
 /// Presents the page containing fields to enter a username and password, plus buttons.
 class SigninView extends StatefulWidget {
@@ -13,6 +15,8 @@ class SigninView extends StatefulWidget {
 class SigninViewState extends State<SigninView> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _formKey = GlobalKey<FormBuilderState>();
+  final _emailFieldKey = GlobalKey<FormBuilderFieldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -38,19 +42,32 @@ class SigninViewState extends State<SigninView> {
             ),
             const SizedBox(height: 120.0),
             // [Name]
-            TextField(
-              controller: _emailController,
-              decoration: const InputDecoration(
-                labelText: 'Email',
+            FormBuilder(
+              key: _formKey,
+              // autovalidateMode: AutovalidateMode.onUserInteraction,
+              child: Column(
+                children: [
+                  FormBuilderTextField(
+                    key: _emailFieldKey,
+                    name: 'email',
+                    decoration: const InputDecoration(labelText: 'Email'),
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(),
+                      FormBuilderValidators.email(),
+                    ]),
+                  ),
+                  const SizedBox(height: 10),
+                  FormBuilderTextField(
+                    name: 'password',
+                    decoration: const InputDecoration(labelText: 'Password'),
+                    obscureText: true,
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(),
+                      FormBuilderValidators.minLength(6),
+                    ]),
+                  ),
+                ],
               ),
-            ),
-            const SizedBox(height: 12.0),
-            TextField(
-              controller: _passwordController,
-              decoration: const InputDecoration(
-                labelText: 'Password',
-              ),
-              obscureText: true,
             ),
             Align(
               alignment: Alignment.centerRight,
@@ -64,8 +81,25 @@ class SigninViewState extends State<SigninView> {
               height: 40,
               child: ElevatedButton(
                   onPressed: () {
-                    // Eventually: pushReplacementNamed
-                    Navigator.pushReplacementNamed(context, '/home');
+                    if (_formKey.currentState?.saveAndValidate() ?? false) {
+                      if (true) {
+                        // Either invalidate using Form Key
+                        _formKey.currentState?.invalidateField(
+                            name: 'email', errorText: 'Email already taken.');
+                        // OR invalidate using Field Key
+                        // _emailFieldKey.currentState?.invalidate('Email already taken.');
+                      }
+
+                      debugPrint('Valid');
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text('Logged in successfully.'),
+                        duration: Duration(seconds: 2),
+                      ));
+                      Navigator.pushReplacementNamed(context, '/home');
+                    } else {
+                      debugPrint('Invalid');
+                    }
+                    debugPrint(_formKey.currentState?.value.toString());
                   },
                   child: const Text('Sign in')),
             ),
