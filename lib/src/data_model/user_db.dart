@@ -61,8 +61,17 @@ class UserDB {
     return _users.firstWhere((userData) => userData.id == userID);
   }
 
+  bool isUserEmail(String email) {
+    List<String> emails = _users.map((userData) => userData.email).toList();
+    return emails.contains(email);
+  }
+
   List<UserData> getUsers(List<String> userIDs) {
     return _users.where((userData) => userIDs.contains(userData.id)).toList();
+  }
+
+  List<String> getAllEmails() {
+    return _users.map((userData) => userData.email).toList();
   }
 
   // Return the userIDs of users who are in the same Chapter(s) as [userID].

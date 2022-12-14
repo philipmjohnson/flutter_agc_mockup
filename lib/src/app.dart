@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
               builder: (BuildContext context) {
                 switch (routeSettings.name) {
                   case SigninView.routeName:
-                    return const SigninView();
+                    return SigninView();
                   case SignupView.routeName:
                     return const SignupView();
                   case HomeView.routeName:

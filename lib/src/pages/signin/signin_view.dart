@@ -1,25 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
+import '../../data_model/user_db.dart';
+
 /// Presents the page containing fields to enter a username and password, plus buttons.
-class SigninView extends StatefulWidget {
-  const SigninView({Key? key}) : super(key: key);
+class SigninView extends ConsumerWidget {
+  SigninView({Key? key}) : super(key: key);
 
   static const routeName = '/';
-
-  @override
-  SigninViewState createState() => SigninViewState();
-}
-
-class SigninViewState extends State<SigninView> {
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormBuilderState>();
-  final _emailFieldKey = GlobalKey<FormBuilderFieldState>();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: SafeArea(
         child: ListView(
@@ -48,7 +42,6 @@ class SigninViewState extends State<SigninView> {
               child: Column(
                 children: [
                   FormBuilderTextField(
-                    key: _emailFieldKey,
                     name: 'email',
                     decoration: const InputDecoration(labelText: 'Email'),
                     validator: FormBuilderValidators.compose([
@@ -61,10 +54,6 @@ class SigninViewState extends State<SigninView> {
                     name: 'password',
                     decoration: const InputDecoration(labelText: 'Password'),
                     obscureText: true,
-                    validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.required(),
-                      FormBuilderValidators.minLength(6),
-                    ]),
                   ),
                 ],
               ),
@@ -81,17 +70,26 @@ class SigninViewState extends State<SigninView> {
               height: 40,
               child: ElevatedButton(
                   onPressed: () {
-                    bool validEmailAndPassword = _formKey.currentState?.saveAndValidate() ?? false;
+                    bool validEmailAndPassword =
+                        _formKey.currentState?.saveAndValidate() ?? false;
+                    UserDB userDB = ref.read(userDBProvider);
 
                     if (validEmailAndPassword) {
-                      debugPrint('Email: ${_formKey.currentState?.value['email']}');
+                      String email = _formKey.currentState?.value['email'];
+                      if (userDB.isUserEmail(email)) {
+                        ref.read(currentUserIDProvider.notifier).state = email;
+                        Navigator.pushReplacementNamed(context, '/home');
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text("Unknown User, try one of: ${userDB.getAllEmails().join(', ')}"),
+                          duration: Duration(seconds: 10),
+                        ));
+                      }
+                    } else {
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content: Text('Logged in successfully.'),
+                        content: Text('Invalid Email or Password.'),
                         duration: Duration(seconds: 2),
                       ));
-                      // Navigator.pushReplacementNamed(context, '/home');
-                    } else {
-                      debugPrint('Invalid Email or Password: ${_formKey.currentState?.value.toString()}');
                     }
                   },
                   child: const Text('Sign in')),
