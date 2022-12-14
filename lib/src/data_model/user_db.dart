@@ -1,3 +1,5 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'chapter_db.dart';
 
 /// The data associated with users.
@@ -81,3 +83,11 @@ UserDB userDB = UserDB();
 
 /// The currently logged in user.
 String currentUserID = 'user-005';
+
+final userDBProvider = Provider<UserDB>((ref) {
+  return UserDB();
+});
+
+final currentUserIDProvider = StateProvider<String>((ref) {
+  return 'user-001';
+});

@@ -81,25 +81,18 @@ class SigninViewState extends State<SigninView> {
               height: 40,
               child: ElevatedButton(
                   onPressed: () {
-                    if (_formKey.currentState?.saveAndValidate() ?? false) {
-                      if (true) {
-                        // Either invalidate using Form Key
-                        _formKey.currentState?.invalidateField(
-                            name: 'email', errorText: 'Email already taken.');
-                        // OR invalidate using Field Key
-                        // _emailFieldKey.currentState?.invalidate('Email already taken.');
-                      }
+                    bool validEmailAndPassword = _formKey.currentState?.saveAndValidate() ?? false;
 
-                      debugPrint('Valid');
+                    if (validEmailAndPassword) {
+                      debugPrint('Email: ${_formKey.currentState?.value['email']}');
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                         content: Text('Logged in successfully.'),
                         duration: Duration(seconds: 2),
                       ));
-                      Navigator.pushReplacementNamed(context, '/home');
+                      // Navigator.pushReplacementNamed(context, '/home');
                     } else {
-                      debugPrint('Invalid');
+                      debugPrint('Invalid Email or Password: ${_formKey.currentState?.value.toString()}');
                     }
-                    debugPrint(_formKey.currentState?.value.toString());
                   },
                   child: const Text('Sign in')),
             ),

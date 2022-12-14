@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'src/app.dart';
 import 'src/pages/settings/settings_controller.dart';
 import 'src/pages/settings/settings_service.dart';
@@ -17,5 +18,5 @@ void main() async {
   // Load the user's preferred theme (light or dark) while the splash screen is displayed.
   await settingsController.loadSettings();
   // Run the app and pass in the SettingsController.
-  runApp(MyApp(settingsController: settingsController, theme: theme));
+  runApp(ProviderScope(child: MyApp(settingsController: settingsController, theme: theme)));
 }
