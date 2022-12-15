@@ -68,9 +68,6 @@ class ChapterDB {
   }
 }
 
-/// The singleton instance of a ChapterDB used by clients to access Chapter data.
-// ChapterDB chapterDB = ChapterDB();
-
 final chapterDBProvider = Provider<ChapterDB>((ref) {
   return ChapterDB(ref);
 });

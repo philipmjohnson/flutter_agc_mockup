@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 /// The data associated with users.
 class NewsData {
@@ -25,6 +26,8 @@ class NewsData {
 
 /// Provides access to and operations on all defined users.
 class NewsDB {
+  NewsDB(this.ref);
+  final ProviderRef<NewsDB> ref;
   final List<NewsData> _news = [
     NewsData(
         id: 'news-001',
@@ -91,5 +94,6 @@ class NewsDB {
   }
 }
 
-/// The singleton instance providing access to all user data for clients.
-NewsDB newsDB = NewsDB();
+final newsDBProvider = Provider<NewsDB>((ref) {
+  return NewsDB(ref);
+});

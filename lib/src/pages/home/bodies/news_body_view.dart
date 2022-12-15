@@ -15,6 +15,7 @@ class NewsBodyView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentUserID = ref.watch(currentUserIDProvider);
+    final NewsDB newsDB = ref.watch(newsDBProvider);
     List<String> newsIDs = newsDB.getAssociatedNewsIDs(currentUserID);
     return Padding(
         padding: const EdgeInsets.only(top: 10.0),

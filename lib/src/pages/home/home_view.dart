@@ -36,6 +36,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
   Widget build(BuildContext context) {
     final String currentUserID = ref.watch(currentUserIDProvider);
     final GardenDB gardenDB = ref.watch(gardenDBProvider);
+    final NewsDB newsDB = ref.watch(newsDBProvider);
     String numNews =
         newsDB.getAssociatedNewsIDs(currentUserID).length.toString();
     String numGardens =

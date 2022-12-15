@@ -18,6 +18,7 @@ class NewsBodyItemView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final GardenDB gardenDB = ref.watch(gardenDBProvider);
     final ChapterDB chapterDB = ref.watch(chapterDBProvider);
+    final NewsDB newsDB = ref.watch(newsDBProvider);
     NewsData data = newsDB.getNews(newsID);
     IconData icon = data.icon;
     String title = data.title;

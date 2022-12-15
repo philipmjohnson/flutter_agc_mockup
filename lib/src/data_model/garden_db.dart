@@ -127,9 +127,6 @@ class GardenDB {
   }
 }
 
-/// The singleton instance of a gardenDB used by clients to access garden data.
-// GardenDB gardenDB = GardenDB();
-
 final gardenDBProvider = Provider<GardenDB>((ref) {
   return GardenDB(ref);
 });
