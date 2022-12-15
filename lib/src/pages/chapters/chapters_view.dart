@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../components/drawer_view.dart';
 import '../../components/help_button.dart';
 import '../../data_model/chapter_db.dart';
@@ -36,7 +37,7 @@ Possible actions associated with each Chapter card:
 ''';
 
 /// Displays Chapter information.
-class ChaptersView extends StatelessWidget {
+class ChaptersView extends ConsumerWidget {
   const ChaptersView({
     super.key,
   });
@@ -45,7 +46,9 @@ class ChaptersView extends StatelessWidget {
 
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final ChapterDB chapterDB = ref.watch(chapterDBProvider);
+    final String currentUserID = ref.watch(currentUserIDProvider);
     return Scaffold(
       drawer: const DrawerView(),
       appBar: AppBar(

@@ -1,3 +1,5 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'garden_db.dart';
 
 /// The data associated with each chapter.
@@ -18,6 +20,8 @@ class ChapterData {
 
 /// Provides access to and operations on all defined Chapters.
 class ChapterDB {
+  ChapterDB(this.ref);
+  final ProviderRef<ChapterDB> ref;
   final List<ChapterData> _chapters = [
     ChapterData(
         id: 'chapter-001',
@@ -44,6 +48,7 @@ class ChapterDB {
   }
 
   List<String> getAssociatedChapterIDs(String userID) {
+    final GardenDB gardenDB = ref.watch(gardenDBProvider);
     List<String> gardenIDs = gardenDB.getAssociatedGardenIDs(userID: userID);
     Set<String> chapterIDs = {};
     for (var gardenID in gardenIDs) {
@@ -53,6 +58,7 @@ class ChapterDB {
   }
 
   List<String> getAssociatedUserIDs(String chapterID) {
+    final GardenDB gardenDB = ref.watch(gardenDBProvider);
     List<String> gardenIDs = gardenDB.getAssociatedGardenIDs(chapterID: chapterID);
     Set<String> userIDs = {};
     for (var gardenID in gardenIDs) {
@@ -63,4 +69,8 @@ class ChapterDB {
 }
 
 /// The singleton instance of a ChapterDB used by clients to access Chapter data.
-ChapterDB chapterDB = ChapterDB();
+// ChapterDB chapterDB = ChapterDB();
+
+final chapterDBProvider = Provider<ChapterDB>((ref) {
+  return ChapterDB(ref);
+});

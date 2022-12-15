@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_agc_mockup/src/components/user_labeled_avatar.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../data_model/garden_db.dart';
 
-class GardenSummaryUsersView extends StatelessWidget {
+class GardenSummaryUsersView extends ConsumerWidget {
   const GardenSummaryUsersView({Key? key, required this.gardenID})
       : super(key: key);
 
   final String gardenID;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final GardenDB gardenDB = ref.watch(gardenDBProvider);
     GardenData gardenData = gardenDB.getGarden(gardenID);
     double padding = 10;
 

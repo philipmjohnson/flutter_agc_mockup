@@ -1,3 +1,4 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'chapter_db.dart';
 import 'user_db.dart';
 
@@ -29,6 +30,8 @@ class GardenData {
 
 /// Provides access to and operations on all defined Gardens.
 class GardenDB {
+  GardenDB(this.ref);
+  final ProviderRef<GardenDB> ref;
   final List<GardenData> _gardens = [
     GardenData(
         id: 'garden-001',
@@ -84,7 +87,7 @@ class GardenDB {
   }
 
   List<String> getAssociatedUserIDs(gardenID) {
-    GardenData data = gardenDB.getGarden(gardenID);
+    GardenData data = getGarden(gardenID);
     return [
       data.ownerID,
       ...data.viewerIDs,
@@ -101,24 +104,32 @@ class GardenDB {
 
   UserData getOwner(String gardenID) {
     GardenData data = getGarden(gardenID);
+    UserDB userDB = ref.read(userDBProvider);
     return userDB.getUser(data.ownerID);
   }
 
   List<UserData> getEditors(String gardenID) {
     GardenData data = getGarden(gardenID);
+    UserDB userDB = ref.read(userDBProvider);
     return userDB.getUsers(data.editorIDs);
   }
 
   List<UserData> getViewers(String gardenID) {
     GardenData data = getGarden(gardenID);
+    UserDB userDB = ref.read(userDBProvider);
     return userDB.getUsers(data.viewerIDs);
   }
 
   ChapterData getChapter(String gardenID) {
     GardenData data = getGarden(gardenID);
+    final ChapterDB chapterDB = ref.watch(chapterDBProvider);
     return chapterDB.getChapter(data.chapterID);
   }
 }
 
 /// The singleton instance of a gardenDB used by clients to access garden data.
-GardenDB gardenDB = GardenDB();
+// GardenDB gardenDB = GardenDB();
+
+final gardenDBProvider = Provider<GardenDB>((ref) {
+  return GardenDB(ref);
+});

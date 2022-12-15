@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_agc_mockup/src/components/user_avatar.dart';
 import 'package:flutter_agc_mockup/src/pages/outcomes/outcomes_view.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../data_model/user_db.dart';
 import '../pages/chapters/chapters_view.dart';
 import '../pages/discussions/discussions_view.dart';
@@ -11,11 +12,13 @@ import '../pages/users/users_view.dart';
 import '../pages/seeds/seeds_view.dart';
 import '../pages/settings/settings_view.dart';
 
-class DrawerView extends StatelessWidget {
+class DrawerView extends ConsumerWidget {
   const DrawerView({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final UserDB userDB = ref.watch(userDBProvider);
+    final String currentUserID = ref.watch(currentUserIDProvider);
     UserData user = userDB.getUser(currentUserID);
     return Drawer(
       child: ListView(

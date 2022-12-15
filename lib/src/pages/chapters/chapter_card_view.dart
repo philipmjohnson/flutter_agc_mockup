@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../data_model/chapter_db.dart';
 import '../../data_model/garden_db.dart';
 
-class ChapterCardView extends StatelessWidget {
+class ChapterCardView extends ConsumerWidget {
   const ChapterCardView({Key? key, required this.chapterID}) : super(key: key);
 
   final String chapterID;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final ChapterDB chapterDB = ref.watch(chapterDBProvider);
+    final GardenDB gardenDB = ref.watch(gardenDBProvider);
     ChapterData data = chapterDB.getChapter(chapterID);
     int numGardens = gardenDB
         .getAssociatedGardenIDs(chapterID: chapterID).length;

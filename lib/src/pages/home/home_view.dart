@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_agc_mockup/src/components/drawer_view.dart';
 import 'package:flutter_agc_mockup/src/data_model/user_db.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../components/help_button.dart';
 import '../../data_model/garden_db.dart';
 import '../../data_model/news_db.dart';
@@ -9,7 +10,7 @@ import 'bodies/gardens_body_view.dart';
 import 'bodies/news_body_view.dart';
 
 /// Top-level Layout for all of the "Home" related
-class HomeView extends StatefulWidget {
+class HomeView extends ConsumerStatefulWidget {
   const HomeView({
     super.key,
   });
@@ -17,10 +18,10 @@ class HomeView extends StatefulWidget {
   static const routeName = '/home';
 
   @override
-  State<HomeView> createState() => _HomeViewState();
+  ConsumerState<HomeView> createState() => _HomeViewState();
 }
 
-class _HomeViewState extends State<HomeView> {
+class _HomeViewState extends ConsumerState<HomeView> {
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
@@ -33,6 +34,8 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
+    final String currentUserID = ref.watch(currentUserIDProvider);
+    final GardenDB gardenDB = ref.watch(gardenDBProvider);
     String numNews =
         newsDB.getAssociatedNewsIDs(currentUserID).length.toString();
     String numGardens =

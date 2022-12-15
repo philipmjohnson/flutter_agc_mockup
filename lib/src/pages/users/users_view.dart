@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_agc_mockup/src/pages/users/user_card_view.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../components/drawer_view.dart';
 import '../../components/help_button.dart';
 import '../../data_model/user_db.dart';
@@ -32,7 +33,7 @@ Maybe you can request "messaging privilege" or something from another member, so
 ''';
 
 /// Displays User information.
-class UsersView extends StatelessWidget {
+class UsersView extends ConsumerWidget {
   const UsersView({
     super.key,
   });
@@ -41,7 +42,9 @@ class UsersView extends StatelessWidget {
 
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final UserDB userDB = ref.watch(userDBProvider);
+    final String currentUserID = ref.watch(currentUserIDProvider);
     return Scaffold(
       drawer: const DrawerView(),
       appBar: AppBar(

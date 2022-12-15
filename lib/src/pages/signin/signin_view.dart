@@ -77,7 +77,8 @@ class SigninView extends ConsumerWidget {
                     if (validEmailAndPassword) {
                       String email = _formKey.currentState?.value['email'];
                       if (userDB.isUserEmail(email)) {
-                        ref.read(currentUserIDProvider.notifier).state = email;
+                        String userID = userDB.getUserID(email);
+                        ref.read(currentUserIDProvider.notifier).state = userID;
                         Navigator.pushReplacementNamed(context, '/home');
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(

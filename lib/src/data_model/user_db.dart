@@ -22,6 +22,9 @@ class UserData {
 
 /// Provides access to and operations on all defined users.
 class UserDB {
+  UserDB(this.ref);
+
+  final ProviderRef<UserDB> ref;
   final List<UserData> _users = [
     UserData(
         id: 'user-001',
@@ -61,6 +64,10 @@ class UserDB {
     return _users.firstWhere((userData) => userData.id == userID);
   }
 
+  String getUserID(String email) {
+    return _users.firstWhere((userData) => userData.email == email).id;
+  }
+
   bool isUserEmail(String email) {
     List<String> emails = _users.map((userData) => userData.email).toList();
     return emails.contains(email);
@@ -78,6 +85,7 @@ class UserDB {
   // First, get all of the chapterIDs that this [userID] is associated with.
   // Then build the set of all userIDs associated with the chapterIDs.
   List<String> getAssociatedUserIDs(String userID) {
+    final ChapterDB chapterDB = ref.watch(chapterDBProvider);
     List<String> chapterIDs = chapterDB.getAssociatedChapterIDs(userID);
     Set<String> userIDs = {};
     for (var chapterID in chapterIDs) {
@@ -88,13 +96,13 @@ class UserDB {
 }
 
 /// The singleton instance providing access to all user data for clients.
-UserDB userDB = UserDB();
-
-/// The currently logged in user.
-String currentUserID = 'user-005';
+// UserDB userDB = UserDB();
+//
+// /// The currently logged in user.
+// String currentUserID = 'user-005';
 
 final userDBProvider = Provider<UserDB>((ref) {
-  return UserDB();
+  return UserDB(ref);
 });
 
 final currentUserIDProvider = StateProvider<String>((ref) {

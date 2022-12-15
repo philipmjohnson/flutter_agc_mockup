@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_agc_mockup/src/pages/home/bodies/news_body_item_actions.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../data_model/chapter_db.dart';
 import '../../../data_model/garden_db.dart';
 import '../../../data_model/news_db.dart';
 
 /// Displays a news item given its ID.
-class NewsBodyItemView extends StatelessWidget {
+class NewsBodyItemView extends ConsumerWidget {
   const NewsBodyItemView({
     super.key,
     required this.newsID,
@@ -14,7 +15,9 @@ class NewsBodyItemView extends StatelessWidget {
   final String newsID;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final GardenDB gardenDB = ref.watch(gardenDBProvider);
+    final ChapterDB chapterDB = ref.watch(chapterDBProvider);
     NewsData data = newsDB.getNews(newsID);
     IconData icon = data.icon;
     String title = data.title;

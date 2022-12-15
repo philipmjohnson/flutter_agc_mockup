@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../components/user_avatar.dart';
 import '../../data_model/chapter_db.dart';
 import '../../data_model/garden_db.dart';
 import '../../data_model/user_db.dart';
 
-class UserCardView extends StatelessWidget {
+class UserCardView extends ConsumerWidget {
   const UserCardView({Key? key, required this.userID}) : super(key: key);
 
   final String userID;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final UserDB userDB = ref.watch(userDBProvider);
+    final GardenDB gardenDB = ref.watch(gardenDBProvider);
+    final ChapterDB chapterDB = ref.watch(chapterDBProvider);
     UserData data = userDB.getUser(userID);
     List<String> gardenNames = gardenDB
         .getAssociatedGardenIDs(userID: userID)

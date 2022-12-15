@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_agc_mockup/src/components/garden_summary_users_view.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../data_model/garden_db.dart';
 
-class GardenSummaryView extends StatelessWidget {
+class GardenSummaryView extends ConsumerWidget {
   const GardenSummaryView({Key? key, required this.gardenID}) : super(key: key);
 
   final String gardenID;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final GardenDB gardenDB = ref.watch(gardenDBProvider);
     GardenData gardenData = gardenDB.getGarden(gardenID);
     String title = gardenData.name;
     String subtitle = gardenData.description;
