@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_agc_mockup/src/pages/chapters/chapters_view.dart';
 import 'package:flutter_agc_mockup/src/pages/discussions/discussions_view.dart';
+import 'package:flutter_agc_mockup/src/pages/gardens/add_garden_view.dart';
 import 'package:flutter_agc_mockup/src/pages/gardens/gardens_view.dart';
 import 'package:flutter_agc_mockup/src/pages/help/help_view.dart';
 import 'package:flutter_agc_mockup/src/pages/help/help_view_local.dart';
@@ -49,6 +50,8 @@ class MyApp extends StatelessWidget {
                     return const HomeView();
                   case GardensView.routeName:
                     return const GardensView();
+                  case AddGardenView.routeName:
+                    return AddGardenView();
                   case ChaptersView.routeName:
                     return const ChaptersView();
                   case OutcomesView.routeName:

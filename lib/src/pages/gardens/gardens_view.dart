@@ -6,6 +6,7 @@ import '../../components/help_button.dart';
 import '../../data_model/garden_db.dart';
 import '../../data_model/user_db.dart';
 import '../mockup_markdown/mockup_markdown.dart';
+import 'add_garden_view.dart';
 
 const pageSpecification = '''
 # Gardens Page Specification
@@ -58,7 +59,9 @@ class GardensView extends ConsumerWidget {
         actions: const [HelpButton(routeName: GardensView.routeName)],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.restorablePushNamed(context, AddGardenView.routeName);
+        },
         child: const Icon(Icons.add),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
