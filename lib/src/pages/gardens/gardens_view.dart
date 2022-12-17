@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../components/drawer_view.dart';
+import '../../components/garden_summary_view.dart';
+import '../../components/help_button.dart';
+import '../../data_model/garden_db.dart';
+import '../../data_model/user_db.dart';
 import '../mockup_markdown/mockup_markdown.dart';
 
 const pageSpecification = '''
@@ -32,19 +38,44 @@ Possible actions associated with each card:
 
 ''';
 
-
-
 /// Displays Chapter information.
-class GardensView extends StatelessWidget {
+class GardensView extends ConsumerWidget {
   const GardensView({
     super.key,
   });
+
   final String title = 'Gardens';
   static const routeName = '/gardens';
 
-
   @override
-  Widget build(BuildContext context) {
-    return MockupMarkdownView(title: title, data: pageSpecification);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final GardenDB gardenDB = ref.watch(gardenDBProvider);
+    final String currentUserID = ref.watch(currentUserIDProvider);
+    return Scaffold(
+      drawer: const DrawerView(),
+      appBar: AppBar(
+        title: const Text('Gardens'),
+        actions: const [HelpButton(routeName: GardensView.routeName)],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: const Icon(Icons.add),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      body: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: ListView(
+              children: gardenDB
+                  .getAssociatedGardenIDs(userID: currentUserID)
+                  .map((gardenID) => GardenSummaryView(gardenID: gardenID))
+                  .toList()
+                  .toList())),
+      bottomNavigationBar: BottomAppBar(
+        shape: const CircularNotchedRectangle(),
+        child: Row(
+          children: <Widget>[],
+        ),
+      ),
+    );
   }
 }
