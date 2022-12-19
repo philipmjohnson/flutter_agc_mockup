@@ -3,10 +3,13 @@ import 'package:flutter_agc_mockup/src/components/garden_summary_users_view.dart
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../data_model/garden_db.dart';
 
+enum GardenAction { edit, leave }
+
 class GardenSummaryView extends ConsumerWidget {
   const GardenSummaryView({Key? key, required this.gardenID}) : super(key: key);
 
   final String gardenID;
+
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -27,7 +30,7 @@ class GardenSummaryView extends ConsumerWidget {
             isThreeLine: true,
             title: Text('$title Garden'),
             subtitle: Text('$subtitle\n$chapterName Chapter'),
-            trailing: const Icon(Icons.more_vert),
+            trailing: IconButton(icon: const Icon(Icons.more_vert), onPressed: () {  },),
           ),
           SizedBox(
             height: 150.0,

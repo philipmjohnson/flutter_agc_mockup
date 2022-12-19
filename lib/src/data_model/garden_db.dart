@@ -37,6 +37,7 @@ class GardenData {
 /// Provides access to and operations on all defined Gardens.
 class GardenDB {
   GardenDB(this.ref);
+
   final ProviderRef<GardenDB> ref;
   final List<GardenData> _gardens = [
     GardenData(
@@ -70,12 +71,27 @@ class GardenDB {
         editorIDs: ['user-003'])
   ];
 
-  void addGarden({required String name, required String description, required String imageFileName, required String chapterID, required String ownerID, required List<String> viewerIDs, required List<String> editorIDs}) {
+  void addGarden(
+      {required String name,
+      required String description,
+      required String imageFileName,
+      required String chapterID,
+      required String ownerID,
+      required List<String> viewerIDs,
+      required List<String> editorIDs}) {
     String id = 'garden-${(_gardens.length + 1).toString().padLeft(3, '0')}';
     String imagePath = 'assets/images/$imageFileName';
     String lastUpdate = DateFormat.yMd().format(DateTime.now());
-    GardenData data = GardenData(id: id, name: name, description: description, imagePath: imagePath, chapterID: chapterID, lastUpdate: lastUpdate, ownerID: ownerID, viewerIDs: viewerIDs, editorIDs: editorIDs);
-    print(data.toString());
+    GardenData data = GardenData(
+        id: id,
+        name: name,
+        description: description,
+        imagePath: imagePath,
+        chapterID: chapterID,
+        lastUpdate: lastUpdate,
+        ownerID: ownerID,
+        viewerIDs: viewerIDs,
+        editorIDs: editorIDs);
     _gardens.add(data);
   }
 
@@ -103,11 +119,7 @@ class GardenDB {
 
   List<String> getAssociatedUserIDs(gardenID) {
     GardenData data = getGarden(gardenID);
-    return [
-      data.ownerID,
-      ...data.viewerIDs,
-      ...data.editorIDs
-    ];
+    return [data.ownerID, ...data.viewerIDs, ...data.editorIDs];
   }
 
   bool _userIsAssociated(String gardenID, String userID) {
