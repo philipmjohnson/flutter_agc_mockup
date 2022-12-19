@@ -64,8 +64,18 @@ class UserDB {
     return _users.firstWhere((userData) => userData.id == userID);
   }
 
-  String getUserID(String email) {
-    return _users.firstWhere((userData) => userData.email == email).id;
+  bool areUserNames(List<String> userNames) {
+    List<String> allUserNames =
+        _users.map((userData) => userData.username).toList();
+    return userNames.every((userName) => allUserNames.contains(userName));
+  }
+
+  String getUserID(String emailOrUsername) {
+    return (emailOrUsername.startsWith('@'))
+        ? _users
+            .firstWhere((userData) => userData.username == emailOrUsername)
+            .id
+        : _users.firstWhere((userData) => userData.email == emailOrUsername).id;
   }
 
   bool isUserEmail(String email) {

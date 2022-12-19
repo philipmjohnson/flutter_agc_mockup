@@ -66,6 +66,14 @@ class ChapterDB {
     }
     return userIDs.toList();
   }
+
+  List<String> getChapterNames() {
+    return _chapters.map((chapter) => chapter.name).toList();
+  }
+
+  String getChapterIDFromName(String name) {
+    return _chapters.firstWhere((chapter) => chapter.name == name).id;
+  }
 }
 
 final chapterDBProvider = Provider<ChapterDB>((ref) {

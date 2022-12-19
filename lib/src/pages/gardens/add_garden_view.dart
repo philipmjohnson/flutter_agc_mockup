@@ -4,7 +4,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import '../../components/drawer_view.dart';
 import '../../components/help_button.dart';
+import '../../data_model/chapter_db.dart';
+import '../../data_model/garden_db.dart';
 import '../../data_model/user_db.dart';
+import 'gardens_view.dart';
 
 /// Presents the page containing fields to enter a username and password, plus buttons.
 class AddGardenView extends ConsumerWidget {
@@ -12,10 +15,37 @@ class AddGardenView extends ConsumerWidget {
 
   static const routeName = '/addGardenView';
   final _formKey = GlobalKey<FormBuilderState>();
-  List<String> chapterOptions = ['chapter-001', 'chapter-002'];
+  final _nameFieldKey = GlobalKey<FormBuilderFieldState>();
+  final _descriptionFieldKey = GlobalKey<FormBuilderFieldState>();
+  final _chapterFieldKey = GlobalKey<FormBuilderFieldState>();
+  final _photoFieldKey = GlobalKey<FormBuilderFieldState>();
+  final _editorsFieldKey = GlobalKey<FormBuilderFieldState>();
+  final _viewersFieldKey = GlobalKey<FormBuilderFieldState>();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final ChapterDB chapterDB = ref.watch(chapterDBProvider);
+    final UserDB userDB = ref.watch(userDBProvider);
+    final GardenDB gardenDB = ref.watch(gardenDBProvider);
+    final String currentUserID = ref.watch(currentUserIDProvider);
+    List<String> chapterNames = chapterDB.getChapterNames();
+
+    _validateUserNamesString(String val) {
+      List<String> userNames = val.split(',').map((val) => val.trim()).toList();
+      if (!userDB.areUserNames(userNames)) {
+        return 'Non-existent user name(s)';
+      }
+      return null;
+    }
+
+    List<String> _usernamesToIDs(String usernamesString) {
+      if (usernamesString.isEmpty) {
+        return [];
+      }
+      List<String> usernames = usernamesString.split(',').map((editor) => editor.trim()).toList();
+      return usernames.map((username) => userDB.getUserID(username)).toList();
+    }
+
     return Scaffold(
         appBar: AppBar(
           title: const Text('Add Garden'),
@@ -33,6 +63,7 @@ class AddGardenView extends ConsumerWidget {
                     children: [
                       FormBuilderTextField(
                         name: 'name',
+                        key: _nameFieldKey,
                         decoration: const InputDecoration(
                           labelText: 'Name',
                           hintText: 'Example: "Rosebud Garden"',
@@ -44,6 +75,7 @@ class AddGardenView extends ConsumerWidget {
                       const SizedBox(height: 10),
                       FormBuilderTextField(
                         name: 'description',
+                        key: _descriptionFieldKey,
                         decoration: const InputDecoration(
                           labelText: 'Description',
                           hintText: 'Example: "19 Beds, 162 Plantings (2022)"',
@@ -55,43 +87,61 @@ class AddGardenView extends ConsumerWidget {
                       FormBuilderDropdown<String>(
                         // autovalidate: true,
                         name: 'chapter',
+                        key: _chapterFieldKey,
                         decoration: const InputDecoration(
                           labelText: 'Chapter',
                         ),
                         validator: FormBuilderValidators.compose(
                             [FormBuilderValidators.required()]),
-                        items: chapterOptions
-                            .map((chapter) => DropdownMenuItem(
-                          alignment: AlignmentDirectional.center,
-                          value: chapter,
-                          child: Text(chapter),
-                        ))
+                        items: chapterNames
+                            .map((name) => DropdownMenuItem(
+                                  alignment: AlignmentDirectional.center,
+                                  value: name,
+                                  child: Text(name),
+                                ))
                             .toList(),
                         valueTransformer: (val) => val?.toString(),
                       ),
                       FormBuilderTextField(
                         name: 'photo',
+                        key: _photoFieldKey,
                         decoration: const InputDecoration(
                           labelText: 'Photo',
-                          hintText: 'A file name in the assets/images directory',
+                          hintText: 'garden-004.jpg (or garden-005.jpg)',
                         ),
                         validator: FormBuilderValidators.compose([
                           FormBuilderValidators.required(),
                         ]),
                       ),
                       FormBuilderTextField(
-                        name: 'editors',
-                        decoration: const InputDecoration(
-                          labelText: 'Editor(s)',
-                          hintText: 'An optional, comma separated list of usernames.',
-                        ),
+                          name: 'editors',
+                          key: _editorsFieldKey,
+                          decoration: const InputDecoration(
+                            labelText: 'Editor(s)',
+                            hintText:
+                                'An optional, comma separated list of usernames.',
+                          ),
+                          validator: (val) {
+                            if (val is String) {
+                              return _validateUserNamesString(val);
+                            }
+                            return null;
+                          },
                       ),
                       FormBuilderTextField(
                         name: 'viewers',
+                        key: _viewersFieldKey,
                         decoration: const InputDecoration(
                           labelText: 'Viewer(s)',
-                          hintText: 'An optional, comma separated list of usernames.',
+                          hintText:
+                              'An optional, comma separated list of usernames.',
                         ),
+                        validator: (val) {
+                          if (val is String) {
+                            return _validateUserNamesString(val);
+                          }
+                          return null;
+                        },
                       ),
                     ],
                   ),
@@ -102,9 +152,22 @@ class AddGardenView extends ConsumerWidget {
                     Expanded(
                       child: ElevatedButton(
                         onPressed: () {
-                          bool isValid = _formKey.currentState?.saveAndValidate() ?? false;
+                          bool isValid =
+                              _formKey.currentState?.saveAndValidate() ?? false;
                           if (isValid) {
-                            debugPrint(_formKey.currentState?.value.toString());
+                            // Extract garden data from fields
+                            String name = _nameFieldKey.currentState?.value;
+                            String description = _descriptionFieldKey.currentState?.value;
+                            String chapterID = chapterDB.getChapterIDFromName(_chapterFieldKey.currentState?.value);
+                            String imageFileName =  _photoFieldKey.currentState?.value;
+                            String editorsString = _editorsFieldKey.currentState?.value ?? '';
+                            List<String> editorIDs = _usernamesToIDs(editorsString);
+                            String viewersString = _viewersFieldKey.currentState?.value ?? '';
+                            List<String> viewerIDs = _usernamesToIDs(viewersString);
+                            // Add the new garden.
+                            gardenDB.addGarden(name: name, description: description, chapterID: chapterID, imageFileName: imageFileName, editorIDs: editorIDs, ownerID: currentUserID, viewerIDs: viewerIDs);
+                            // Return to the list gardens page
+                            Navigator.pushReplacementNamed(context, GardensView.routeName);
                           }
                         },
                         child: const Text(

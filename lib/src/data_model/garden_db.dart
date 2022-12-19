@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 import 'chapter_db.dart';
 import 'user_db.dart';
 
@@ -26,6 +27,11 @@ class GardenData {
   String lastUpdate;
   List<String> editorIDs;
   List<String> viewerIDs;
+
+  @override
+  String toString() {
+    return '<GardenData id: $id, name: $name, description: $description, imagePath: $imagePath, ownerID: $ownerID, chapterID: $chapterID, lastUpdate: $lastUpdate, editorIDs: ${editorIDs.toString()}, viewerIDs: ${viewerIDs.toString()}>';
+  }
 }
 
 /// Provides access to and operations on all defined Gardens.
@@ -63,6 +69,15 @@ class GardenDB {
         viewerIDs: ['user-005'],
         editorIDs: ['user-003'])
   ];
+
+  void addGarden({required String name, required String description, required String imageFileName, required String chapterID, required String ownerID, required List<String> viewerIDs, required List<String> editorIDs}) {
+    String id = 'garden-${(_gardens.length + 1).toString().padLeft(3, '0')}';
+    String imagePath = 'assets/images/$imageFileName';
+    String lastUpdate = DateFormat.yMd().format(DateTime.now());
+    GardenData data = GardenData(id: id, name: name, description: description, imagePath: imagePath, chapterID: chapterID, lastUpdate: lastUpdate, ownerID: ownerID, viewerIDs: viewerIDs, editorIDs: editorIDs);
+    print(data.toString());
+    _gardens.add(data);
+  }
 
   GardenData getGarden(String gardenID) {
     return _gardens.firstWhere((data) => data.id == gardenID);
