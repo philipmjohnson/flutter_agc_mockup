@@ -39,7 +39,7 @@ Note that folks will probably use this in two ways:
 
 
 
-/// Displays Chapter information.
+/// Displays Help information.
 class HelpView extends StatelessWidget {
   const HelpView({
     super.key,

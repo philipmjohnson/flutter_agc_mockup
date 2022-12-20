@@ -35,6 +35,7 @@ class GardenData {
 }
 
 /// Provides access to and operations on all defined Gardens.
+/// Depends on UserDB.
 class GardenDB {
   GardenDB(this.ref);
 

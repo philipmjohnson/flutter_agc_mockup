@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_agc_mockup/src/components/user_avatar.dart';
 
-/// Returns a CircleAvatar with either an image if available or initials, plus a label.
+/// Provides a CircleAvatar with either an image if available or initials, plus a label.
 class UserLabeledAvatar extends StatelessWidget {
   const UserLabeledAvatar(
       {Key? key,

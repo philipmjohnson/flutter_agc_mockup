@@ -18,6 +18,7 @@ class ChapterData {
 }
 
 /// Provides access to and operations on all defined Chapters.
+/// Depends on GardenDB.
 class ChapterDB {
   ChapterDB(this.ref);
   final ProviderRef<ChapterDB> ref;

@@ -9,7 +9,7 @@ This page appears when there is a bug in routing.
 
 
 
-/// Displays Chapter information.
+/// Displays a page indicating that there was an attempt to route to a non-existent page.
 class PageNotFoundView extends StatelessWidget {
   const PageNotFoundView({
     super.key,

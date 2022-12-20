@@ -39,7 +39,7 @@ Possible actions associated with each card:
 
 ''';
 
-/// Displays Chapter information.
+/// Provides a page presenting all of the defined Gardens.
 class GardensView extends ConsumerWidget {
   const GardensView({
     super.key,

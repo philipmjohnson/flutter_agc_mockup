@@ -26,7 +26,7 @@ For Chapter seeds, contact the person who has them to request some.
 
 
 
-/// Displays Chapter information.
+/// Displays Seed information. (Not yet implemented)
 class SeedsView extends StatelessWidget {
   const SeedsView({
     super.key,

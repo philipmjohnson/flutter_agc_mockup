@@ -24,7 +24,7 @@ class NewsData {
   String? gardenID;
 }
 
-/// Provides access to and operations on all defined users.
+/// Provides access to and operations on all defined News items.
 class NewsDB {
   NewsDB(this.ref);
   final ProviderRef<NewsDB> ref;

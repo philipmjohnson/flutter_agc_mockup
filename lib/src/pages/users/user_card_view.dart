@@ -5,6 +5,7 @@ import '../../data_model/chapter_db.dart';
 import '../../data_model/garden_db.dart';
 import '../../data_model/user_db.dart';
 
+// A Card that summarizes information about a User.
 class UserCardView extends ConsumerWidget {
   const UserCardView({Key? key, required this.userID}) : super(key: key);
 
