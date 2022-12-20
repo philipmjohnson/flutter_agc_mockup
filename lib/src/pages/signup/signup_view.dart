@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// Presents the page containing fields to enter a username and password, plus buttons.
+/// Presents the page containing fields to signup with a username and password, plus buttons.
 class SignupView extends StatefulWidget {
   const SignupView({Key? key}) : super(key: key);
 

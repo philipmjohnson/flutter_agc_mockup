@@ -25,7 +25,7 @@ You might want the ability to "drill-down" from an Outcome to the planting(s) th
 
 
 
-/// Displays Chapter information.
+/// Displays Outcome information. (Not yet implemented)
 class OutcomesView extends StatelessWidget {
   const OutcomesView({
     super.key,

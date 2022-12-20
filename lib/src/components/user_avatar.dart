@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../data_model/user_db.dart';
 
-/// Returns a CircleAvatar with either an image if available or initials, plus a label.
+/// Provides a CircleAvatar with either an image if available or initials, plus a label.
 class UserAvatar extends ConsumerWidget {
   const UserAvatar({Key? key, required this.userID}) : super(key: key);
 

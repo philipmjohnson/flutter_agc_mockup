@@ -18,16 +18,11 @@ import 'pages/settings/settings_controller.dart';
 import 'pages/settings/settings_view.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 
-/// The Widget that configures your application.
+/// Top-level widget that implements routing to the appropriate page.
 class MyApp extends StatelessWidget {
-  MyApp(
-      {super.key, required this.settingsController, required this.theme});
+  MyApp({super.key, required this.settingsController});
 
   final SettingsController settingsController;
-  final ThemeData theme;
-
-  final theme2 =
-      ThemeData(colorSchemeSeed: const Color(0xFF33691e), useMaterial3: true);
 
   @override
   Widget build(BuildContext context) {

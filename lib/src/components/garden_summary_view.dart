@@ -7,11 +7,11 @@ import '../pages/gardens/edit_garden_view.dart';
 
 enum GardenAction { edit, leave }
 
+/// Provides a Card summarizing a garden.
 class GardenSummaryView extends ConsumerWidget {
   const GardenSummaryView({Key? key, required this.gardenID}) : super(key: key);
 
   final String gardenID;
-
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -31,7 +31,7 @@ class GardenSummaryView extends ConsumerWidget {
         children: [
           ListTile(
             isThreeLine: true,
-            title: Text('$title Garden'),
+            title: Text(title),
             subtitle: Text('$subtitle\n$chapterName Chapter'),
             trailing: PopupMenuButton<GardenAction>(
               // Callback that sets the selected popup menu item.

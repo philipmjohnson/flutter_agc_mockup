@@ -9,7 +9,7 @@ import 'bodies/chapter_body_view.dart';
 import 'bodies/gardens_body_view.dart';
 import 'bodies/news_body_view.dart';
 
-/// Top-level Layout for all of the "Home" related
+/// Top-level Layout for all of the "Home" related subpages.
 class HomeView extends ConsumerStatefulWidget {
   const HomeView({
     super.key,

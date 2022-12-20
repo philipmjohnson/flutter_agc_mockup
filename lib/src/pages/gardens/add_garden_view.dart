@@ -8,7 +8,7 @@ import '../../data_model/garden_db.dart';
 import '../../data_model/user_db.dart';
 import 'gardens_view.dart';
 
-/// Presents the page containing fields to enter a username and password, plus buttons.
+/// Provides a page enabling the creation of a new Garden.
 class AddGardenView extends ConsumerWidget {
   AddGardenView({Key? key}) : super(key: key);
 
@@ -94,7 +94,7 @@ class AddGardenView extends ConsumerWidget {
                             [FormBuilderValidators.required()]),
                         items: chapterNames
                             .map((name) => DropdownMenuItem(
-                                  alignment: AlignmentDirectional.center,
+                                  alignment: AlignmentDirectional.centerStart,
                                   value: name,
                                   child: Text(name),
                                 ))

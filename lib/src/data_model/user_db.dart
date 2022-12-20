@@ -21,6 +21,7 @@ class UserData {
 }
 
 /// Provides access to and operations on all defined users.
+/// Does not depend on any other DBs.
 class UserDB {
   UserDB(this.ref);
 

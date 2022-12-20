@@ -8,7 +8,7 @@ import '../../data_model/garden_db.dart';
 import '../../data_model/user_db.dart';
 import 'gardens_view.dart';
 
-/// Presents the page containing fields to enter a username and password, plus buttons.
+/// Provides the page enabling the user to edit the data associated with an existing Garden.
 class EditGardenView extends ConsumerWidget {
   EditGardenView({Key? key}) : super(key: key);
 
@@ -98,7 +98,7 @@ class EditGardenView extends ConsumerWidget {
                             [FormBuilderValidators.required()]),
                         items: chapterNames
                             .map((name) => DropdownMenuItem(
-                                  alignment: AlignmentDirectional.center,
+                                  alignment: AlignmentDirectional.centerStart,
                                   value: name,
                                   child: Text(name),
                                 ))
