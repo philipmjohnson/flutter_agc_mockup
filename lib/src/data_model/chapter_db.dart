@@ -1,5 +1,4 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import 'garden_db.dart';
 
 /// The data associated with each chapter.
@@ -73,6 +72,24 @@ class ChapterDB {
 
   String getChapterIDFromName(String name) {
     return _chapters.firstWhere((chapter) => chapter.name == name).id;
+  }
+
+  ChapterData getChapterFromGardenID(String gardenID) {
+    final gardenDB = ref.watch(gardenDBProvider);
+    GardenData data = gardenDB.getGarden(gardenID);
+    return getChapter(data.chapterID);
+  }
+
+  // Return the userIDs of users who are in the same Chapter(s) as [userID].
+  // First, get all of the chapterIDs that this [userID] is associated with.
+  // Then build the set of all userIDs associated with the chapterIDs.
+  List<String> getAssociatedUserIDsOfUserID(String userID) {
+    List<String> chapterIDs = getAssociatedChapterIDs(userID);
+    Set<String> userIDs = {};
+    for (var chapterID in chapterIDs) {
+      userIDs.addAll(getAssociatedUserIDs(chapterID));
+    }
+    return userIDs.toList();
   }
 }
 

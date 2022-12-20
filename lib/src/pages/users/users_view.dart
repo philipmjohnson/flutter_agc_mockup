@@ -3,6 +3,7 @@ import 'package:flutter_agc_mockup/src/pages/users/user_card_view.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../components/drawer_view.dart';
 import '../../components/help_button.dart';
+import '../../data_model/chapter_db.dart';
 import '../../data_model/user_db.dart';
 
 const pageSpecification = '''
@@ -43,7 +44,7 @@ class UsersView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final UserDB userDB = ref.watch(userDBProvider);
+    final ChapterDB chapterDB = ref.watch(chapterDBProvider);
     final String currentUserID = ref.watch(currentUserIDProvider);
     return Scaffold(
       drawer: const DrawerView(),
@@ -53,7 +54,7 @@ class UsersView extends ConsumerWidget {
       ),
       body: ListView(
           children: [
-            ...userDB.getAssociatedUserIDs(currentUserID).map((userID) => UserCardView(userID: userID))
+            ...chapterDB.getAssociatedUserIDsOfUserID(currentUserID).map((userID) => UserCardView(userID: userID))
         ]
       ),
       bottomNavigationBar: BottomNavigationBar(

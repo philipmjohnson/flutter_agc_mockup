@@ -16,6 +16,7 @@ import 'package:flutter_agc_mockup/src/pages/signup/signup_view.dart';
 import 'pages/sample_feature/sample_item_details_view.dart';
 import 'pages/settings/settings_controller.dart';
 import 'pages/settings/settings_view.dart';
+import 'package:flex_color_scheme/flex_color_scheme.dart';
 
 /// The Widget that configures your application.
 class MyApp extends StatelessWidget {
@@ -36,7 +37,8 @@ class MyApp extends StatelessWidget {
       animation: settingsController,
       builder: (BuildContext context, Widget? child) {
         return MaterialApp(
-          theme: theme, // or could be theme
+          theme: FlexThemeData.light(scheme: FlexScheme.gold),
+          darkTheme: FlexThemeData.dark(scheme: FlexScheme.gold),
           themeMode: settingsController.themeMode,
           onGenerateRoute: (RouteSettings routeSettings) {
             return MaterialPageRoute<void>(

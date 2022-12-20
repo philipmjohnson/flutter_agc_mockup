@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_agc_mockup/src/components/garden_summary_users_view.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../data_model/chapter_db.dart';
 import '../data_model/garden_db.dart';
 import '../pages/gardens/edit_garden_view.dart';
 
@@ -15,12 +16,13 @@ class GardenSummaryView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final GardenDB gardenDB = ref.watch(gardenDBProvider);
+    final ChapterDB chapterDB = ref.watch(chapterDBProvider);
     GardenData gardenData = gardenDB.getGarden(gardenID);
     String title = gardenData.name;
     String subtitle = gardenData.description;
     String lastUpdate = gardenData.lastUpdate;
     String imagePath = gardenData.imagePath;
-    String chapterName = gardenDB.getChapter(gardenID).name;
+    String chapterName = chapterDB.getChapterFromGardenID(gardenID).name;
     AssetImage image = AssetImage(imagePath);
     return Card(
       elevation: 9,

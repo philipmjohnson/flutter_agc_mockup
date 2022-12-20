@@ -91,18 +91,7 @@ class UserDB {
     return _users.map((userData) => userData.email).toList();
   }
 
-  // Return the userIDs of users who are in the same Chapter(s) as [userID].
-  // First, get all of the chapterIDs that this [userID] is associated with.
-  // Then build the set of all userIDs associated with the chapterIDs.
-  List<String> getAssociatedUserIDs(String userID) {
-    final ChapterDB chapterDB = ref.watch(chapterDBProvider);
-    List<String> chapterIDs = chapterDB.getAssociatedChapterIDs(userID);
-    Set<String> userIDs = {};
-    for (var chapterID in chapterIDs) {
-      userIDs.addAll(chapterDB.getAssociatedUserIDs(chapterID));
-    }
-    return userIDs.toList();
-  }
+
 }
 
 final userDBProvider = Provider<UserDB>((ref) {

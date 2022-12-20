@@ -173,11 +173,6 @@ class GardenDB {
     return userDB.getUsers(data.viewerIDs);
   }
 
-  ChapterData getChapter(String gardenID) {
-    GardenData data = getGarden(gardenID);
-    final ChapterDB chapterDB = ref.watch(chapterDBProvider);
-    return chapterDB.getChapter(data.chapterID);
-  }
 }
 
 final gardenDBProvider = Provider<GardenDB>((ref) {
