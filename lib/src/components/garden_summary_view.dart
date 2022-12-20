@@ -30,7 +30,22 @@ class GardenSummaryView extends ConsumerWidget {
             isThreeLine: true,
             title: Text('$title Garden'),
             subtitle: Text('$subtitle\n$chapterName Chapter'),
-            trailing: IconButton(icon: const Icon(Icons.more_vert), onPressed: () {  },),
+            trailing: PopupMenuButton<GardenAction>(
+              // Callback that sets the selected popup menu item.
+              onSelected: (GardenAction action) {
+                print('selected $action');
+              },
+              itemBuilder: (BuildContext context) => <PopupMenuEntry<GardenAction>>[
+                const PopupMenuItem<GardenAction>(
+                  value: GardenAction.edit,
+                  child: Text('Edit'),
+                ),
+                const PopupMenuItem<GardenAction>(
+                  value: GardenAction.leave,
+                  child: Text('Leave'),
+                ),
+              ],
+            ),
           ),
           SizedBox(
             height: 150.0,
