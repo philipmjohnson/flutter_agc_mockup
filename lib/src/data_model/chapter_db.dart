@@ -17,7 +17,7 @@ class ChapterData {
   List<String> hardinessZones;
 }
 
-/// Provides access to and operations on all defined Chapters.
+/// Provides access to and operations on all of the defined Chapters.
 /// Depends on GardenDB.
 class ChapterDB {
   ChapterDB(this.ref);
