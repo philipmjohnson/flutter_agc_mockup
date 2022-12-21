@@ -1,7 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'chapter_db.dart';
-
 /// The data associated with users.
 class UserData {
   UserData(
