@@ -81,7 +81,7 @@ class SigninView extends ConsumerWidget {
                         Navigator.pushReplacementNamed(context, '/home');
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text("Unknown User, try one of: ${userDB.getAllEmails().join(', ')}"),
+                          content: Text("Unknown User, try one of these: ${userDB.getAllEmails().join(', ')}"),
                           duration: const Duration(seconds: 10),
                         ));
                       }
