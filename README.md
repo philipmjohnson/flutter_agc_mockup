@@ -6,7 +6,7 @@ This repository contains the first increment of work on a mockup of the [Agile G
 
 ## Screen shots 
 
-Here are screen shots that illustrate current application state. We use the flutter_markdown package to provide information on what should appear in a page when we haven't gotten around to actually mocking up the contents.   
+Here are several screen shots that illustrate current application state. We use the flutter_markdown package to provide information on what should appear in a page when we haven't gotten around to actually mocking up the contents.   
 
 Click on any screen shot to see it full-size.
 
