@@ -21,7 +21,7 @@ import 'package:flex_color_scheme/flex_color_scheme.dart';
 
 /// Top-level widget that implements routing to the appropriate page.
 class MyApp extends ConsumerWidget {
-  MyApp({super.key});
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -61,7 +61,7 @@ class MyApp extends ConsumerWidget {
               case HelpViewLocal.routeName:
                 return const HelpViewLocal();
               case SettingsView.routeName:
-                return SettingsView();
+                return const SettingsView();
               case SampleItemDetailsView.routeName:
                 return const SampleItemDetailsView();
               default:

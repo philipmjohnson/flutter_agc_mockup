@@ -5,7 +5,6 @@ import '../../components/garden_summary_view.dart';
 import '../../components/help_button.dart';
 import '../../data_model/garden_db.dart';
 import '../../data_model/user_db.dart';
-import '../mockup_markdown/mockup_markdown.dart';
 import 'add_garden_view.dart';
 
 const pageSpecification = '''
@@ -76,7 +75,7 @@ class GardensView extends ConsumerWidget {
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
         child: Row(
-          children: <Widget>[],
+          children: const <Widget>[],
         ),
       ),
     );

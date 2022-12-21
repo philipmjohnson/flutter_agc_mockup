@@ -82,7 +82,7 @@ class SigninView extends ConsumerWidget {
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           content: Text("Unknown User, try one of: ${userDB.getAllEmails().join(', ')}"),
-                          duration: Duration(seconds: 10),
+                          duration: const Duration(seconds: 10),
                         ));
                       }
                     } else {

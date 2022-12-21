@@ -36,7 +36,6 @@ class GardenSummaryView extends ConsumerWidget {
             trailing: PopupMenuButton<GardenAction>(
               // Callback that sets the selected popup menu item.
               onSelected: (GardenAction action) {
-                print('selected $action');
                 if (action == GardenAction.edit) {
                   Navigator.restorablePushNamed(
                       context, EditGardenView.routeName, arguments: gardenID);

@@ -4,5 +4,5 @@ import 'src/app.dart';
 
 /// Set up settings and wrap app in ProviderScope
 void main() {
-  runApp(ProviderScope(child: MyApp()));
+  runApp(const ProviderScope(child: MyApp()));
 }

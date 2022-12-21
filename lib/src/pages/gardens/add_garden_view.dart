@@ -29,7 +29,7 @@ class AddGardenView extends ConsumerWidget {
     final String currentUserID = ref.watch(currentUserIDProvider);
     List<String> chapterNames = chapterDB.getChapterNames();
 
-    _validateUserNamesString(String val) {
+    validateUserNamesString(String val) {
       List<String> userNames = val.split(',').map((val) => val.trim()).toList();
       if (!userDB.areUserNames(userNames)) {
         return 'Non-existent user name(s)';
@@ -37,7 +37,7 @@ class AddGardenView extends ConsumerWidget {
       return null;
     }
 
-    List<String> _usernamesToIDs(String usernamesString) {
+    List<String> usernamesToIDs(String usernamesString) {
       if (usernamesString.isEmpty) {
         return [];
       }
@@ -122,7 +122,7 @@ class AddGardenView extends ConsumerWidget {
                           ),
                           validator: (val) {
                             if (val is String) {
-                              return _validateUserNamesString(val);
+                              return validateUserNamesString(val);
                             }
                             return null;
                           },
@@ -137,7 +137,7 @@ class AddGardenView extends ConsumerWidget {
                         ),
                         validator: (val) {
                           if (val is String) {
-                            return _validateUserNamesString(val);
+                            return validateUserNamesString(val);
                           }
                           return null;
                         },
@@ -160,9 +160,9 @@ class AddGardenView extends ConsumerWidget {
                             String chapterID = chapterDB.getChapterIDFromName(_chapterFieldKey.currentState?.value);
                             String imageFileName =  _photoFieldKey.currentState?.value;
                             String editorsString = _editorsFieldKey.currentState?.value ?? '';
-                            List<String> editorIDs = _usernamesToIDs(editorsString);
+                            List<String> editorIDs = usernamesToIDs(editorsString);
                             String viewersString = _viewersFieldKey.currentState?.value ?? '';
-                            List<String> viewerIDs = _usernamesToIDs(viewersString);
+                            List<String> viewerIDs = usernamesToIDs(viewersString);
                             // Add the new garden.
                             gardenDB.addGarden(name: name, description: description, chapterID: chapterID, imageFileName: imageFileName, editorIDs: editorIDs, ownerID: currentUserID, viewerIDs: viewerIDs);
                             // Return to the list gardens page
