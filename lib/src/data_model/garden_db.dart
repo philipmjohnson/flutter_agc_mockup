@@ -1,6 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
-import 'chapter_db.dart';
 import 'user_db.dart';
 
 /// The data associated with each garden.
