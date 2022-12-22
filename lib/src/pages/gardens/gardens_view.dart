@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../components/drawer_view.dart';
-import '../../components/garden_summary_view.dart';
-import '../../components/help_button.dart';
-import '../../data_model/garden_db.dart';
-import '../../data_model/user_db.dart';
+import '../../common_widgets/drawer_view.dart';
+import '../../features/garden/presentation/garden_summary_view.dart';
+import '../../features/help/presentation/help_button.dart';
+import '../../features/garden/domain/garden_db.dart';
+import '../../features/user/domain/user_db.dart';
 import 'add_garden_view.dart';
 
 const pageSpecification = '''

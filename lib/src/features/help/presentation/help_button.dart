@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../pages/help/help_view_local.dart';
+import '../../../pages/help/help_view_local.dart';
 
 /// Provides the ? button at the top right and routes to the appropriate help documentation.
 class HelpButton extends StatelessWidget {

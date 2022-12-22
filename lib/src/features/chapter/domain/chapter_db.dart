@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'garden_db.dart';
+import '../../garden/domain/garden_db.dart';
 
 /// The data associated with each chapter.
 class ChapterData {

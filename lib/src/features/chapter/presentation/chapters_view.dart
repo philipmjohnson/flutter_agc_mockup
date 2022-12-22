@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../components/drawer_view.dart';
-import '../../components/help_button.dart';
-import '../../data_model/chapter_db.dart';
-import '../../data_model/user_db.dart';
+import '../../../common_widgets/drawer_view.dart';
+import '../../help/presentation/help_button.dart';
+import '../domain/chapter_db.dart';
+import '../../user/domain/user_db.dart';
 import 'chapter_card_view.dart';
 
 const pageSpecification = '''

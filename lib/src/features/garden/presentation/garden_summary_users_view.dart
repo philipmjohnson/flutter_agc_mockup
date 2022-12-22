@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_agc_mockup/src/components/user_labeled_avatar.dart';
+import 'package:flutter_agc_mockup/src/features/user/presentation/user_labeled_avatar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../data_model/garden_db.dart';
+import '../domain/garden_db.dart';
 
 /// Provides a row of User avatars associated with a gardenID.
 class GardenSummaryUsersView extends ConsumerWidget {

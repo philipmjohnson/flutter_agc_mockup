@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_agc_mockup/src/pages/users/user_card_view.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../components/drawer_view.dart';
-import '../../components/help_button.dart';
-import '../../data_model/chapter_db.dart';
-import '../../data_model/user_db.dart';
+import '../../common_widgets/drawer_view.dart';
+import '../../features/help/presentation/help_button.dart';
+import '../../features/chapter/domain/chapter_db.dart';
+import '../../features/user/domain/user_db.dart';
 
 const pageSpecification = '''
 # Users Page Specification

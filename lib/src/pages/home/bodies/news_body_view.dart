@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_agc_mockup/src/data_model/user_db.dart';
+import 'package:flutter_agc_mockup/src/features/user/domain/user_db.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../data_model/news_db.dart';
+import '../../../features/news/domain/news_db.dart';
 import 'news_body_item_view.dart';
 
 /// Displays a list of News items (if there are any).

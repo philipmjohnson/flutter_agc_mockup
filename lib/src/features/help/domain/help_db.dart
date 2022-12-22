@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../pages/chapters/chapters_view.dart';
-import '../pages/home/home_view.dart';
-import '../pages/users/users_view.dart';
+import '../../chapter/presentation/chapters_view.dart';
+import '../../../pages/home/home_view.dart';
+import '../../../pages/users/users_view.dart';
 
 /// Provides a help string (if available) for each page.
 /// Pages are identified by their routeName because that's guaranteed to be unique.

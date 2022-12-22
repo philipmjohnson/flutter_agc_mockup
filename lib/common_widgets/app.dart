@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_agc_mockup/src/data_model/settings_db.dart';
-import 'package:flutter_agc_mockup/src/pages/chapters/chapters_view.dart';
-import 'package:flutter_agc_mockup/src/pages/discussions/discussions_view.dart';
+import 'package:flutter_agc_mockup/src/features/settings/domain/settings_db.dart';
+import 'package:flutter_agc_mockup/src/features/chapter/presentation/chapters_view.dart';
+import 'package:flutter_agc_mockup/src/features/discussion/presentation/discussions_view.dart';
 import 'package:flutter_agc_mockup/src/pages/gardens/add_garden_view.dart';
 import 'package:flutter_agc_mockup/src/pages/gardens/edit_garden_view.dart';
 import 'package:flutter_agc_mockup/src/pages/gardens/gardens_view.dart';
@@ -15,8 +15,8 @@ import 'package:flutter_agc_mockup/src/pages/seeds/seeds_view.dart';
 import 'package:flutter_agc_mockup/src/pages/signin/signin_view.dart';
 import 'package:flutter_agc_mockup/src/pages/signup/signup_view.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'pages/sample_feature/sample_item_details_view.dart';
-import 'pages/settings/settings_view.dart';
+import '../src/pages/sample_feature/sample_item_details_view.dart';
+import '../src/pages/settings/settings_view.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 
 /// Top-level widget that implements routing to the appropriate page.

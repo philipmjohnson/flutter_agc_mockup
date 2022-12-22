@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
-import '../../components/help_button.dart';
-import '../../data_model/chapter_db.dart';
-import '../../data_model/garden_db.dart';
-import '../../data_model/user_db.dart';
+import '../../features/help/presentation/help_button.dart';
+import '../../features/chapter/domain/chapter_db.dart';
+import '../../features/garden/domain/garden_db.dart';
+import '../../features/user/domain/user_db.dart';
 import 'gardens_view.dart';
 
 /// Provides a page enabling the creation of a new Garden.

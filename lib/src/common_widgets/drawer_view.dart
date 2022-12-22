@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_agc_mockup/src/components/user_avatar.dart';
+import 'package:flutter_agc_mockup/src/features/user/presentation/user_avatar.dart';
 import 'package:flutter_agc_mockup/src/pages/outcomes/outcomes_view.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../data_model/user_db.dart';
-import '../pages/chapters/chapters_view.dart';
-import '../pages/discussions/discussions_view.dart';
+import '../features/user/domain/user_db.dart';
+import '../features/chapter/presentation/chapters_view.dart';
+import '../features/discussion/presentation/discussions_view.dart';
 import '../pages/gardens/gardens_view.dart';
 import '../pages/help/help_view.dart';
 import '../pages/home/home_view.dart';

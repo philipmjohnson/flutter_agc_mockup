@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_agc_mockup/src/components/garden_summary_users_view.dart';
+import 'package:flutter_agc_mockup/src/features/garden/presentation/garden_summary_users_view.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../data_model/chapter_db.dart';
-import '../data_model/garden_db.dart';
-import '../pages/gardens/edit_garden_view.dart';
+import '../../chapter/domain/chapter_db.dart';
+import '../domain/garden_db.dart';
+import '../../../pages/gardens/edit_garden_view.dart';
 
 enum GardenAction { edit, leave }
 

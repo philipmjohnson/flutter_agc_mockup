@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../data_model/chapter_db.dart';
-import '../../data_model/garden_db.dart';
+import '../domain/chapter_db.dart';
+import '../../garden/domain/garden_db.dart';
 
 /// Provides a Card that summarizes a Chapter.
 class ChapterCardView extends ConsumerWidget {

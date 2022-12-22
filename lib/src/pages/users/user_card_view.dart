@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../components/user_avatar.dart';
-import '../../data_model/chapter_db.dart';
-import '../../data_model/garden_db.dart';
-import '../../data_model/user_db.dart';
+import '../../features/user/presentation/user_avatar.dart';
+import '../../features/chapter/domain/chapter_db.dart';
+import '../../features/garden/domain/garden_db.dart';
+import '../../features/user/domain/user_db.dart';
 
 // A Card that summarizes information about a User.
 class UserCardView extends ConsumerWidget {
