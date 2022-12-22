@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import '../../help/presentation/help_button.dart';
 import '../../chapter/domain/chapter_db.dart';
+import '../../user/application/user_providers.dart';
 import '../domain/garden_db.dart';
 import '../../user/domain/user_db.dart';
 import 'gardens_view.dart';

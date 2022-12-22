@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_agc_mockup/src/common_widgets/drawer_view.dart';
-import 'package:flutter_agc_mockup/src/features/user/domain/user_db.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../features/help/presentation/help_button.dart';
-import '../features/garden/domain/garden_db.dart';
-import '../features/news/domain/news_db.dart';
-import '../features/chapter/presentation/chapter_body_view.dart';
-import '../features/garden/presentation/gardens_body_view.dart';
-import '../features/news/presentation/news_body_view.dart';
+import 'package:flutter_agc_mockup/src/common_widgets/drawer_view.dart';
+import 'package:flutter_agc_mockup/src/features/help/presentation/help_button.dart';
+import 'package:flutter_agc_mockup/src/features/garden/domain/garden_db.dart';
+import 'package:flutter_agc_mockup/src/features/news/domain/news_db.dart';
+import 'package:flutter_agc_mockup/src/features/chapter/presentation/chapter_body_view.dart';
+import 'package:flutter_agc_mockup/src/features/garden/presentation/gardens_body_view.dart';
+import 'package:flutter_agc_mockup/src/features/news/presentation/news_body_view.dart';
+import 'package:flutter_agc_mockup/src/features/user/application/user_providers.dart';
 
 /// Top-level Layout for all of the "Home" related subpages.
 class HomeView extends ConsumerStatefulWidget {

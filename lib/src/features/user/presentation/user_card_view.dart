@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../application/user_providers.dart';
 import 'user_avatar.dart';
 import '../../chapter/domain/chapter_db.dart';
 import '../../garden/domain/garden_db.dart';
