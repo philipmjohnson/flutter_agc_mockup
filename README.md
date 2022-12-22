@@ -4,9 +4,9 @@
 
 This repository contains a mockup of the [Agile Garden Club](https://agilegardenclub.com) application. 
 
-## Screen shots 
+## Screen shots
 
-Here are some screen shots that illustrate current application state. We use the flutter_markdown package to provide information on what should appear in a page when we haven't gotten around to actually mocking up the contents.   
+Here are screen shots that illustrate current application state. We use the flutter_markdown package to provide information on what should appear in a page when we haven't gotten around to actually mocking up the contents.
 
 Click on any screen shot to see it full-size.
 
@@ -40,6 +40,14 @@ Click on any screen shot to see it full-size.
   <img src="./README-screenshots/chapters.png" width="30%">
 </p>
 
+### Add Garden and Edit Garden
+
+<p style="text-align: center">
+  <img src="./README-screenshots/add-garden.png" width="30%">
+&nbsp; &nbsp; 
+  <img src="./README-screenshots/edit-garden.png" width="30%">
+</p>
+
 ### Outcomes, Seeds, Members pages
 
 <p style="text-align: center">
@@ -56,13 +64,22 @@ Click on any screen shot to see it full-size.
   <img src="./README-screenshots/discussions.png" width="30%">
 </p>
 
+### Help
+
+<p style="text-align: center">
+  <img src="./README-screenshots/help.png" width="30%">
+&nbsp; &nbsp; 
+  <img src="./README-screenshots/help-local.png" width="30%">
+</p>
+
+
 ## Installation
 
 This app can only be run locally in development mode. To install and run:
 
 * Clone this repository to your computer.
 * Bring up an IDE such as IntelliJ on the repository.
-* Run the app within a simulator. 
+* Run the app within a simulator.
 
 ## DartDoc
 
