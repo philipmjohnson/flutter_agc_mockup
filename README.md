@@ -2,7 +2,7 @@
 
 [![CodeFactor](https://www.codefactor.io/repository/github/philipmjohnson/flutter_agc_mockup/badge)](https://www.codefactor.io/repository/github/philipmjohnson/flutter_agc_mockup)
 
-This repository contains the first increment of work on a mockup of the [Agile Garden Club](https://agilegardenclub.com) application. It contains around a dozen pages along with simple navigation. 
+This repository contains a mockup of the [Agile Garden Club](https://agilegardenclub.com) application. 
 
 ## Screen shots 
 
