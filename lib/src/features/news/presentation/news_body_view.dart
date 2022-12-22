@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_agc_mockup/src/features/user/domain/user_db.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../../user/application/user_providers.dart';
 import '../domain/news_db.dart';
 import 'news_body_item_view.dart';

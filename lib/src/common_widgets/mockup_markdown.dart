@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_agc_mockup/src/common_widgets/drawer_view.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
+
+import 'drawer_view.dart';
 
 /// A bootstrapping Widget to present the specification of a page's contents.
 class MockupMarkdownView extends StatelessWidget {

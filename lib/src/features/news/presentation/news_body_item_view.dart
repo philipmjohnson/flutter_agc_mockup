@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_agc_mockup/src/features/news/presentation/news_body_item_actions.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../../chapter/domain/chapter_db.dart';
 import '../../garden/domain/garden_db.dart';
 import '../domain/news_db.dart';
+import 'news_body_item_actions.dart';
 
 /// Displays a news item given its ID.
 class NewsBodyItemView extends ConsumerWidget {

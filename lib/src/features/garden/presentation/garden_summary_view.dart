@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_agc_mockup/src/features/garden/presentation/garden_summary_users_view.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../../chapter/domain/chapter_db.dart';
+import '../../garden/presentation/garden_summary_users_view.dart';
 import '../domain/garden_db.dart';
 import 'edit_garden_view.dart';
 
