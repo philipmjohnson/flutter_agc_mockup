@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../chapter/application/chapter_provider.dart';
 import '../../chapter/domain/chapter_db.dart';
 import '../../garden/presentation/garden_summary_users_view.dart';
+import '../application/garden_provider.dart';
 import '../domain/garden_db.dart';
 import 'edit_garden_view.dart';
 
@@ -39,10 +41,12 @@ class GardenSummaryView extends ConsumerWidget {
               onSelected: (GardenAction action) {
                 if (action == GardenAction.edit) {
                   Navigator.restorablePushNamed(
-                      context, EditGardenView.routeName, arguments: gardenID);
+                      context, EditGardenView.routeName,
+                      arguments: gardenID);
                 }
               },
-              itemBuilder: (BuildContext context) => <PopupMenuEntry<GardenAction>>[
+              itemBuilder: (BuildContext context) =>
+                  <PopupMenuEntry<GardenAction>>[
                 const PopupMenuItem<GardenAction>(
                   value: GardenAction.edit,
                   child: Text('Edit'),

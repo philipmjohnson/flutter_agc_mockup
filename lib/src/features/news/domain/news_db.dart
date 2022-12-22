@@ -59,7 +59,8 @@ class NewsDB {
         chapterID: 'chapter-001',
         icon: Icons.water_drop,
         title: 'New seed(s) available',
-        body: "Lettuce (Flashy Trout's Back), Bean (Tanya's Pink Pod), Squash (Zepplin Delicata)",
+        body:
+            "Lettuce (Flashy Trout's Back), Bean (Tanya's Pink Pod), Squash (Zepplin Delicata)",
         date: '11/25/22'),
     NewsData(
         id: 'news-005',
@@ -93,7 +94,3 @@ class NewsDB {
         .toList();
   }
 }
-
-final newsDBProvider = Provider<NewsDB>((ref) {
-  return NewsDB(ref);
-});

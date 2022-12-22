@@ -3,10 +3,12 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
+import '../../chapter/application/chapter_provider.dart';
 import '../../chapter/domain/chapter_db.dart';
 import '../../help/presentation/help_button.dart';
 import '../../user/application/user_providers.dart';
 import '../../user/domain/user_db.dart';
+import '../application/garden_provider.dart';
 import '../domain/garden_db.dart';
 import 'gardens_view.dart';
 
@@ -43,7 +45,8 @@ class AddGardenView extends ConsumerWidget {
       if (usernamesString.isEmpty) {
         return [];
       }
-      List<String> usernames = usernamesString.split(',').map((editor) => editor.trim()).toList();
+      List<String> usernames =
+          usernamesString.split(',').map((editor) => editor.trim()).toList();
       return usernames.map((username) => userDB.getUserID(username)).toList();
     }
 
@@ -115,19 +118,19 @@ class AddGardenView extends ConsumerWidget {
                         ]),
                       ),
                       FormBuilderTextField(
-                          name: 'editors',
-                          key: _editorsFieldKey,
-                          decoration: const InputDecoration(
-                            labelText: 'Editor(s)',
-                            hintText:
-                                'An optional, comma separated list of usernames.',
-                          ),
-                          validator: (val) {
-                            if (val is String) {
-                              return validateUserNamesString(val);
-                            }
-                            return null;
-                          },
+                        name: 'editors',
+                        key: _editorsFieldKey,
+                        decoration: const InputDecoration(
+                          labelText: 'Editor(s)',
+                          hintText:
+                              'An optional, comma separated list of usernames.',
+                        ),
+                        validator: (val) {
+                          if (val is String) {
+                            return validateUserNamesString(val);
+                          }
+                          return null;
+                        },
                       ),
                       FormBuilderTextField(
                         name: 'viewers',
@@ -158,17 +161,32 @@ class AddGardenView extends ConsumerWidget {
                           if (isValid) {
                             // Extract garden data from fields
                             String name = _nameFieldKey.currentState?.value;
-                            String description = _descriptionFieldKey.currentState?.value;
-                            String chapterID = chapterDB.getChapterIDFromName(_chapterFieldKey.currentState?.value);
-                            String imageFileName =  _photoFieldKey.currentState?.value;
-                            String editorsString = _editorsFieldKey.currentState?.value ?? '';
-                            List<String> editorIDs = usernamesToIDs(editorsString);
-                            String viewersString = _viewersFieldKey.currentState?.value ?? '';
-                            List<String> viewerIDs = usernamesToIDs(viewersString);
+                            String description =
+                                _descriptionFieldKey.currentState?.value;
+                            String chapterID = chapterDB.getChapterIDFromName(
+                                _chapterFieldKey.currentState?.value);
+                            String imageFileName =
+                                _photoFieldKey.currentState?.value;
+                            String editorsString =
+                                _editorsFieldKey.currentState?.value ?? '';
+                            List<String> editorIDs =
+                                usernamesToIDs(editorsString);
+                            String viewersString =
+                                _viewersFieldKey.currentState?.value ?? '';
+                            List<String> viewerIDs =
+                                usernamesToIDs(viewersString);
                             // Add the new garden.
-                            gardenDB.addGarden(name: name, description: description, chapterID: chapterID, imageFileName: imageFileName, editorIDs: editorIDs, ownerID: currentUserID, viewerIDs: viewerIDs);
+                            gardenDB.addGarden(
+                                name: name,
+                                description: description,
+                                chapterID: chapterID,
+                                imageFileName: imageFileName,
+                                editorIDs: editorIDs,
+                                ownerID: currentUserID,
+                                viewerIDs: viewerIDs);
                             // Return to the list gardens page
-                            Navigator.pushReplacementNamed(context, GardensView.routeName);
+                            Navigator.pushReplacementNamed(
+                                context, GardensView.routeName);
                           }
                         },
                         child: const Text(

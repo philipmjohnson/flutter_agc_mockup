@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../user/application/user_providers.dart';
+import '../application/news_provider.dart';
 import '../domain/news_db.dart';
 import 'news_body_item_view.dart';
 
@@ -21,7 +22,9 @@ class NewsBodyView extends ConsumerWidget {
     return Padding(
         padding: const EdgeInsets.only(top: 10.0),
         child: (newsIDs.isEmpty)
-            ? const Align(alignment: Alignment.center, child: Text("No news is good news!"))
+            ? const Align(
+                alignment: Alignment.center,
+                child: Text("No news is good news!"))
             : ListView(children: [
                 ...newsIDs
                     .map((newsID) => NewsBodyItemView(newsID: newsID))

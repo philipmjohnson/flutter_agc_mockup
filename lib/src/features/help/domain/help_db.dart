@@ -55,7 +55,3 @@ The buttons at the bottom enable you to filter or sort the list of Chapters.
         : 'No help available');
   }
 }
-
-final helpDBProvider = Provider<HelpDB>((ref) {
-  return HelpDB(ref);
-});

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../common_widgets/drawer_view.dart';
+import '../../chapter/application/chapter_provider.dart';
 import '../../chapter/domain/chapter_db.dart';
 import '../../help/presentation/help_button.dart';
 import '../application/user_providers.dart';
@@ -42,7 +43,6 @@ class UsersView extends ConsumerWidget {
   final String title = 'Users';
   static const routeName = '/users';
 
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final ChapterDB chapterDB = ref.watch(chapterDBProvider);
@@ -53,11 +53,11 @@ class UsersView extends ConsumerWidget {
         title: const Text('Members'),
         actions: const [HelpButton(routeName: UsersView.routeName)],
       ),
-      body: ListView(
-          children: [
-            ...chapterDB.getAssociatedUserIDsOfUserID(currentUserID).map((userID) => UserCardView(userID: userID))
-        ]
-      ),
+      body: ListView(children: [
+        ...chapterDB
+            .getAssociatedUserIDsOfUserID(currentUserID)
+            .map((userID) => UserCardView(userID: userID))
+      ]),
       bottomNavigationBar: BottomNavigationBar(
         // type: BottomNavigationBarType.fixed, // needed when more than 3 items
         items: const [

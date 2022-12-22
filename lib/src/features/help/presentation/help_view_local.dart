@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../application/help_provider.dart';
 import '../domain/help_db.dart';
 
 /// Displays the context-sensitive Help (i.e. the ? icon in the upper right corner).

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../chapter/application/chapter_provider.dart';
 import '../../chapter/domain/chapter_db.dart';
+import '../../garden/application/garden_provider.dart';
 import '../../garden/domain/garden_db.dart';
+import '../application/news_provider.dart';
 import '../domain/news_db.dart';
 import 'news_body_item_actions.dart';
 
@@ -27,9 +30,11 @@ class NewsBodyItemView extends ConsumerWidget {
     String date = data.date;
     String? chapterID = data.chapterID;
     String? gardenID = data.gardenID;
+
     /// Only one of chapterID or gardenID is defined.
-    String chapterName =
-        (chapterID == null) ? '' : '${chapterDB.getChapter(chapterID).name} Chapter';
+    String chapterName = (chapterID == null)
+        ? ''
+        : '${chapterDB.getChapter(chapterID).name} Chapter';
     String gardenName =
         (gardenID == null) ? '' : '${gardenDB.getGarden(gardenID).name} Garden';
     String bodyPrefix = '$chapterName$gardenName';

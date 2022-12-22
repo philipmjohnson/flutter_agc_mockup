@@ -1,14 +1,16 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../garden/application/garden_provider.dart';
 import '../../garden/domain/garden_db.dart';
 
 /// The data associated with each chapter.
 class ChapterData {
-  ChapterData({
-    required this.id,
-    required this.name,
-    required this.imagePath,
-    required this.hardinessZones,
-    required this.zipCodes});
+  ChapterData(
+      {required this.id,
+      required this.name,
+      required this.imagePath,
+      required this.hardinessZones,
+      required this.zipCodes});
 
   String id;
   String name;
@@ -28,15 +30,13 @@ class ChapterDB {
         name: 'Bellingham, WA',
         zipCodes: ['98225', '98226', '98227', '98228', '98229'],
         imagePath: 'assets/images/chapter-001.png',
-        hardinessZones: ['8a', '8b']
-        ),
+        hardinessZones: ['8a', '8b']),
     ChapterData(
         id: 'chapter-002',
         name: 'Kailua, HI',
         zipCodes: ['98734'],
         imagePath: 'assets/images/chapter-002.png',
-        hardinessZones: ['10b', '11a', '11b', '12a', '12b', '13a']
-    ),
+        hardinessZones: ['10b', '11a', '11b', '12a', '12b', '13a']),
   ];
 
   ChapterData getChapter(String chapterID) {
@@ -59,7 +59,8 @@ class ChapterDB {
 
   List<String> getAssociatedUserIDs(String chapterID) {
     final GardenDB gardenDB = ref.watch(gardenDBProvider);
-    List<String> gardenIDs = gardenDB.getAssociatedGardenIDs(chapterID: chapterID);
+    List<String> gardenIDs =
+        gardenDB.getAssociatedGardenIDs(chapterID: chapterID);
     Set<String> userIDs = {};
     for (var gardenID in gardenIDs) {
       userIDs.addAll(gardenDB.getAssociatedUserIDs(gardenID));
@@ -93,7 +94,3 @@ class ChapterDB {
     return userIDs.toList();
   }
 }
-
-final chapterDBProvider = Provider<ChapterDB>((ref) {
-  return ChapterDB(ref);
-});

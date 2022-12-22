@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../common_widgets/drawer_view.dart';
 import '../../help/presentation/help_button.dart';
 import '../../user/application/user_providers.dart';
+import '../application/garden_provider.dart';
 import '../domain/garden_db.dart';
 import 'add_garden_view.dart';
 import 'garden_summary_view.dart';

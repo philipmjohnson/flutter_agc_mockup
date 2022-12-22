@@ -89,6 +89,4 @@ class UserDB {
   List<String> getAllEmails() {
     return _users.map((userData) => userData.email).toList();
   }
-
-
 }

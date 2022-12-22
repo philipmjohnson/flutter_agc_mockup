@@ -6,15 +6,16 @@ import '../../user/domain/user_db.dart';
 
 /// The data associated with each garden.
 class GardenData {
-  GardenData({required this.id,
-    required this.name,
-    required this.description,
-    required this.ownerID,
-    required this.imagePath,
-    required this.chapterID,
-    required this.lastUpdate,
-    List<String>? editorIDs,
-    List<String>? viewerIDs})
+  GardenData(
+      {required this.id,
+      required this.name,
+      required this.description,
+      required this.ownerID,
+      required this.imagePath,
+      required this.chapterID,
+      required this.lastUpdate,
+      List<String>? editorIDs,
+      List<String>? viewerIDs})
       : editorIDs = editorIDs ?? [],
         viewerIDs = viewerIDs ?? [];
 
@@ -30,8 +31,7 @@ class GardenData {
 
   @override
   String toString() {
-    return '<GardenData id: $id, name: $name, description: $description, imagePath: $imagePath, ownerID: $ownerID, chapterID: $chapterID, lastUpdate: $lastUpdate, editorIDs: ${editorIDs
-        .toString()}, viewerIDs: ${viewerIDs.toString()}>';
+    return '<GardenData id: $id, name: $name, description: $description, imagePath: $imagePath, ownerID: $ownerID, chapterID: $chapterID, lastUpdate: $lastUpdate, editorIDs: ${editorIDs.toString()}, viewerIDs: ${viewerIDs.toString()}>';
   }
 }
 
@@ -73,14 +73,14 @@ class GardenDB {
         editorIDs: ['user-003'])
   ];
 
-  void addGarden({
-    required String name,
-    required String description,
-    required String imageFileName,
-    required String chapterID,
-    required String ownerID,
-    required List<String> viewerIDs,
-    required List<String> editorIDs}) {
+  void addGarden(
+      {required String name,
+      required String description,
+      required String imageFileName,
+      required String chapterID,
+      required String ownerID,
+      required List<String> viewerIDs,
+      required List<String> editorIDs}) {
     String id = 'garden-${(_gardens.length + 1).toString().padLeft(3, '0')}';
     String imagePath = 'assets/images/$imageFileName';
     String lastUpdate = DateFormat.yMd().format(DateTime.now());
@@ -97,15 +97,15 @@ class GardenDB {
     _gardens.add(data);
   }
 
-  void updateGarden({
-    required String id,
-    required String name,
-    required String description,
-    required String imagePath,
-    required String chapterID,
-    required String ownerID,
-    required List<String> viewerIDs,
-    required List<String> editorIDs}) {
+  void updateGarden(
+      {required String id,
+      required String name,
+      required String description,
+      required String imagePath,
+      required String chapterID,
+      required String ownerID,
+      required List<String> viewerIDs,
+      required List<String> editorIDs}) {
     // first remove the current GardenData instance.
     _gardens.removeWhere((gardenData) => gardenData.id == id);
     // now add the updated version
@@ -174,9 +174,4 @@ class GardenDB {
     UserDB userDB = ref.read(userDBProvider);
     return userDB.getUsers(data.viewerIDs);
   }
-
 }
-
-final gardenDBProvider = Provider<GardenDB>((ref) {
-  return GardenDB(ref);
-});
