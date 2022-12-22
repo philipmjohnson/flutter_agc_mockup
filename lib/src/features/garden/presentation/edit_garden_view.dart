@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
-import '../../features/help/presentation/help_button.dart';
-import '../../features/chapter/domain/chapter_db.dart';
-import '../../features/garden/domain/garden_db.dart';
-import '../../features/user/domain/user_db.dart';
+import '../../help/presentation/help_button.dart';
+import '../../chapter/domain/chapter_db.dart';
+import '../domain/garden_db.dart';
+import '../../user/domain/user_db.dart';
 import 'gardens_view.dart';
 
 /// Provides the page enabling the user to edit the data associated with an existing Garden.

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../sample_feature/sample_item.dart';
-import '../../sample_feature/sample_item_details_view.dart';
+import '../../sample_feature/presentation/sample_item.dart';
+import '../../sample_feature/presentation/sample_item_details_view.dart';
 
 /// Displays a list of Gardens.
 class SeedsBodyView extends StatelessWidget {

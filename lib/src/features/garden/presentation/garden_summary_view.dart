@@ -3,7 +3,7 @@ import 'package:flutter_agc_mockup/src/features/garden/presentation/garden_summa
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../chapter/domain/chapter_db.dart';
 import '../domain/garden_db.dart';
-import '../../../pages/gardens/edit_garden_view.dart';
+import 'edit_garden_view.dart';
 
 enum GardenAction { edit, leave }
 

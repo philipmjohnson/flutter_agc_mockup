@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_agc_mockup/src/features/user/presentation/user_avatar.dart';
-import 'package:flutter_agc_mockup/src/pages/outcomes/outcomes_view.dart';
+import 'package:flutter_agc_mockup/src/features/outcome/presentation/outcomes_view.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../features/user/domain/user_db.dart';
 import '../features/chapter/presentation/chapters_view.dart';
 import '../features/discussion/presentation/discussions_view.dart';
-import '../pages/gardens/gardens_view.dart';
-import '../pages/help/help_view.dart';
-import '../pages/home/home_view.dart';
-import '../pages/users/users_view.dart';
-import '../pages/seeds/seeds_view.dart';
-import '../pages/settings/settings_view.dart';
+import '../features/garden/presentation/gardens_view.dart';
+import '../features/help/presentation/help_view.dart';
+import 'home_view.dart';
+import '../features/user/presentation/users_view.dart';
+import '../features/seed/presentation/seeds_view.dart';
+import '../features/settings/presentation/settings_view.dart';
 
 /// Provides the drop-down Drawer with the menu of top-level pages.
 class DrawerView extends ConsumerWidget {

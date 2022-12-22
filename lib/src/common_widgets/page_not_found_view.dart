@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../mockup_markdown/mockup_markdown.dart';
+import 'mockup_markdown.dart';
 
 const pageSpecification = '''
 # Page Not Found
