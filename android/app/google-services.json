@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "825487632862",
+    "project_id": "agc-mockup",
+    "storage_bucket": "agc-mockup.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:825487632862:android:c1304242fb91bb62f4154f",
+        "android_client_info": {
+          "package_name": "com.example.flutter_agc_mockup"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "825487632862-3m3ql5qm4i6u0f4cch45p803m2k5eejb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdps4pbheUmRLEl-00cH8Qv7N-tdgH_ws"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "825487632862-3m3ql5qm4i6u0f4cch45p803m2k5eejb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
