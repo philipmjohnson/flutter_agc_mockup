@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../common_widgets/mockup_markdown.dart';
+
+import '../../mockup_markdown.dart';
 
 const pageSpecification = '''
 # Seeds Page Specification
@@ -24,8 +25,6 @@ For Chapter seeds, contact the person who has them to request some.
 
 ''';
 
-
-
 /// Displays Seed information. (Not yet implemented)
 class SeedsView extends StatelessWidget {
   const SeedsView({
@@ -33,7 +32,6 @@ class SeedsView extends StatelessWidget {
   });
   final String title = 'Seeds';
   static const routeName = '/seeds';
-
 
   @override
   Widget build(BuildContext context) {

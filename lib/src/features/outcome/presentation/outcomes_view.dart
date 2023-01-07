@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../common_widgets/mockup_markdown.dart';
+
+import '../../mockup_markdown.dart';
 
 const pageSpecification = '''
 # Outcomes Page Specification
@@ -23,8 +24,6 @@ You might want the ability to "drill-down" from an Outcome to the planting(s) th
 
 ''';
 
-
-
 /// Displays Outcome information. (Not yet implemented)
 class OutcomesView extends StatelessWidget {
   const OutcomesView({
@@ -32,7 +31,6 @@ class OutcomesView extends StatelessWidget {
   });
   final String title = 'Outcomes';
   static const routeName = '/outcomes';
-
 
   @override
   Widget build(BuildContext context) {

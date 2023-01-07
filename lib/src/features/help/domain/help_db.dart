@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../common_widgets/home_view.dart';
 import '../../chapter/presentation/chapters_view.dart';
+import '../../home_view.dart';
 import '../../user/presentation/users_view.dart';
 
 /// Provides a help string (if available) for each page.

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../features/chapter/presentation/chapter_body_view.dart';
-import '../features/garden/application/garden_provider.dart';
-import '../features/garden/domain/garden_db.dart';
-import '../features/garden/presentation/gardens_body_view.dart';
-import '../features/help/presentation/help_button.dart';
-import '../features/news/application/news_provider.dart';
-import '../features/news/domain/news_db.dart';
-import '../features/news/presentation/news_body_view.dart';
-import '../features/user/application/user_providers.dart';
+import 'chapter/presentation/chapter_body_view.dart';
 import 'drawer_view.dart';
+import 'garden/application/garden_provider.dart';
+import 'garden/domain/garden_db.dart';
+import 'garden/presentation/gardens_body_view.dart';
+import 'help/presentation/help_button.dart';
+import 'news/application/news_provider.dart';
+import 'news/domain/news_db.dart';
+import 'news/presentation/news_body_view.dart';
+import 'user/application/user_providers.dart';
 
 /// Top-level Layout for all of the "Home" related subpages.
 class HomeView extends ConsumerStatefulWidget {

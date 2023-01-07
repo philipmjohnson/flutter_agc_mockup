@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../common_widgets/mockup_markdown.dart';
+
+import '../../mockup_markdown.dart';
 
 const pageSpecification = '''
 # Help Page Specification
@@ -37,8 +38,6 @@ Note that folks will probably use this in two ways:
 
 ''';
 
-
-
 /// Displays Help information.
 class HelpView extends StatelessWidget {
   const HelpView({
@@ -46,7 +45,6 @@ class HelpView extends StatelessWidget {
   });
   final String title = 'Help';
   static const routeName = '/help';
-
 
   @override
   Widget build(BuildContext context) {

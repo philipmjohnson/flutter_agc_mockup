@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../common_widgets/drawer_view.dart';
+import '../../drawer_view.dart';
 import '../application/settings_db.dart';
 
 /// Displays the various settings that can be customized by the user.
@@ -30,7 +30,8 @@ class SettingsView extends ConsumerWidget {
         padding: const EdgeInsets.all(16),
         child: DropdownButton<ThemeMode>(
           value: ref.read(currentThemeModeProvider),
-          onChanged: (ThemeMode? newThemeMode) => updateThemeMode(newThemeMode, ref),
+          onChanged: (ThemeMode? newThemeMode) =>
+              updateThemeMode(newThemeMode, ref),
           items: const [
             DropdownMenuItem(
               value: ThemeMode.system,

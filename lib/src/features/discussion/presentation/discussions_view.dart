@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../common_widgets/mockup_markdown.dart';
+
+import '../../mockup_markdown.dart';
 
 const pageSpecification = '''
 # Discussions Page Specification
@@ -23,8 +24,6 @@ Would be nice to find some sort of plugin for this.
 
 ''';
 
-
-
 /// Displays Chapter information.
 class DiscussionsView extends StatelessWidget {
   const DiscussionsView({
@@ -32,7 +31,6 @@ class DiscussionsView extends StatelessWidget {
   });
   final String title = 'Discussions';
   static const routeName = '/discussions';
-
 
   @override
   Widget build(BuildContext context) {
