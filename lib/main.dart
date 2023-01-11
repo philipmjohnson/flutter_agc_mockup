@@ -23,12 +23,14 @@ import 'features/settings/application/settings_db.dart';
 import 'features/settings/presentation/settings_view.dart';
 import 'features/user/presentation/users_view.dart';
 import 'firebase_options.dart';
+import 'logger.dart';
 
 /// Set up settings and wrap app in ProviderScope
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   FirebaseUIAuth.configureProviders([EmailAuthProvider()]);
+  logger.i('starting up');
   runApp(const ProviderScope(child: MyApp()));
 }
 
