@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import '../../logger.dart';
+
 /// Generic interface for accessing Firestore.
 class FirestoreService {
   FirestoreService._();
@@ -11,13 +13,13 @@ class FirestoreService {
     bool merge = false,
   }) async {
     final reference = FirebaseFirestore.instance.doc(path);
-    print('$path: $data');
+    logger.i('$path: $data');
     await reference.set(data, SetOptions(merge: merge));
   }
 
   Future<void> deleteData({required String path}) async {
     final reference = FirebaseFirestore.instance.doc(path);
-    print('delete: $path');
+    logger.i('delete: $path');
     await reference.delete();
   }
 

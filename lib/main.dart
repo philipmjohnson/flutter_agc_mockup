@@ -1,10 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_ui_auth/firebase_ui_auth.dart';
+import 'package:firebase_ui_auth/firebase_ui_auth.dart' hide ForgotPasswordView;
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'decorations.dart';
+import 'features/authentication/presentation/forgot_password_view.dart';
+import 'features/authentication/presentation/signin_view.dart';
+import 'features/authentication/presentation/verify_email_view.dart';
 import 'features/chapter/presentation/chapters_view.dart';
 import 'features/discussion/presentation/discussions_view.dart';
 import 'features/garden/presentation/add_garden_view.dart';
@@ -27,7 +29,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   FirebaseUIAuth.configureProviders([EmailAuthProvider()]);
-  runApp(ProviderScope(child: MyApp()));
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 /// Top-level widget that implements routing to the appropriate page.
@@ -51,95 +53,12 @@ class MyApp extends ConsumerWidget {
           settings: routeSettings,
           builder: (BuildContext context) {
             switch (routeSettings.name) {
-              case '/':
-                return SignInScreen(
-                  actions: [
-                    ForgotPasswordAction((context, email) {
-                      Navigator.pushNamed(
-                        context,
-                        '/forgot-password',
-                        arguments: {'email': email},
-                      );
-                    }),
-                    AuthStateChangeAction<SignedIn>((context, state) {
-                      if (!state.user!.emailVerified) {
-                        Navigator.pushNamed(context, '/verify-email');
-                      } else {
-                        Navigator.pushReplacementNamed(
-                            context, HomeView.routeName);
-                      }
-                    }),
-                    AuthStateChangeAction<UserCreated>((context, state) {
-                      if (!state.credential.user!.emailVerified) {
-                        Navigator.pushNamed(context, '/verify-email');
-                      } else {
-                        Navigator.pushReplacementNamed(
-                            context, HomeView.routeName);
-                      }
-                    }),
-                    AuthStateChangeAction<CredentialLinked>((context, state) {
-                      if (!state.user.emailVerified) {
-                        Navigator.pushNamed(context, '/verify-email');
-                      } else {
-                        Navigator.pushReplacementNamed(
-                            context, HomeView.routeName);
-                      }
-                    }),
-                  ],
-                  styles: const {
-                    EmailFormStyle(signInButtonVariant: ButtonVariant.filled),
-                  },
-                  headerBuilder: headerImage('assets/images/vegetables.png'),
-                  sideBuilder: sideImage('assets/images/vegetables.png'),
-                  subtitleBuilder: (context, action) {
-                    return Padding(
-                      padding: const EdgeInsets.only(bottom: 8),
-                      child: Text(
-                        action == AuthAction.signIn
-                            ? 'Welcome to Agile Garden Club! Please sign in.'
-                            : 'Welcome to Agile Garden Club! Please create an account.',
-                      ),
-                    );
-                  },
-                  footerBuilder: (context, action) {
-                    return Center(
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 16),
-                        child: Text(
-                          action == AuthAction.signIn
-                              ? 'By signing in, you agree to our terms and conditions.'
-                              : 'By registering, you agree to our terms and conditions.',
-                          style: const TextStyle(color: Colors.grey),
-                        ),
-                      ),
-                    );
-                  },
-                );
-              case '/verify-email':
-                return EmailVerificationScreen(
-                  headerBuilder: headerIcon(Icons.verified),
-                  sideBuilder: sideIcon(Icons.verified),
-                  actions: [
-                    EmailVerifiedAction(() {
-                      Navigator.pushReplacementNamed(
-                          context, HomeView.routeName);
-                    }),
-                    AuthCancelledAction((context) {
-                      FirebaseUIAuth.signOut(context: context);
-                      Navigator.pushReplacementNamed(context, '/');
-                    }),
-                  ],
-                );
-              case '/forgot-password':
-                final arguments = ModalRoute.of(context)?.settings.arguments
-                    as Map<String, dynamic>?;
-
-                return ForgotPasswordScreen(
-                  email: arguments?['email'],
-                  headerMaxExtent: 200,
-                  headerBuilder: headerIcon(Icons.lock),
-                  sideBuilder: sideIcon(Icons.lock),
-                );
+              case SignInView.routeName:
+                return const SignInView();
+              case VerifyEmailView.routeName:
+                return const VerifyEmailView();
+              case ForgotPasswordView.routeName:
+                return const ForgotPasswordView();
               case HomeView.routeName:
                 return const HomeView();
               case GardensView.routeName:

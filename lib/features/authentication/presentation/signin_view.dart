@@ -1,12 +1,14 @@
-import 'package:firebase_ui_auth/firebase_ui_auth.dart';
+import 'package:firebase_ui_auth/firebase_ui_auth.dart' hide ForgotPasswordView;
 import 'package:flutter/material.dart';
 
 import '../../home_view.dart';
 import 'decorations.dart';
+import 'forgot_password_view.dart';
+import 'verify_email_view.dart';
 
 /// Presents the page containing fields to enter a username and password, plus buttons.
 class SignInView extends StatelessWidget {
-  SignInView({Key? key}) : super(key: key);
+  const SignInView({Key? key}) : super(key: key);
 
   static const routeName = '/';
 
@@ -17,27 +19,27 @@ class SignInView extends StatelessWidget {
         ForgotPasswordAction((context, email) {
           Navigator.pushNamed(
             context,
-            '/forgot-password',
+            ForgotPasswordView.routeName,
             arguments: {'email': email},
           );
         }),
         AuthStateChangeAction<SignedIn>((context, state) {
           if (!state.user!.emailVerified) {
-            Navigator.pushNamed(context, '/verify-email');
+            Navigator.pushNamed(context, VerifyEmailView.routeName);
           } else {
             Navigator.pushReplacementNamed(context, HomeView.routeName);
           }
         }),
         AuthStateChangeAction<UserCreated>((context, state) {
           if (!state.credential.user!.emailVerified) {
-            Navigator.pushNamed(context, '/verify-email');
+            Navigator.pushNamed(context, VerifyEmailView.routeName);
           } else {
             Navigator.pushReplacementNamed(context, HomeView.routeName);
           }
         }),
         AuthStateChangeAction<CredentialLinked>((context, state) {
           if (!state.user.emailVerified) {
-            Navigator.pushNamed(context, '/verify-email');
+            Navigator.pushNamed(context, VerifyEmailView.routeName);
           } else {
             Navigator.pushReplacementNamed(context, HomeView.routeName);
           }

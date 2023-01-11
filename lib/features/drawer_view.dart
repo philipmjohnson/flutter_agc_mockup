@@ -1,6 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_ui_auth/firebase_ui_auth.dart' hide UserAvatar;
 import 'package:flutter/material.dart';
-import 'package:flutter_agc_mockup/repositories/firestore/firestore_providers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'authentication/presentation/signin_view.dart';
@@ -25,7 +24,6 @@ class DrawerView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final UserDB userDB = ref.watch(userDBProvider);
     final String currentUserID = ref.watch(currentUserIDProvider);
-    final FirebaseAuth auth = ref.read(firebaseAuthProvider);
     UserData user = userDB.getUser(currentUserID);
     return Drawer(
       child: ListView(
@@ -106,7 +104,7 @@ class DrawerView extends ConsumerWidget {
             leading: const Icon(Icons.logout),
             title: const Text('Sign out'),
             onTap: () {
-              auth.signOut();
+              FirebaseUIAuth.signOut(context: context);
               Navigator.pushReplacementNamed(context, SignInView.routeName);
             },
           ),
