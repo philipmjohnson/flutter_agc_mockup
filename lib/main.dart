@@ -65,21 +65,24 @@ class MyApp extends ConsumerWidget {
                       if (!state.user!.emailVerified) {
                         Navigator.pushNamed(context, '/verify-email');
                       } else {
-                        Navigator.pushReplacementNamed(context, '/profile');
+                        Navigator.pushReplacementNamed(
+                            context, HomeView.routeName);
                       }
                     }),
                     AuthStateChangeAction<UserCreated>((context, state) {
                       if (!state.credential.user!.emailVerified) {
                         Navigator.pushNamed(context, '/verify-email');
                       } else {
-                        Navigator.pushReplacementNamed(context, '/profile');
+                        Navigator.pushReplacementNamed(
+                            context, HomeView.routeName);
                       }
                     }),
                     AuthStateChangeAction<CredentialLinked>((context, state) {
                       if (!state.user.emailVerified) {
                         Navigator.pushNamed(context, '/verify-email');
                       } else {
-                        Navigator.pushReplacementNamed(context, '/profile');
+                        Navigator.pushReplacementNamed(
+                            context, HomeView.routeName);
                       }
                     }),
                   ],
