@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart' show rootBundle;
 
-/// Provides access to the json files stored in the assets/config directory.
+/// Provides global access to the contents of json files in assets/config/.
 ///
 /// Load the key-value pairs in assets/config/config.json file with:
 /// ```dart
@@ -10,13 +10,12 @@ import 'package:flutter/services.dart' show rootBundle;
 /// ```
 /// You typically will do that in your main() function.
 ///
-/// Access a key-value pair with:
+/// Access a key-value pair from a particular json file with:
 /// ```dart
-/// String admin = Configuration().get('admin_email');
+/// String admin = Configuration().get('config', 'admin_email');
 /// ```
 ///
-/// You can load any number of files. Make sure keys are unique across all files
-/// to prevent overwriting!
+/// You can load any number of files.
 ///
 /// Be sure to add the assets/config/ directory as an asset to your pubspec.yml.
 class Configuration {
@@ -31,14 +30,12 @@ class Configuration {
   Map<String, dynamic> configMap = <String, dynamic>{};
 
   Future<Configuration> load(String name) async {
-    if (!name.endsWith(".json")) {
-      name = "$name.json";
-    }
-    String content = await rootBundle.loadString("assets/config/$name");
+    String fileName = "$name.json";
+    String content = await rootBundle.loadString("assets/config/$fileName");
     Map<String, dynamic> configAsMap = json.decode(content);
-    configMap.addAll(configAsMap);
+    configMap[name] = configAsMap;
     return _singleton;
   }
 
-  dynamic get(String key) => configMap[key];
+  dynamic get(String config, String key) => configMap[config][key];
 }

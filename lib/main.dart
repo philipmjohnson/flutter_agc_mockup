@@ -32,7 +32,7 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   FirebaseUIAuth.configureProviders([EmailAuthProvider()]);
   await Configuration().load('config');
-  String admin = Configuration().get('admin_email');
+  String admin = Configuration().get('config', 'admin_email');
   logger.i('Starting up. Admin: $admin');
   runApp(const ProviderScope(child: MyApp()));
 }
