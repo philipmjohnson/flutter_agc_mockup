@@ -1,5 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'news.dart';
 
 /// The data associated with users.
 class NewsData {
@@ -79,6 +84,13 @@ class NewsDB {
         body: "10 gardens with Aphid pest observations this week",
         date: '11/30/22'),
   ];
+
+  static Future<List<News>> getInitialData() async {
+    String content =
+        await rootBundle.loadString("assets/initialData/news.json");
+    List<dynamic> initialData = json.decode(content);
+    return initialData.map((jsonData) => News.fromJson(jsonData)).toList();
+  }
 
   List<String> getNewsIDs() {
     return _news.map((data) => data.id).toList();

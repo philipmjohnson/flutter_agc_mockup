@@ -1,0 +1,57 @@
+[
+  {
+    "id": "news-001",
+    "userID": "user-001",
+    "chapterID": "chapter-001",
+    "iconName": "severe_cold",
+    "title": "Frost Alert",
+    "body": "Predicted overnight low of 37\u00B0 for 11/15/22",
+    "date": "11/15/22"
+  },
+  {
+    "id": "news-002",
+    "userID": "user-001",
+    "gardenID": "garden-001",
+    "iconName": "image_search",
+    "title": "Reply to: 'Something is eating these bean sprouts...'",
+    "body": "... Looks like it could be a rabbit or...",
+    "date": "11/10/22"
+  },
+  {
+    "id": "news-003",
+    "userID": "user-001",
+    "chapterID": "chapter-001",
+    "iconName": "group_add",
+    "title": "New Chapter Members",
+    "body": "@AsaD, @CyTheGuy",
+    "date": "11/20/22"
+  },
+  {
+    "id": "news-004",
+    "userID": "user-001",
+    "chapterID": "chapter-001",
+    "iconName": "water_drop",
+    "title": "New seed(s) available",
+    "body":
+    "Lettuce (Flashy Trout's Back), Bean (Tanya's Pink Pod), Squash (Zepplin Delicata)",
+    "date": "11/25/22"
+  },
+  {
+    "id": "news-005",
+    "userID": "user-001",
+    "gardenID": "garden-002",
+    "iconName": "yard_outlined",
+    "title": "First Harvest expected",
+    "body": "Pepper (Bridge to Paris), Pumpkin (Winter Luxury)",
+    "date": "11/25/22"
+  },
+  {
+    "id": "news-006",
+    "userID": "user-001",
+    "chapterID": "chapter-001",
+    "iconName": "pest_control",
+    "title": "Pest Alert: Aphids",
+    "body": "10 gardens with Aphid pest observations this week",
+    "date": "11/30/22"
+  }
+]

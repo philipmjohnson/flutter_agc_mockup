@@ -26,11 +26,16 @@ dependencies:
   cloud_firestore: ^4.3.1
   firebase_ui_auth: ^1.1.7
   logger: ^1.1.0
+  freezed_annotation: ^2.2.0
+  json_annotation: ^4.7.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
+  build_runner: ^2.3.3
+  freezed: ^2.3.2
+  json_serializable: ^6.5.4
 
 flutter_native_splash:
   image: assets/images/vegetables.png
@@ -43,3 +48,4 @@ flutter:
   assets:
     - assets/images/
     - assets/config/
+    - assets/initialData/

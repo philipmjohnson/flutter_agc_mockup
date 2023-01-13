@@ -1,7 +1,11 @@
+import 'dart:convert';
+
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../garden/application/garden_provider.dart';
 import '../../garden/domain/garden_db.dart';
+import 'chapter.dart';
 
 /// The data associated with each chapter.
 class ChapterData {
@@ -38,6 +42,14 @@ class ChapterDB {
         imagePath: 'assets/images/chapter-002.png',
         hardinessZones: ['10b', '11a', '11b', '12a', '12b', '13a']),
   ];
+  final List<Chapter> _chapters2 = [];
+
+  static Future<List<Chapter>> getInitialData() async {
+    String content =
+        await rootBundle.loadString("assets/initialData/chapters.json");
+    List<dynamic> initialData = json.decode(content);
+    return initialData.map((jsonData) => Chapter.fromJson(jsonData)).toList();
+  }
 
   ChapterData getChapter(String chapterID) {
     return _chapters.firstWhere((data) => data.id == chapterID);

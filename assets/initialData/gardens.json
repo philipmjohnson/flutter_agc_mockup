@@ -1,0 +1,46 @@
+[
+  {
+    "id": "garden-001",
+    "name": "Alderwood Hill",
+    "description": "19 beds, 162 plantings (2022)",
+    "imagePath": "assets/images/garden-001.jpg",
+    "ownerID": "user-001",
+    "chapterID": "chapter-001",
+    "lastUpdate": "11/15/22",
+    "editorIDs": [
+      "user-002"
+    ],
+    "viewerIDs": [
+      "user-003",
+      "user-005"
+    ]
+  },
+  {
+    "id": "garden-002",
+    "name": "Kale is for Kids",
+    "description": "17 beds, 149 plantings (2022)",
+    "imagePath": "assets/images/garden-002.jpg",
+    "chapterID": "chapter-001",
+    "lastUpdate": "10/10/22",
+    "ownerID": "user-002",
+    "viewerIDs": [
+      "user-001",
+      "user-005"
+    ]
+  },
+  {
+    "id": "garden-003",
+    "name": "Kaimake Loop",
+    "description": "1 beds, 5 plantings (2022)",
+    "imagePath": "assets/images/garden-003.jpg",
+    "chapterID": "chapter-002",
+    "lastUpdate": "8/10/22",
+    "ownerID": "user-004",
+    "viewerIDs": [
+      "user-005"
+    ],
+    "editorIDs": [
+      "user-003"
+    ]
+  }
+]

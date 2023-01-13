@@ -1,8 +1,10 @@
 import 'package:firebase_ui_auth/firebase_ui_auth.dart' hide UserAvatar;
 import 'package:flutter/material.dart';
+import 'package:flutter_agc_mockup/features/chapter/application/chapter_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'authentication/presentation/signin_view.dart';
+import 'chapter/domain/chapter_db.dart';
 import 'chapter/presentation/chapters_view.dart';
 import 'discussion/presentation/discussions_view.dart';
 import 'garden/presentation/gardens_view.dart';
@@ -23,6 +25,7 @@ class DrawerView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final UserDB userDB = ref.watch(userDBProvider);
+    final ChapterDB chapterDB = ref.read(chapterDBProvider);
     final String currentUserID = ref.watch(currentUserIDProvider);
     UserData user = userDB.getUser(currentUserID);
     return Drawer(

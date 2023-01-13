@@ -1,8 +1,12 @@
+import 'dart:convert';
+
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
 import '../../user/application/user_providers.dart';
 import '../../user/domain/user_db.dart';
+import 'garden.dart';
 
 /// The data associated with each garden.
 class GardenData {
@@ -72,6 +76,13 @@ class GardenDB {
         viewerIDs: ['user-005'],
         editorIDs: ['user-003'])
   ];
+
+  static Future<List<Garden>> getInitialData() async {
+    String content =
+        await rootBundle.loadString("assets/initialData/gardens.json");
+    List<dynamic> initialData = json.decode(content);
+    return initialData.map((jsonData) => Garden.fromJson(jsonData)).toList();
+  }
 
   void addGarden(
       {required String name,
