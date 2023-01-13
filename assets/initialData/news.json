@@ -1,7 +1,7 @@
 [
   {
     "id": "news-001",
-    "userID": "user-001",
+    "userID": "johnson@hawaii.edu",
     "chapterID": "chapter-001",
     "iconName": "severe_cold",
     "title": "Frost Alert",
@@ -10,7 +10,7 @@
   },
   {
     "id": "news-002",
-    "userID": "user-001",
+    "userID": "johnson@hawaii.edu",
     "gardenID": "garden-001",
     "iconName": "image_search",
     "title": "Reply to: 'Something is eating these bean sprouts...'",
@@ -19,7 +19,7 @@
   },
   {
     "id": "news-003",
-    "userID": "user-001",
+    "userID": "johnson@hawaii.edu",
     "chapterID": "chapter-001",
     "iconName": "group_add",
     "title": "New Chapter Members",
@@ -28,7 +28,7 @@
   },
   {
     "id": "news-004",
-    "userID": "user-001",
+    "userID": "johnson@hawaii.edu",
     "chapterID": "chapter-001",
     "iconName": "water_drop",
     "title": "New seed(s) available",
@@ -38,7 +38,7 @@
   },
   {
     "id": "news-005",
-    "userID": "user-001",
+    "userID": "johnson@hawaii.edu",
     "gardenID": "garden-002",
     "iconName": "yard_outlined",
     "title": "First Harvest expected",
@@ -47,7 +47,7 @@
   },
   {
     "id": "news-006",
-    "userID": "user-001",
+    "userID": "johnson@hawaii.edu",
     "chapterID": "chapter-001",
     "iconName": "pest_control",
     "title": "Pest Alert: Aphids",

@@ -44,6 +44,7 @@ class ChapterDB {
   ];
   final List<Chapter> _chapters2 = [];
 
+  /// Supports compatibility testing between data model and initial data.
   static Future<List<Chapter>> getInitialData() async {
     String content =
         await rootBundle.loadString("assets/initialData/chapters.json");

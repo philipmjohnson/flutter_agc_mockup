@@ -1,38 +1,33 @@
 [
   {
-    "id": "user-001",
+    "id": "jennacorindeane@gmail.com",
     "name": "Jenna Deane",
     "username": "@fluke",
-    "email": "jennacorindeane@gmail.com",
     "imagePath": "assets/images/user-001.jpg",
     "initials": "JD"
   },
   {
-    "id": "user-002",
+    "id": "jessebeck@gmail.com",
     "name": "Jesse Beck",
     "username": "@jesse",
-    "email": "jessebeck@gmail.com",
     "initials": "JB"
   },
   {
-    "id": "user-003",
+    "id": "joanne.amberg@gmail.com",
     "name": "Joanne Amberg",
     "username": "@joanne",
-    "email": "joanne.amberg@gmail.com",
     "initials": "JA"
   },
   {
-    "id": "user-004",
+    "id": "johnson@hawaii.edu",
     "name": "Philip Johnson",
     "username": "@fiveoclockphil",
-    "email": "johnson@hawaii.edu",
     "initials": "PJ"
   },
   {
-    "id": "user-005",
+    "id": "katieambergjohnson@gmail.com",
     "name": "Katie Amberg-Johnson",
     "username": "@katiekai",
-    "email": "katieambergjohnson@gmail.com",
     "imagePath": "assets/images/user-005.jpg",
     "initials": "KAJ"
   }

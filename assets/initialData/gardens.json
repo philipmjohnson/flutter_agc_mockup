@@ -4,15 +4,16 @@
     "name": "Alderwood Hill",
     "description": "19 beds, 162 plantings (2022)",
     "imagePath": "assets/images/garden-001.jpg",
-    "ownerID": "user-001",
+    "ownerID": "jennacorindeane@gmail.com",
     "chapterID": "chapter-001",
     "lastUpdate": "11/15/22",
     "editorIDs": [
-      "user-002"
+      "jessebeck@gmail.com",
+      "johnson@hawaii.edu"
     ],
     "viewerIDs": [
-      "user-003",
-      "user-005"
+      "joanne.amberg@gmail.com",
+      "katieambergjohnson@gmail.com"
     ]
   },
   {
@@ -22,10 +23,11 @@
     "imagePath": "assets/images/garden-002.jpg",
     "chapterID": "chapter-001",
     "lastUpdate": "10/10/22",
-    "ownerID": "user-002",
+    "ownerID": "jessebeck@gmail.com",
+    "editorIDs": "johnson@hawaii.edu",
     "viewerIDs": [
-      "user-001",
-      "user-005"
+      "jennacorindeane@gmail.com",
+      "katieambergjohnson@gmail.com"
     ]
   },
   {
@@ -35,12 +37,12 @@
     "imagePath": "assets/images/garden-003.jpg",
     "chapterID": "chapter-002",
     "lastUpdate": "8/10/22",
-    "ownerID": "user-004",
+    "ownerID": "johnson@hawaii.edu",
     "viewerIDs": [
-      "user-005"
+      "katieambergjohnson@gmail.com"
     ],
     "editorIDs": [
-      "user-003"
+      "joanne.amberg@gmail.com"
     ]
   }
 ]

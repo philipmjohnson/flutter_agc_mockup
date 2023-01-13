@@ -9,10 +9,20 @@ class User with _$User {
     required String id,
     required String name,
     required String username,
-    required String email,
     String? imagePath,
     required String initials,
   }) = _User;
+
+  const User._();
+
+  factory User.fromFirestore(Map<String, dynamic> json, String documentId) {
+    return User(
+        id: documentId,
+        name: json['name'],
+        username: json['username'],
+        imagePath: json['imagePath'],
+        initials: json['initials']);
+  }
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 }
