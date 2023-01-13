@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_agc_mockup/repositories/firestore/firestore_providers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../logger.dart';
 import 'chapter/presentation/chapter_body_view.dart';
 import 'drawer_view.dart';
 import 'garden/application/garden_provider.dart';
@@ -37,6 +39,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
 
   @override
   Widget build(BuildContext context) {
+    logger.i(ref.read(firebaseAuthProvider).currentUser?.email);
     final String currentUserID = ref.watch(currentUserIDProvider);
     final GardenDB gardenDB = ref.watch(gardenDBProvider);
     final NewsDB newsDB = ref.watch(newsDBProvider);

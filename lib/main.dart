@@ -8,41 +8,34 @@ import 'configuration.dart';
 import 'features/authentication/presentation/forgot_password_view.dart';
 import 'features/authentication/presentation/signin_view.dart';
 import 'features/authentication/presentation/verify_email_view.dart';
-import 'features/chapter/domain/chapter.dart';
-import 'features/chapter/domain/chapter_db.dart';
 import 'features/chapter/presentation/chapters_view.dart';
 import 'features/discussion/presentation/discussions_view.dart';
-import 'features/garden/domain/garden.dart';
-import 'features/garden/domain/garden_db.dart';
 import 'features/garden/presentation/add_garden_view.dart';
 import 'features/garden/presentation/edit_garden_view.dart';
 import 'features/garden/presentation/gardens_view.dart';
 import 'features/help/presentation/help_view.dart';
 import 'features/help/presentation/help_view_local.dart';
 import 'features/home_view.dart';
-import 'features/news/domain/news.dart';
-import 'features/news/domain/news_db.dart';
 import 'features/outcome/presentation/outcomes_view.dart';
 import 'features/page_not_found_view.dart';
 import 'features/sample_feature/presentation/sample_item_details_view.dart';
 import 'features/seed/presentation/seeds_view.dart';
 import 'features/settings/application/settings_db.dart';
 import 'features/settings/presentation/settings_view.dart';
-import 'features/user/domain/user.dart';
-import 'features/user/domain/user_db.dart';
 import 'features/user/presentation/users_view.dart';
 import 'firebase_options.dart';
-import 'logger.dart';
 
-Future<bool> initializeDB() async {
-  logger.i('Checking for DB initialization');
-  List<Chapter> chapters = await ChapterDB.getInitialData();
-  List<Garden> gardens = await GardenDB.getInitialData();
-  List<News> news = await NewsDB.getInitialData();
-  List<User> users = await UserDB.getInitialData();
-  logger.i(users);
-  return true;
-}
+// Bootstrapping method to check to see if the Freezed data models and json data
+// files are compatible.
+// Future<bool> initializeDB() async {
+//   logger.i('Checking for DB initialization');
+//   List<Chapter> chapters = await ChapterDB.getInitialData();
+//   List<Garden> gardens = await GardenDB.getInitialData();
+//   List<News> news = await NewsDB.getInitialData();
+//   List<User> users = await UserDB.getInitialData();
+//   logger.i(users);
+//   return true;
+// }
 
 /// Set up settings and wrap app in ProviderScope
 void main() async {
@@ -50,9 +43,7 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   FirebaseUIAuth.configureProviders([EmailAuthProvider()]);
   await Configuration().load('config');
-  await initializeDB();
   String admin = Configuration().get('config', 'admin_email');
-  logger.i('Starting up. Admin: $admin');
   runApp(const ProviderScope(child: MyApp()));
 }
 
