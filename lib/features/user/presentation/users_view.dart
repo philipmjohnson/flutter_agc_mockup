@@ -47,6 +47,7 @@ class UsersView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final ChapterDB chapterDB = ref.watch(chapterDBProvider);
     final String currentUserID = ref.watch(currentUserIDProvider);
+    final usersAsyncValue = ref.watch(usersStreamProvider);
     return Scaffold(
       drawer: const DrawerView(),
       appBar: AppBar(

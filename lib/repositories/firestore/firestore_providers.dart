@@ -6,5 +6,5 @@ final firebaseAuthProvider =
     Provider<FirebaseAuth>((ref) => FirebaseAuth.instance);
 
 /// Provides access to [FirebaseAuth.authStateChanges].
-final authStateChangesProvider = StreamProvider.autoDispose<User?>(
+final authStateChangesProvider = StreamProvider<User?>(
     (ref) => ref.watch(firebaseAuthProvider).authStateChanges());

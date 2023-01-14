@@ -1,23 +1,15 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../../../repositories/firestore/firestore_path.dart';
 import '../../../repositories/firestore/firestore_service.dart';
 import 'user.dart';
 
 class UserDatabase {
-  UserDatabase({required this.uid});
+  UserDatabase(this.ref);
 
-  final String uid;
+  final ProviderRef<UserDatabase> ref;
 
   final _service = FirestoreService.instance;
-
-  void testUser() {
-    User newUser = const User(
-        id: 'foo',
-        name: 'bar',
-        username: 'baz',
-        imagePath: 'qux',
-        initials: 'pj');
-    String email = newUser.id;
-  }
 
   Stream<List<User>> watchUsers() => _service.watchCollection(
       path: FirestorePath.users(),
