@@ -22,20 +22,17 @@ import 'features/sample_feature/presentation/sample_item_details_view.dart';
 import 'features/seed/presentation/seeds_view.dart';
 import 'features/settings/application/settings_db.dart';
 import 'features/settings/presentation/settings_view.dart';
+import 'features/user/domain/user.dart';
 import 'features/user/presentation/users_view.dart';
 import 'firebase_options.dart';
+import 'logger.dart';
 
-// Bootstrapping method to check to see if the Freezed data models and json data
-// files are compatible.
-// Future<bool> initializeDB() async {
-//   logger.i('Checking for DB initialization');
-//   List<Chapter> chapters = await ChapterDB.getInitialData();
-//   List<Garden> gardens = await GardenDB.getInitialData();
-//   List<News> news = await NewsDB.getInitialData();
-//   List<User> users = await UserDB.getInitialData();
-//   logger.i(users);
-//   return true;
-// }
+// Check that Freezed data models and json data files are compatible.
+Future<bool> checkInitialData() async {
+  logger.i('Checking initial data files');
+  List<User> users = await User.checkInitialData();
+  return true;
+}
 
 /// Set up settings and wrap app in ProviderScope
 void main() async {
@@ -43,6 +40,7 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   FirebaseUIAuth.configureProviders([EmailAuthProvider()]);
   await Configuration().load('config');
+  await checkInitialData();
   String admin = Configuration().get('config', 'admin_email');
   runApp(const ProviderScope(child: MyApp()));
 }
