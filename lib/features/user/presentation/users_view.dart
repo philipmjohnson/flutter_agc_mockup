@@ -61,9 +61,10 @@ class UsersView extends ConsumerWidget {
       //       .getAssociatedUserIDsOfUserID(currentUserID)
       //       .map((userID) => UserCardView(userID: userID))
       // ]),
+      // TODO: Display only associated users in the current chapter.
       body: ListItemsBuilder<User>(
           data: usersAsyncValue,
-          itemBuilder: (context, user) => UserCardView2(user: user)),
+          itemBuilder: (context, user) => UserCardView(user: user)),
       bottomNavigationBar: BottomNavigationBar(
         // type: BottomNavigationBarType.fixed, // needed when more than 3 items
         items: const [
