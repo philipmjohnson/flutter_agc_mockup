@@ -19,5 +19,5 @@ final userDBProvider = Provider<UserDB>((ref) {
 });
 
 final currentUserIDProvider = StateProvider<String>((ref) {
-  return 'user-001';
+  return 'jennacorindeane@gmail.com';
 });

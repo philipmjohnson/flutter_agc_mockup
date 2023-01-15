@@ -5,7 +5,9 @@ import '../../chapter/application/chapter_provider.dart';
 import '../../chapter/domain/chapter_db.dart';
 import '../../drawer_view.dart';
 import '../../help/presentation/help_button.dart';
+import '../../list_items_builder.dart';
 import '../application/user_providers.dart';
+import '../domain/user.dart';
 import 'user_card_view.dart';
 
 const pageSpecification = '''
@@ -54,11 +56,14 @@ class UsersView extends ConsumerWidget {
         title: const Text('Members'),
         actions: const [HelpButton(routeName: UsersView.routeName)],
       ),
-      body: ListView(children: [
-        ...chapterDB
-            .getAssociatedUserIDsOfUserID(currentUserID)
-            .map((userID) => UserCardView(userID: userID))
-      ]),
+      // body: ListView(children: [
+      //   ...chapterDB
+      //       .getAssociatedUserIDsOfUserID(currentUserID)
+      //       .map((userID) => UserCardView(userID: userID))
+      // ]),
+      body: ListItemsBuilder<User>(
+          data: usersAsyncValue,
+          itemBuilder: (context, user) => UserCardView2(user: user)),
       bottomNavigationBar: BottomNavigationBar(
         // type: BottomNavigationBarType.fixed, // needed when more than 3 items
         items: const [

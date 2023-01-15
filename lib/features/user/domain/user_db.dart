@@ -26,32 +26,32 @@ class UserDB {
   final ProviderRef<UserDB> ref;
   final List<UserData> _users = [
     UserData(
-        id: 'user-001',
+        id: 'jennacorindeane@gmail.com',
         name: 'Jenna Deane',
         username: '@fluke',
         email: 'jennacorindeane@gmail.com',
         imagePath: 'assets/images/user-001.jpg',
         initials: 'JD'),
     UserData(
-        id: 'user-002',
+        id: 'jessebeck@gmail.com',
         name: 'Jesse Beck',
         username: '@jesse',
         email: 'jessebeck@gmail.com',
         initials: 'JB'),
     UserData(
-        id: 'user-003',
+        id: 'joanne.amberg@gmail.com',
         name: 'Joanne Amberg',
         username: '@joanne',
         email: 'joanne.amberg@gmail.com',
         initials: 'JA'),
     UserData(
-        id: 'user-004',
+        id: 'johnson@hawaii.edu',
         name: 'Philip Johnson',
         username: '@fiveoclockphil',
         email: 'johnson@hawaii.edu',
         initials: 'PJ'),
     UserData(
-        id: 'user-005',
+        id: 'katieambergjohnson@gmail.com',
         name: 'Katie Amberg-Johnson',
         username: '@katiekai',
         email: 'katieambergjohnson@gmail.com',
