@@ -5,9 +5,7 @@ import '../../chapter/application/chapter_provider.dart';
 import '../../chapter/domain/chapter_db.dart';
 import '../../garden/application/garden_provider.dart';
 import '../../garden/domain/garden_db.dart';
-import '../application/user_providers.dart';
 import '../domain/user.dart';
-import '../domain/user_db.dart';
 import 'user_avatar.dart';
 
 // A Card that summarizes information about a User.
@@ -18,7 +16,6 @@ class UserCardView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final UserDB userDB = ref.watch(userDBProvider);
     final GardenDB gardenDB = ref.watch(gardenDBProvider);
     final ChapterDB chapterDB = ref.watch(chapterDBProvider);
     List<String> gardenNames = gardenDB

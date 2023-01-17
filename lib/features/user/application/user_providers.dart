@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../repositories/firestore/firestore_providers.dart';
 import '../domain/user.dart';
 import '../domain/user_database.dart';
-import '../domain/user_db.dart';
 
 final userDatabaseProvider = Provider<UserDatabase>((ref) {
   return UserDatabase(ref);
@@ -20,7 +19,13 @@ final currentUserIDProvider = StateProvider<String>((ref) {
   return instance.currentUser!.email!;
 });
 
-////////        OLD
-final userDBProvider = Provider<UserDB>((ref) {
-  return UserDB(ref);
+final currentUserProvider = FutureProvider<User>((ref) async {
+  final String currentUserId = ref.watch(currentUserIDProvider);
+  final database = ref.watch(userDatabaseProvider);
+  return await database.fetchUser(currentUserId);
 });
+
+////////        OLD
+// final userDBProvider = Provider<UserDB>((ref) {
+//   return UserDB(ref);
+// });

@@ -5,7 +5,7 @@ import '../../chapter/application/chapter_provider.dart';
 import '../../chapter/domain/chapter_db.dart';
 import '../application/garden_provider.dart';
 import '../domain/garden_db.dart';
-import 'edit_garden_view.dart';
+import 'edit_garden_view2.dart';
 import 'garden_summary_users_view.dart';
 
 enum GardenAction { edit, leave }
