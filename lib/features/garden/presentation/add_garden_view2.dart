@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_agc_mockup/features/user/application/user_providers.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -7,22 +6,23 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import '../../chapter/application/chapter_provider.dart';
 import '../../chapter/domain/chapter_db.dart';
 import '../../help/presentation/help_button.dart';
+import '../../user/application/user_providers.dart';
 import '../../user/domain/user_collection.dart';
 import '../../user/domain/user_database.dart';
 import '../application/garden_provider.dart';
 import '../domain/garden_db.dart';
 import 'gardens_view.dart';
 
-class EditGardenView extends ConsumerStatefulWidget {
-  const EditGardenView({Key? key}) : super(key: key);
+class AddGardenView extends ConsumerStatefulWidget {
+  const AddGardenView({Key? key}) : super(key: key);
 
-  static const routeName = '/editGardenView';
+  static const routeName = '/addGardenView';
 
   @override
-  createState() => _EditGardenViewState();
+  createState() => _AddGardenViewState();
 }
 
-class _EditGardenViewState extends ConsumerState<EditGardenView> {
+class _AddGardenViewState extends ConsumerState<AddGardenView> {
   final _formKey = GlobalKey<FormBuilderState>();
   final _nameFieldKey = GlobalKey<FormBuilderFieldState>();
   final _descriptionFieldKey = GlobalKey<FormBuilderFieldState>();
@@ -30,7 +30,7 @@ class _EditGardenViewState extends ConsumerState<EditGardenView> {
   final _photoFieldKey = GlobalKey<FormBuilderFieldState>();
   final _editorsFieldKey = GlobalKey<FormBuilderFieldState>();
   final _viewersFieldKey = GlobalKey<FormBuilderFieldState>();
-  UserCollection? _userCollection;
+  UserCollection? _users;
 
   @override
   void initState() {
@@ -39,32 +39,31 @@ class _EditGardenViewState extends ConsumerState<EditGardenView> {
     Future.delayed(Duration.zero, () {
       final UserDatabase userDatabase = ref.watch(userDatabaseProvider);
       userDatabase.fetchUsers().then((theUsers) => setState(() {
-            _userCollection = UserCollection(theUsers);
+            _users = UserCollection(theUsers);
           }));
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    AppBar appBar = AppBar(
+      title: const Text('Add Garden'),
+      actions: const [HelpButton(routeName: AddGardenView.routeName)],
+    );
+
+    if (_users == null) {
+      return Scaffold(
+          appBar: appBar,
+          body: const Center(child: CircularProgressIndicator()));
+    }
     final ChapterDB chapterDB = ref.watch(chapterDBProvider);
     final GardenDB gardenDB = ref.watch(gardenDBProvider);
     final String currentUserID = ref.watch(currentUserIDProvider);
-    String gardenID = ModalRoute.of(context)!.settings.arguments as String;
-    GardenData gardenData = gardenDB.getGarden(gardenID);
     List<String> chapterNames() => chapterDB.getChapterNames();
-    String currChapterName() => chapterDB.getChapter(gardenData.chapterID).name;
-    String currEditors() => gardenData.editorIDs
-        .map((userID) => _userCollection!.getUser(userID).username)
-        .toList()
-        .join(', ');
-    String currViewers() => gardenData.viewerIDs
-        .map((userID) => _userCollection!.getUser(userID).username)
-        .toList()
-        .join(', ');
 
     validateUserNamesString(String val) {
       List<String> userNames = val.split(',').map((val) => val.trim()).toList();
-      if (!_userCollection!.areUserNames(userNames)) {
+      if (!_users!.areUserNames(userNames)) {
         return 'Non-existent user name(s)';
       }
       return null;
@@ -76,16 +75,11 @@ class _EditGardenViewState extends ConsumerState<EditGardenView> {
       }
       List<String> usernames =
           usernamesString.split(',').map((editor) => editor.trim()).toList();
-      return usernames
-          .map((username) => _userCollection!.getUserID(username))
-          .toList();
+      return usernames.map((username) => _users!.getUserID(username)).toList();
     }
 
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Edit Garden'),
-          actions: const [HelpButton(routeName: EditGardenView.routeName)],
-        ),
+        appBar: appBar,
         body: ListView(
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
           children: <Widget>[
@@ -99,9 +93,9 @@ class _EditGardenViewState extends ConsumerState<EditGardenView> {
                       FormBuilderTextField(
                         name: 'name',
                         key: _nameFieldKey,
-                        initialValue: gardenData.name,
                         decoration: const InputDecoration(
                           labelText: 'Name',
+                          hintText: 'Example: "Rosebud Garden"',
                         ),
                         validator: FormBuilderValidators.compose([
                           FormBuilderValidators.required(),
@@ -110,16 +104,17 @@ class _EditGardenViewState extends ConsumerState<EditGardenView> {
                       const SizedBox(height: 10),
                       FormBuilderTextField(
                         name: 'description',
-                        initialValue: gardenData.description,
                         key: _descriptionFieldKey,
                         decoration: const InputDecoration(
                           labelText: 'Description',
+                          hintText: 'Example: "19 Beds, 162 Plantings (2022)"',
                         ),
                         validator: FormBuilderValidators.compose([
                           FormBuilderValidators.required(),
                         ]),
                       ),
                       FormBuilderDropdown<String>(
+                        // autovalidate: true,
                         name: 'chapter',
                         key: _chapterFieldKey,
                         decoration: const InputDecoration(
@@ -134,7 +129,6 @@ class _EditGardenViewState extends ConsumerState<EditGardenView> {
                                   child: Text(name),
                                 ))
                             .toList(),
-                        initialValue: currChapterName(),
                         valueTransformer: (val) => val?.toString(),
                       ),
                       FormBuilderTextField(
@@ -142,18 +136,19 @@ class _EditGardenViewState extends ConsumerState<EditGardenView> {
                         key: _photoFieldKey,
                         decoration: const InputDecoration(
                           labelText: 'Photo',
+                          hintText: 'garden-004.jpg (or garden-005.jpg)',
                         ),
                         validator: FormBuilderValidators.compose([
                           FormBuilderValidators.required(),
                         ]),
-                        initialValue: gardenData.imagePath,
                       ),
                       FormBuilderTextField(
                         name: 'editors',
                         key: _editorsFieldKey,
-                        initialValue: currEditors(),
                         decoration: const InputDecoration(
                           labelText: 'Editor(s)',
+                          hintText:
+                              'An optional, comma separated list of usernames.',
                         ),
                         validator: (val) {
                           if (val is String) {
@@ -165,9 +160,10 @@ class _EditGardenViewState extends ConsumerState<EditGardenView> {
                       FormBuilderTextField(
                         name: 'viewers',
                         key: _viewersFieldKey,
-                        initialValue: currViewers(),
                         decoration: const InputDecoration(
                           labelText: 'Viewer(s)',
+                          hintText:
+                              'An optional, comma separated list of usernames.',
                         ),
                         validator: (val) {
                           if (val is String) {
@@ -194,7 +190,7 @@ class _EditGardenViewState extends ConsumerState<EditGardenView> {
                                 _descriptionFieldKey.currentState?.value;
                             String chapterID = chapterDB.getChapterIDFromName(
                                 _chapterFieldKey.currentState?.value);
-                            String imagePath =
+                            String imageFileName =
                                 _photoFieldKey.currentState?.value;
                             String editorsString =
                                 _editorsFieldKey.currentState?.value ?? '';
@@ -205,12 +201,11 @@ class _EditGardenViewState extends ConsumerState<EditGardenView> {
                             List<String> viewerIDs =
                                 usernamesToIDs(viewersString);
                             // Add the new garden.
-                            gardenDB.updateGarden(
-                                id: gardenID,
+                            gardenDB.addGarden(
                                 name: name,
                                 description: description,
                                 chapterID: chapterID,
-                                imagePath: imagePath,
+                                imageFileName: imageFileName,
                                 editorIDs: editorIDs,
                                 ownerID: currentUserID,
                                 viewerIDs: viewerIDs);

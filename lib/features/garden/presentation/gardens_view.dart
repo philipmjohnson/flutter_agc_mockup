@@ -6,7 +6,7 @@ import '../../help/presentation/help_button.dart';
 import '../../user/application/user_providers.dart';
 import '../application/garden_provider.dart';
 import '../domain/garden_db.dart';
-import 'add_garden_view.dart';
+import 'add_garden_view2.dart';
 import 'garden_summary_view.dart';
 
 const pageSpecification = '''

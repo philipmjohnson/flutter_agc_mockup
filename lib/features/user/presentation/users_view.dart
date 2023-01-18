@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../chapter/application/chapter_provider.dart';
-import '../../chapter/domain/chapter_db.dart';
 import '../../drawer_view.dart';
 import '../../help/presentation/help_button.dart';
 import '../../list_items_builder.dart';
@@ -47,8 +45,6 @@ class UsersView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final ChapterDB chapterDB = ref.watch(chapterDBProvider);
-    final String currentUserID = ref.watch(currentUserIDProvider);
     final usersAsyncValue = ref.watch(usersStreamProvider);
     return Scaffold(
       drawer: const DrawerView(),
@@ -66,7 +62,7 @@ class UsersView extends ConsumerWidget {
           data: usersAsyncValue,
           itemBuilder: (context, user) => UserCardView(user: user)),
       bottomNavigationBar: BottomNavigationBar(
-        // type: BottomNavigationBarType.fixed, // needed when more than 3 items
+        // type: BottomNavigationBarType.fixed needed when more than 3 items
         items: const [
           BottomNavigationBarItem(
             label: 'Filter',

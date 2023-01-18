@@ -4,6 +4,7 @@ import '../../../repositories/firestore/firestore_path.dart';
 import '../../../repositories/firestore/firestore_service.dart';
 import 'user.dart';
 
+// Provides access to the Firestore database storing User documents.
 class UserDatabase {
   UserDatabase(this.ref);
 
@@ -28,23 +29,5 @@ class UserDatabase {
       builder: (data, documentId) => User.fromFirestore(data!, documentId));
 
   Future<void> setUser(User user) =>
-      _service.setData(path: FirestorePath.user("foo"), data: user.toJson());
-
-  static User getUser(List<User> users, String userID) {
-    return users.firstWhere((userData) => userData.id == userID);
-  }
-
-  static bool areUserNames(List<User> users, List<String> userNames) {
-    List<String> allUserNames =
-        users.map((userData) => userData.username).toList();
-    return userNames.every((userName) => allUserNames.contains(userName));
-  }
-
-  static String getUserID(List<User> users, String emailOrUsername) {
-    return (emailOrUsername.startsWith('@'))
-        ? users
-            .firstWhere((userData) => userData.username == emailOrUsername)
-            .id
-        : users.firstWhere((userData) => userData.id == emailOrUsername).id;
-  }
+      _service.setData(path: FirestorePath.user(user.id), data: user.toJson());
 }

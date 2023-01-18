@@ -4,8 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
-import '../../user/application/user_providers.dart';
-import '../../user/domain/user_db.dart';
 import 'garden.dart';
 
 /// The data associated with each garden.
@@ -168,21 +166,21 @@ class GardenDB {
         (data.editorIDs.contains(userID)));
   }
 
-  UserData getOwner(String gardenID) {
-    GardenData data = getGarden(gardenID);
-    UserDB userDB = ref.read(userDBProvider);
-    return userDB.getUser(data.ownerID);
-  }
+  // UserData getOwner(String gardenID) {
+  //   GardenData data = getGarden(gardenID);
+  //   UserDB userDB = ref.read(userDBProvider);
+  //   return userDB.getUser(data.ownerID);
+  // }
 
-  List<UserData> getEditors(String gardenID) {
-    GardenData data = getGarden(gardenID);
-    UserDB userDB = ref.read(userDBProvider);
-    return userDB.getUsers(data.editorIDs);
-  }
+  // List<UserData> getEditors(String gardenID) {
+  //   GardenData data = getGarden(gardenID);
+  //   UserDB userDB = ref.read(userDBProvider);
+  //   return userDB.getUsers(data.editorIDs);
+  // }
 
-  List<UserData> getViewers(String gardenID) {
-    GardenData data = getGarden(gardenID);
-    UserDB userDB = ref.read(userDBProvider);
-    return userDB.getUsers(data.viewerIDs);
-  }
+  // List<UserData> getViewers(String gardenID) {
+  //   GardenData data = getGarden(gardenID);
+  //   UserDB userDB = ref.read(userDBProvider);
+  //   return userDB.getUsers(data.viewerIDs);
+  // }
 }
