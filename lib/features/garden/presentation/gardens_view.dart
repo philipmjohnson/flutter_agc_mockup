@@ -3,9 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../drawer_view.dart';
 import '../../help/presentation/help_button.dart';
+import '../../list_items_builder.dart';
 import '../../user/application/user_providers.dart';
 import '../application/garden_provider.dart';
-import '../domain/garden_db.dart';
+import '../domain/garden.dart';
 import 'add_garden_view2.dart';
 import 'garden_summary_view.dart';
 
@@ -51,7 +52,7 @@ class GardensView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final GardenDB gardenDB = ref.watch(gardenDBProvider);
+    final gardensAsyncValue = ref.watch(gardensStreamProvider);
     final String currentUserID = ref.watch(currentUserIDProvider);
     return Scaffold(
       drawer: const DrawerView(),
@@ -68,12 +69,18 @@ class GardensView extends ConsumerWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: Padding(
           padding: const EdgeInsets.all(10.0),
-          child: ListView(
-              children: gardenDB
-                  .getAssociatedGardenIDs(userID: currentUserID)
-                  .map((gardenID) => GardenSummaryView(gardenID: gardenID))
-                  .toList()
-                  .toList())),
+          // child: ListView(
+          // children: gardenDB
+          //     .getAssociatedGardenIDs(userID: currentUserID)
+          //     .map((gardenID) => GardenSummaryView(gardenID: gardenID))
+          //     .toList()
+          //     .toList())),
+
+          // TODO: only show associated gardens.
+          child: ListItemsBuilder<Garden>(
+              data: gardensAsyncValue,
+              itemBuilder: (context, garden) =>
+                  GardenSummaryView(garden: garden))),
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
         child: Row(

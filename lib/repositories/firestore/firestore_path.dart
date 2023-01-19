@@ -6,8 +6,8 @@ class FirestorePath {
   static String garden(String gardenID) => 'gardens/$gardenID';
   static String gardens() => 'gardens';
 
-  static String newsItem(String newsID) => 'news/$newsID';
-  static String news() => 'news';
+  static String news(String newsID) => 'news/$newsID';
+  static String newss() => 'news';
 
   static String user(String userID) => 'users/$userID';
   static String users() => 'users';

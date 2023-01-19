@@ -19,6 +19,11 @@ final currentUserIDProvider = StateProvider<String>((ref) {
   return instance.currentUser!.email!;
 });
 
+final usersProvider = FutureProvider<List<User>>((ref) {
+  final database = ref.watch(userDatabaseProvider);
+  return database.fetchUsers();
+});
+
 final currentUserProvider = FutureProvider<User>((ref) async {
   final String currentUserId = ref.watch(currentUserIDProvider);
   final database = ref.watch(userDatabaseProvider);

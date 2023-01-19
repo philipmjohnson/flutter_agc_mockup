@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../async_value_widget.dart';
+import '../../chapter/application/chapter_provider.dart';
+import '../../chapter/domain/chapter.dart';
+import '../../chapter/domain/chapter_collection.dart';
 import '../../drawer_view.dart';
+import '../../garden/application/garden_provider.dart';
+import '../../garden/domain/garden.dart';
+import '../../garden/domain/garden_collection.dart';
 import '../../help/presentation/help_button.dart';
-import '../../list_items_builder.dart';
+import '../../news/domain/news.dart';
 import '../application/user_providers.dart';
 import '../domain/user.dart';
+import '../domain/user_collection.dart';
 import 'user_card_view.dart';
 
 const pageSpecification = '''
@@ -40,27 +48,45 @@ class UsersView extends ConsumerWidget {
   const UsersView({
     super.key,
   });
+
   final String title = 'Users';
   static const routeName = '/users';
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final usersAsyncValue = ref.watch(usersStreamProvider);
+    final String currentUserID = ref.watch(currentUserIDProvider);
+    final AsyncValue<List<Chapter>> asyncChapters = ref.watch(chaptersProvider);
+    final AsyncValue<List<Garden>> asyncGardens = ref.watch(gardensProvider);
+    final AsyncValue<List<User>> asyncUsers = ref.watch(usersProvider);
+    return AsyncValuesAGCWidget(
+        currentUserID: currentUserID,
+        asyncChapters: asyncChapters,
+        asyncGardens: asyncGardens,
+        asyncUsers: asyncUsers,
+        data: _build);
+  }
+
+  Widget _build(
+      {String? currentUserID,
+      List<Chapter>? chapters,
+      List<Garden>? gardens,
+      List<News>? news,
+      List<User>? users}) {
+    ChapterCollection chapterCollection = ChapterCollection(chapters);
+    GardenCollection gardenCollection = GardenCollection(gardens);
+    UserCollection userCollection = UserCollection(users);
     return Scaffold(
       drawer: const DrawerView(),
       appBar: AppBar(
         title: const Text('Members'),
         actions: const [HelpButton(routeName: UsersView.routeName)],
       ),
-      // body: ListView(children: [
-      //   ...chapterDB
-      //       .getAssociatedUserIDsOfUserID(currentUserID)
-      //       .map((userID) => UserCardView(userID: userID))
-      // ]),
-      // TODO: Display only associated users in the current chapter.
-      body: ListItemsBuilder<User>(
-          data: usersAsyncValue,
-          itemBuilder: (context, user) => UserCardView(user: user)),
+      body: ListView(children: [
+        ...chapterCollection
+            .getAssociatedUsersOfUserID(
+                currentUserID!, gardenCollection, userCollection)
+            .map((user) => UserCardView(user: user))
+      ]),
       bottomNavigationBar: BottomNavigationBar(
         // type: BottomNavigationBarType.fixed needed when more than 3 items
         items: const [

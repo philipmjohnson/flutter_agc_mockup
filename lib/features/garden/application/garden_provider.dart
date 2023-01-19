@@ -12,6 +12,11 @@ final gardensStreamProvider = StreamProvider<List<Garden>>((ref) {
   return database.watchGardens();
 });
 
+final gardensProvider = FutureProvider<List<Garden>>((ref) {
+  final database = ref.watch(gardenDatabaseProvider);
+  return database.fetchGardens();
+});
+
 // final gardenDBProvider = Provider<GardenDB>((ref) {
 //   return GardenDB(ref);
 // });

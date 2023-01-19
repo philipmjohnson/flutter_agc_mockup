@@ -3,8 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../chapter/application/chapter_provider.dart';
 import '../../chapter/domain/chapter_db.dart';
-import '../application/garden_provider.dart';
-import '../domain/garden_db.dart';
+import '../domain/garden.dart';
 import 'edit_garden_view2.dart';
 import 'garden_summary_users_view.dart';
 
@@ -12,20 +11,18 @@ enum GardenAction { edit, leave }
 
 /// Provides a Card summarizing a garden.
 class GardenSummaryView extends ConsumerWidget {
-  const GardenSummaryView({Key? key, required this.gardenID}) : super(key: key);
+  const GardenSummaryView({Key? key, required this.garden}) : super(key: key);
 
-  final String gardenID;
+  final Garden garden;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final GardenDB gardenDB = ref.watch(gardenDBProvider);
     final ChapterDB chapterDB = ref.watch(chapterDBProvider);
-    GardenData gardenData = gardenDB.getGarden(gardenID);
-    String title = gardenData.name;
-    String subtitle = gardenData.description;
-    String lastUpdate = gardenData.lastUpdate;
-    String imagePath = gardenData.imagePath;
-    String chapterName = chapterDB.getChapterFromGardenID(gardenID).name;
+    String title = garden.name;
+    String subtitle = garden.description;
+    String lastUpdate = garden.lastUpdate;
+    String imagePath = garden.imagePath;
+    String chapterName = chapterDB.getChapterFromGardenID(garden.id).name;
     AssetImage image = AssetImage(imagePath);
     return Card(
       elevation: 9,
@@ -42,7 +39,7 @@ class GardenSummaryView extends ConsumerWidget {
                 if (action == GardenAction.edit) {
                   Navigator.restorablePushNamed(
                       context, EditGardenView.routeName,
-                      arguments: gardenID);
+                      arguments: garden.id);
                 }
               },
               itemBuilder: (BuildContext context) =>
@@ -66,7 +63,7 @@ class GardenSummaryView extends ConsumerWidget {
             ),
           ),
           const SizedBox(height: 10),
-          GardenSummaryUsersView(gardenID: gardenID),
+          GardenSummaryUsersView(gardenID: garden.id),
           const SizedBox(height: 10),
           Padding(
             padding: const EdgeInsets.all(8.0),

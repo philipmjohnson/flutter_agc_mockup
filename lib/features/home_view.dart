@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../async_value_widget.dart';
+import 'chapter/domain/chapter.dart';
 import 'chapter/presentation/chapter_body_view.dart';
 import 'drawer_view.dart';
 import 'garden/application/garden_provider.dart';
-import 'garden/domain/garden_db.dart';
+import 'garden/domain/garden.dart';
+import 'garden/domain/garden_collection.dart';
 import 'garden/presentation/gardens_body_view.dart';
 import 'help/presentation/help_button.dart';
 import 'news/application/news_provider.dart';
-import 'news/domain/news_db.dart';
+import 'news/domain/news.dart';
+import 'news/domain/news_collection.dart';
 import 'news/presentation/news_body_view.dart';
 import 'user/application/user_providers.dart';
+import 'user/domain/user.dart';
 
 /// Top-level Layout for all of the "Home" related subpages.
 class HomeView extends ConsumerStatefulWidget {
@@ -37,12 +42,24 @@ class _HomeViewState extends ConsumerState<HomeView> {
 
   @override
   Widget build(BuildContext context) {
+    final AsyncValue<List<Garden>> asyncGardens = ref.watch(gardensProvider);
+    final AsyncValue<List<News>> asyncNews = ref.watch(newsProvider);
+    return AsyncValuesAGCWidget(
+        asyncGardens: asyncGardens, asyncNews: asyncNews, data: _build);
+  }
+
+  Widget _build(
+      {String? currentUserID,
+      List<Chapter>? chapters,
+      List<Garden>? gardens,
+      List<News>? news,
+      List<User>? users}) {
     final String currentUserID = ref.watch(currentUserIDProvider);
-    final GardenDB gardenDB = ref.watch(gardenDBProvider);
-    final NewsDB newsDB = ref.watch(newsDBProvider);
+    final gardenCollection = GardenCollection(gardens);
+    final newsCollection = NewsCollection(news);
     String numNews =
-        newsDB.getAssociatedNewsIDs(currentUserID).length.toString();
-    String numGardens = gardenDB
+        newsCollection.getAssociatedNewsIDs(currentUserID).length.toString();
+    String numGardens = gardenCollection
         .getAssociatedGardenIDs(userID: currentUserID)
         .length
         .toString();

@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'features/authentication/presentation/forgot_password_view.dart';
 import 'features/authentication/presentation/signin_view.dart';
 import 'features/authentication/presentation/verify_email_view.dart';
+import 'features/chapter/domain/chapter.dart';
 import 'features/chapter/presentation/chapters_view.dart';
 import 'features/discussion/presentation/discussions_view.dart';
 import 'features/garden/domain/garden.dart';
@@ -16,6 +17,7 @@ import 'features/garden/presentation/gardens_view.dart';
 import 'features/help/presentation/help_view.dart';
 import 'features/help/presentation/help_view_local.dart';
 import 'features/home_view.dart';
+import 'features/news/domain/news.dart';
 import 'features/outcome/presentation/outcomes_view.dart';
 import 'features/page_not_found_view.dart';
 import 'features/sample_feature/presentation/sample_item_details_view.dart';
@@ -28,10 +30,12 @@ import 'firebase_options.dart';
 import 'logger.dart';
 
 // Check that Freezed data models and json data files are compatible.
-Future<bool> checkInitialData() async {
-  logger.i('Checking initial data files: User, Garden');
-  await User.checkInitialData();
+Future<bool> verifyInitialData() async {
+  logger.i('Verifying initial data files: Chapter, Garden, News, User');
+  await Chapter.checkInitialData();
   await Garden.checkInitialData();
+  await News.checkInitialData();
+  await User.checkInitialData();
   return true;
 }
 
@@ -40,7 +44,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   FirebaseUIAuth.configureProviders([EmailAuthProvider()]);
-  await checkInitialData();
+  await verifyInitialData();
   runApp(const ProviderScope(child: MyApp()));
 }
 
