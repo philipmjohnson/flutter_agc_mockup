@@ -1,7 +1,17 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../domain/garden_db.dart';
+import '../domain/garden.dart';
+import '../domain/garden_database.dart';
 
-final gardenDBProvider = Provider<GardenDB>((ref) {
-  return GardenDB(ref);
+final gardenDatabaseProvider = Provider<GardenDatabase>((ref) {
+  return GardenDatabase(ref);
 });
+
+final gardensStreamProvider = StreamProvider<List<Garden>>((ref) {
+  final database = ref.watch(gardenDatabaseProvider);
+  return database.watchGardens();
+});
+
+// final gardenDBProvider = Provider<GardenDB>((ref) {
+//   return GardenDB(ref);
+// });

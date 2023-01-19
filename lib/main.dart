@@ -4,12 +4,12 @@ import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'configuration.dart';
 import 'features/authentication/presentation/forgot_password_view.dart';
 import 'features/authentication/presentation/signin_view.dart';
 import 'features/authentication/presentation/verify_email_view.dart';
 import 'features/chapter/presentation/chapters_view.dart';
 import 'features/discussion/presentation/discussions_view.dart';
+import 'features/garden/domain/garden.dart';
 import 'features/garden/presentation/add_garden_view2.dart';
 import 'features/garden/presentation/edit_garden_view2.dart';
 import 'features/garden/presentation/gardens_view.dart';
@@ -29,8 +29,9 @@ import 'logger.dart';
 
 // Check that Freezed data models and json data files are compatible.
 Future<bool> checkInitialData() async {
-  logger.i('Checking initial data files');
-  List<User> users = await User.checkInitialData();
+  logger.i('Checking initial data files: User, Garden');
+  await User.checkInitialData();
+  await Garden.checkInitialData();
   return true;
 }
 
@@ -39,9 +40,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   FirebaseUIAuth.configureProviders([EmailAuthProvider()]);
-  await Configuration().load('config');
   await checkInitialData();
-  String admin = Configuration().get('config', 'admin_email');
   runApp(const ProviderScope(child: MyApp()));
 }
 
@@ -77,9 +76,9 @@ class MyApp extends ConsumerWidget {
               case GardensView.routeName:
                 return const GardensView();
               case AddGardenView.routeName:
-                return AddGardenView();
+                return const AddGardenView();
               case EditGardenView.routeName:
-                return EditGardenView();
+                return const EditGardenView();
               case ChaptersView.routeName:
                 return const ChaptersView();
               case OutcomesView.routeName:

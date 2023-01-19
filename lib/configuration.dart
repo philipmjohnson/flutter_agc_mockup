@@ -18,6 +18,7 @@ import 'package:flutter/services.dart' show rootBundle;
 /// You can load any number of files.
 ///
 /// Be sure to add the assets/config/ directory as an asset to your pubspec.yml.
+/// Not currently used.
 class Configuration {
   static final Configuration _singleton = Configuration._internal();
 

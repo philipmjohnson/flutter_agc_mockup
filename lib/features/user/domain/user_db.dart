@@ -59,13 +59,6 @@ class UserDB {
         initials: 'KAJ')
   ];
 
-  // static Future<List<User>> getInitialData() async {
-  //   String content =
-  //       await rootBundle.loadString("assets/initialData/users.json");
-  //   List<dynamic> initialData = json.decode(content);
-  //   return initialData.map((jsonData) => User.fromJson(jsonData)).toList();
-  // }
-
   UserData getUser(String userID) {
     return _users.firstWhere((userData) => userData.id == userID);
   }

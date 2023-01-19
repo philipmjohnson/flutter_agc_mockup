@@ -24,7 +24,7 @@
     "chapterID": "chapter-001",
     "lastUpdate": "10/10/22",
     "ownerID": "jessebeck@gmail.com",
-    "editorIDs": "johnson@hawaii.edu",
+    "editorIDs": ["johnson@hawaii.edu"],
     "viewerIDs": [
       "jennacorindeane@gmail.com",
       "katieambergjohnson@gmail.com"

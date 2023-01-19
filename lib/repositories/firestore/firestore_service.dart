@@ -13,13 +13,11 @@ class FirestoreService {
     bool merge = false,
   }) async {
     final reference = FirebaseFirestore.instance.doc(path);
-    print('$path: $data');
     await reference.set(data, SetOptions(merge: merge));
   }
 
   Future<void> deleteData({required String path}) async {
     final reference = FirebaseFirestore.instance.doc(path);
-    print('delete: $path');
     await reference.delete();
   }
 
@@ -60,18 +58,16 @@ class FirestoreService {
     return snapshots.map((snapshot) => builder(snapshot.data(), snapshot.id));
   }
 
-
   /// Fetch a snapshot of a collection.
-  /// Not (yet) used in this app.
   Future<List<T>> fetchCollection<T>({
     required String path,
     required T Function(Map<String, dynamic>? data, String documentID) builder,
     Query<Map<String, dynamic>>? Function(Query<Map<String, dynamic>> query)?
-    queryBuilder,
+        queryBuilder,
     int Function(T lhs, T rhs)? sort,
   }) async {
     Query<Map<String, dynamic>> query =
-    FirebaseFirestore.instance.collection(path);
+        FirebaseFirestore.instance.collection(path);
     if (queryBuilder != null) {
       query = queryBuilder(query)!;
     }

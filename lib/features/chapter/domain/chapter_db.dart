@@ -42,7 +42,6 @@ class ChapterDB {
         imagePath: 'assets/images/chapter-002.png',
         hardinessZones: ['10b', '11a', '11b', '12a', '12b', '13a']),
   ];
-  final List<Chapter> _chapters2 = [];
 
   /// Supports compatibility testing between data model and initial data.
   static Future<List<Chapter>> getInitialData() async {
