@@ -44,7 +44,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   FirebaseUIAuth.configureProviders([EmailAuthProvider()]);
-  await verifyInitialData();
+  // await verifyInitialData();
   runApp(const ProviderScope(child: MyApp()));
 }
 

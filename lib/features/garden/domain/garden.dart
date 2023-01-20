@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../logger.dart';
+
 part 'garden.freezed.dart';
 part 'garden.g.dart';
 
@@ -23,6 +25,7 @@ class Garden with _$Garden {
   factory Garden.fromJson(Map<String, dynamic> json) => _$GardenFromJson(json);
 
   factory Garden.fromFirestore(Map<String, dynamic> json, String documentId) {
+    logger.i(json.toString());
     return Garden(
         id: documentId,
         name: json['name'],
