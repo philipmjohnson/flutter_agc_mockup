@@ -1,25 +1,55 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../async_value_widget.dart';
 import '../../garden/application/garden_provider.dart';
-import '../../garden/domain/garden_db.dart';
+import '../../garden/domain/garden.dart';
+import '../../garden/domain/garden_collection.dart';
+import '../../news/domain/news.dart';
+import '../../user/application/user_providers.dart';
+import '../../user/domain/user.dart';
+import '../../user/domain/user_collection.dart';
 import '../application/chapter_provider.dart';
-import '../domain/chapter_db.dart';
+import '../domain/chapter.dart';
+import '../domain/chapter_collection.dart';
 
 /// Provides a Card that summarizes a Chapter.
 class ChapterCardView extends ConsumerWidget {
-  const ChapterCardView({Key? key, required this.chapterID}) : super(key: key);
+  ChapterCardView({Key? key, required this.chapterID}) : super(key: key);
 
   final String chapterID;
+  BuildContext? context;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final ChapterDB chapterDB = ref.watch(chapterDBProvider);
-    final GardenDB gardenDB = ref.watch(gardenDBProvider);
-    ChapterData data = chapterDB.getChapter(chapterID);
+    this.context = context;
+    final String currentUserID = ref.watch(currentUserIDProvider);
+    final AsyncValue<List<Chapter>> asyncChapters = ref.watch(chaptersProvider);
+    final AsyncValue<List<Garden>> asyncGardens = ref.watch(gardensProvider);
+    final AsyncValue<List<User>> asyncUsers = ref.watch(usersProvider);
+    return AsyncValuesAGCWidget(
+        currentUserID: currentUserID,
+        asyncChapters: asyncChapters,
+        asyncGardens: asyncGardens,
+        asyncUsers: asyncUsers,
+        data: _build);
+  }
+
+  Widget _build(
+      {String? currentUserID,
+      List<Chapter>? chapters,
+      List<Garden>? gardens,
+      List<News>? news,
+      List<User>? users}) {
+    ChapterCollection chapterCollection = ChapterCollection(chapters);
+    GardenCollection gardenCollection = GardenCollection(gardens);
+    UserCollection userCollection = UserCollection(users);
+    Chapter data = chapterCollection.getChapter(chapterID);
     int numGardens =
-        gardenDB.getAssociatedGardenIDs(chapterID: chapterID).length;
-    int numMembers = chapterDB.getAssociatedUserIDs(chapterID).length;
+        gardenCollection.getAssociatedGardenIDs(chapterID: chapterID).length;
+    int numMembers = chapterCollection
+        .getAssociatedUserIDs(chapterID, gardenCollection)
+        .length;
     List<String> zipCodes = data.zipCodes;
     AssetImage image = AssetImage(data.imagePath);
     return Padding(
@@ -31,7 +61,7 @@ class ChapterCardView extends ConsumerWidget {
               ListTile(
                   trailing: const Icon(Icons.more_vert),
                   title: Text('${data.name} Chapter',
-                      style: Theme.of(context).textTheme.headline6)),
+                      style: Theme.of(context!).textTheme.headline6)),
               const SizedBox(height: 10),
               SizedBox(
                 height: 150.0,

@@ -5,15 +5,16 @@ import 'features/chapter/domain/chapter.dart';
 import 'features/garden/domain/garden.dart';
 import 'features/news/domain/news.dart';
 import 'features/user/domain/user.dart';
+import 'logger.dart';
 
 class AsyncValuesAGCWidget extends StatelessWidget {
   const AsyncValuesAGCWidget(
       {super.key,
       this.currentUserID = '',
-      this.asyncChapters = const AsyncValue.data([]),
-      this.asyncGardens = const AsyncValue.data([]),
-      this.asyncNews = const AsyncValue.data([]),
-      this.asyncUsers = const AsyncValue.data([]),
+      this.asyncChapters = const AsyncValue.data(<Chapter>[]),
+      this.asyncGardens = const AsyncValue.data(<Garden>[]),
+      this.asyncNews = const AsyncValue.data(<News>[]),
+      this.asyncUsers = const AsyncValue.data(<User>[]),
       required this.data});
 
   final String currentUserID;
@@ -30,21 +31,38 @@ class AsyncValuesAGCWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    logger.i('in asyncvalueswidget');
     if (asyncChapters is AsyncError) {
       return Center(
-          child: ErrorMessage((asyncChapters as AsyncError).error.toString()));
+          child: ErrorMessage(
+        'Chapters',
+        (asyncChapters as AsyncError).error.toString(),
+        (asyncChapters as AsyncError).stackTrace.toString(),
+      ));
     }
     if (asyncGardens is AsyncError) {
       return Center(
-          child: ErrorMessage((asyncGardens as AsyncError).error.toString()));
+          child: ErrorMessage(
+        'Gardens',
+        (asyncGardens as AsyncError).error.toString(),
+        (asyncGardens as AsyncError).stackTrace.toString(),
+      ));
     }
     if (asyncNews is AsyncError) {
       return Center(
-          child: ErrorMessage((asyncNews as AsyncError).error.toString()));
+          child: ErrorMessage(
+        'News',
+        (asyncNews as AsyncError).error.toString(),
+        (asyncNews as AsyncError).stackTrace.toString(),
+      ));
     }
     if (asyncUsers is AsyncError) {
       return Center(
-          child: ErrorMessage((asyncUsers as AsyncError).error.toString()));
+          child: ErrorMessage(
+        'Users',
+        (asyncUsers as AsyncError).error.toString(),
+        (asyncUsers as AsyncError).stackTrace.toString(),
+      ));
     }
     if ((asyncGardens is AsyncLoading) ||
         (asyncChapters is AsyncLoading) ||
@@ -54,10 +72,10 @@ class AsyncValuesAGCWidget extends StatelessWidget {
     }
     return data(
         currentUserID: currentUserID,
-        chapters: asyncChapters.value,
-        gardens: asyncGardens.value,
-        news: asyncNews.value,
-        users: asyncUsers.value);
+        chapters: asyncChapters.value as List<Chapter>,
+        gardens: asyncGardens.value as List<Garden>,
+        news: asyncNews.value as List<News>,
+        users: asyncUsers.value as List<User>);
   }
 }
 
@@ -73,45 +91,51 @@ class AsyncValueWidget<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     return value.when(
       data: data,
-      error: (e, st) => Center(child: ErrorMessage(e.toString())),
+      error: (e, st) =>
+          Center(child: ErrorMessage('?', e.toString(), st.toString())),
       loading: () => const Center(child: CircularProgressIndicator()),
     );
   }
 }
 
-class ScaffoldAsyncValueWidget<T> extends StatelessWidget {
-  const ScaffoldAsyncValueWidget(
-      {super.key, required this.value, required this.data});
-
-  final AsyncValue<T> value;
-  final Widget Function(T) data;
-
-  @override
-  Widget build(BuildContext context) {
-    return value.when(
-      data: data,
-      error: (e, st) => Scaffold(
-        appBar: AppBar(),
-        body: Center(child: ErrorMessage(e.toString())),
-      ),
-      loading: () => Scaffold(
-        appBar: AppBar(),
-        body: const Center(child: CircularProgressIndicator()),
-      ),
-    );
-  }
-}
+// class ScaffoldAsyncValueWidget<T> extends StatelessWidget {
+//   const ScaffoldAsyncValueWidget(
+//       {super.key, required this.value, required this.data});
+//
+//   final AsyncValue<T> value;
+//   final Widget Function(T) data;
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return value.when(
+//       data: data,
+//       error: (e, st) => Scaffold(
+//         appBar: AppBar(),
+//         body: Center(child: ErrorMessage(e.toString())),
+//       ),
+//       loading: () => Scaffold(
+//         appBar: AppBar(),
+//         body: const Center(child: CircularProgressIndicator()),
+//       ),
+//     );
+//   }
+// }
 
 class ErrorMessage extends StatelessWidget {
-  const ErrorMessage(this.errorMessage, {super.key});
+  const ErrorMessage(this.collection, this.errorMessage, this.stacktrace,
+      {super.key});
 
   final String errorMessage;
+  final String stacktrace;
+  final String collection;
 
   @override
   Widget build(BuildContext context) {
     return Text(
-      errorMessage,
-      style: Theme.of(context).textTheme.headline6!.copyWith(color: Colors.red),
-    );
+        'Collection: $collection\nError: $errorMessage\nStack trace: $stacktrace',
+        style: Theme.of(context)
+            .textTheme
+            .bodySmall!
+            .copyWith(color: Colors.white));
   }
 }

@@ -4,13 +4,17 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
+import '../../../async_value_widget.dart';
 import '../../chapter/application/chapter_provider.dart';
-import '../../chapter/domain/chapter_db.dart';
+import '../../chapter/domain/chapter.dart';
+import '../../chapter/domain/chapter_collection.dart';
 import '../../help/presentation/help_button.dart';
+import '../../news/domain/news.dart';
+import '../../user/domain/user.dart';
 import '../../user/domain/user_collection.dart';
-import '../../user/domain/user_database.dart';
 import '../application/garden_provider.dart';
-import '../domain/garden_db.dart';
+import '../domain/garden.dart';
+import '../domain/garden_collection.dart';
 import 'gardens_view.dart';
 
 class EditGardenView extends ConsumerStatefulWidget {
@@ -30,41 +34,47 @@ class _EditGardenViewState extends ConsumerState<EditGardenView> {
   final _photoFieldKey = GlobalKey<FormBuilderFieldState>();
   final _editorsFieldKey = GlobalKey<FormBuilderFieldState>();
   final _viewersFieldKey = GlobalKey<FormBuilderFieldState>();
-  UserCollection? _userCollection;
-
-  @override
-  void initState() {
-    super.initState();
-    // See: https: //stackoverflow.com/q/56395081/2038293
-    Future.delayed(Duration.zero, () {
-      final UserDatabase userDatabase = ref.watch(userDatabaseProvider);
-      userDatabase.fetchUsers().then((theUsers) => setState(() {
-            _userCollection = UserCollection(theUsers);
-          }));
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
-    final ChapterDB chapterDB = ref.watch(chapterDBProvider);
-    final GardenDB gardenDB = ref.watch(gardenDBProvider);
     final String currentUserID = ref.watch(currentUserIDProvider);
+    final AsyncValue<List<Chapter>> asyncChapters = ref.watch(chaptersProvider);
+    final AsyncValue<List<Garden>> asyncGardens = ref.watch(gardensProvider);
+    final AsyncValue<List<User>> asyncUsers = ref.watch(usersProvider);
+    return AsyncValuesAGCWidget(
+        currentUserID: currentUserID,
+        asyncChapters: asyncChapters,
+        asyncGardens: asyncGardens,
+        asyncUsers: asyncUsers,
+        data: _build);
+  }
+
+  Widget _build(
+      {String? currentUserID,
+      List<Chapter>? chapters,
+      List<Garden>? gardens,
+      List<News>? news,
+      List<User>? users}) {
+    ChapterCollection chapterCollection = ChapterCollection(chapters);
+    GardenCollection gardenCollection = GardenCollection(gardens);
+    UserCollection userCollection = UserCollection(users);
     String gardenID = ModalRoute.of(context)!.settings.arguments as String;
-    GardenData gardenData = gardenDB.getGarden(gardenID);
-    List<String> chapterNames() => chapterDB.getChapterNames();
-    String currChapterName() => chapterDB.getChapter(gardenData.chapterID).name;
-    String currEditors() => gardenData.editorIDs
-        .map((userID) => _userCollection!.getUser(userID).username)
+    Garden garden = gardenCollection.getGarden(gardenID);
+    List<String> chapterNames() => chapterCollection.getChapterNames();
+    String currChapterName() =>
+        chapterCollection.getChapter(garden.chapterID).name;
+    String currEditors() => garden.editorIDs
+        .map((userID) => userCollection.getUser(userID).username)
         .toList()
         .join(', ');
-    String currViewers() => gardenData.viewerIDs
-        .map((userID) => _userCollection!.getUser(userID).username)
+    String currViewers() => garden.viewerIDs
+        .map((userID) => userCollection.getUser(userID).username)
         .toList()
         .join(', ');
 
     validateUserNamesString(String val) {
       List<String> userNames = val.split(',').map((val) => val.trim()).toList();
-      if (!_userCollection!.areUserNames(userNames)) {
+      if (!userCollection.areUserNames(userNames)) {
         return 'Non-existent user name(s)';
       }
       return null;
@@ -77,7 +87,7 @@ class _EditGardenViewState extends ConsumerState<EditGardenView> {
       List<String> usernames =
           usernamesString.split(',').map((editor) => editor.trim()).toList();
       return usernames
-          .map((username) => _userCollection!.getUserID(username))
+          .map((username) => userCollection.getUserID(username))
           .toList();
     }
 
@@ -99,7 +109,7 @@ class _EditGardenViewState extends ConsumerState<EditGardenView> {
                       FormBuilderTextField(
                         name: 'name',
                         key: _nameFieldKey,
-                        initialValue: gardenData.name,
+                        initialValue: garden.name,
                         decoration: const InputDecoration(
                           labelText: 'Name',
                         ),
@@ -110,7 +120,7 @@ class _EditGardenViewState extends ConsumerState<EditGardenView> {
                       const SizedBox(height: 10),
                       FormBuilderTextField(
                         name: 'description',
-                        initialValue: gardenData.description,
+                        initialValue: garden.description,
                         key: _descriptionFieldKey,
                         decoration: const InputDecoration(
                           labelText: 'Description',
@@ -146,7 +156,7 @@ class _EditGardenViewState extends ConsumerState<EditGardenView> {
                         validator: FormBuilderValidators.compose([
                           FormBuilderValidators.required(),
                         ]),
-                        initialValue: gardenData.imagePath,
+                        initialValue: garden.imagePath,
                       ),
                       FormBuilderTextField(
                         name: 'editors',
@@ -192,8 +202,9 @@ class _EditGardenViewState extends ConsumerState<EditGardenView> {
                             String name = _nameFieldKey.currentState?.value;
                             String description =
                                 _descriptionFieldKey.currentState?.value;
-                            String chapterID = chapterDB.getChapterIDFromName(
-                                _chapterFieldKey.currentState?.value);
+                            String chapterID =
+                                chapterCollection.getChapterIDFromName(
+                                    _chapterFieldKey.currentState?.value);
                             String imagePath =
                                 _photoFieldKey.currentState?.value;
                             String editorsString =
@@ -204,16 +215,16 @@ class _EditGardenViewState extends ConsumerState<EditGardenView> {
                                 _viewersFieldKey.currentState?.value ?? '';
                             List<String> viewerIDs =
                                 usernamesToIDs(viewersString);
-                            // Add the new garden.
-                            gardenDB.updateGarden(
-                                id: gardenID,
-                                name: name,
-                                description: description,
-                                chapterID: chapterID,
-                                imagePath: imagePath,
-                                editorIDs: editorIDs,
-                                ownerID: currentUserID,
-                                viewerIDs: viewerIDs);
+                            // TODO: Add the new garden.
+                            // gardenCollection.updateGarden(
+                            //     id: gardenID,
+                            //     name: name,
+                            //     description: description,
+                            //     chapterID: chapterID,
+                            //     imagePath: imagePath,
+                            //     editorIDs: editorIDs,
+                            //     ownerID: currentUserID,
+                            //     viewerIDs: viewerIDs);
                             // Return to the list gardens page
                             Navigator.pushReplacementNamed(
                                 context, GardensView.routeName);

@@ -78,7 +78,7 @@ class MyApp extends ConsumerWidget {
               case HomeView.routeName:
                 return const HomeView();
               case GardensView.routeName:
-                return const GardensView();
+                return GardensView();
               case AddGardenView.routeName:
                 return const AddGardenView();
               case EditGardenView.routeName:

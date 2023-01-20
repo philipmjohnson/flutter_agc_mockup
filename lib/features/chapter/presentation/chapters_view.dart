@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../async_value_widget.dart';
 import '../../drawer_view.dart';
+import '../../garden/application/garden_provider.dart';
+import '../../garden/domain/garden.dart';
+import '../../garden/domain/garden_collection.dart';
 import '../../help/presentation/help_button.dart';
+import '../../news/domain/news.dart';
 import '../../user/application/user_providers.dart';
+import '../../user/domain/user.dart';
 import '../application/chapter_provider.dart';
-import '../domain/chapter_db.dart';
+import '../domain/chapter.dart';
+import '../domain/chapter_collection.dart';
 import 'chapter_card_view.dart';
 
 const pageSpecification = '''
@@ -48,8 +55,24 @@ class ChaptersView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final ChapterDB chapterDB = ref.watch(chapterDBProvider);
     final String currentUserID = ref.watch(currentUserIDProvider);
+    final AsyncValue<List<Chapter>> asyncChapters = ref.watch(chaptersProvider);
+    final AsyncValue<List<Garden>> asyncGardens = ref.watch(gardensProvider);
+    return AsyncValuesAGCWidget(
+        currentUserID: currentUserID,
+        asyncChapters: asyncChapters,
+        asyncGardens: asyncGardens,
+        data: _build);
+  }
+
+  Widget _build(
+      {String? currentUserID,
+      List<Chapter>? chapters,
+      List<Garden>? gardens,
+      List<News>? news,
+      List<User>? users}) {
+    ChapterCollection chapterCollection = ChapterCollection(chapters);
+    GardenCollection gardenCollection = GardenCollection(gardens);
     return Scaffold(
       drawer: const DrawerView(),
       appBar: AppBar(
@@ -57,8 +80,8 @@ class ChaptersView extends ConsumerWidget {
         actions: const [HelpButton(routeName: ChaptersView.routeName)],
       ),
       body: ListView(children: [
-        ...chapterDB
-            .getAssociatedChapterIDs(currentUserID)
+        ...chapterCollection
+            .getAssociatedChapterIDs(currentUserID!, gardenCollection)
             .map((chapterID) => ChapterCardView(chapterID: chapterID))
       ]),
       bottomNavigationBar: BottomNavigationBar(
