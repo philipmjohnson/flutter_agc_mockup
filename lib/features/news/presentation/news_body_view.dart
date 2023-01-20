@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../async_value_widget.dart';
+import '../../chapter/domain/chapter.dart';
+import '../../garden/domain/garden.dart';
 import '../../user/application/user_providers.dart';
+import '../../user/domain/user.dart';
 import '../application/news_provider.dart';
-import '../domain/news_db.dart';
+import '../domain/news.dart';
+import '../domain/news_collection.dart';
 import 'news_body_item_view.dart';
 
 /// Displays a list of News items (if there are any).
@@ -12,13 +17,24 @@ class NewsBodyView extends ConsumerWidget {
     super.key,
   });
 
-  final String title = 'Home';
+  final String title = 'News';
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final currentUserID = ref.watch(currentUserIDProvider);
-    final NewsDB newsDB = ref.watch(newsDBProvider);
-    List<String> newsIDs = newsDB.getAssociatedNewsIDs(currentUserID);
+    final String currentUserID = ref.watch(currentUserIDProvider);
+    final AsyncValue<List<News>> asyncNews = ref.watch(newsProvider);
+    return AsyncValuesAGCWidget(
+        currentUserID: currentUserID, asyncNews: asyncNews, data: _build);
+  }
+
+  Widget _build(
+      {String? currentUserID,
+      List<Chapter>? chapters,
+      List<Garden>? gardens,
+      List<News>? news,
+      List<User>? users}) {
+    final NewsCollection newsCollection = NewsCollection(news);
+    List<String> newsIDs = newsCollection.getAssociatedNewsIDs(currentUserID!);
     return Padding(
         padding: const EdgeInsets.only(top: 10.0),
         child: (newsIDs.isEmpty)

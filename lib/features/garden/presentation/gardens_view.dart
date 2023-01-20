@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../async_value_widget.dart';
+import '../../chapter/domain/chapter.dart';
 import '../../drawer_view.dart';
 import '../../help/presentation/help_button.dart';
-import '../../list_items_builder.dart';
+import '../../news/domain/news.dart';
 import '../../user/application/user_providers.dart';
+import '../../user/domain/user.dart';
 import '../application/garden_provider.dart';
 import '../domain/garden.dart';
+import '../domain/garden_collection.dart';
 import 'add_garden_view2.dart';
 import 'garden_summary_view.dart';
 
@@ -43,17 +47,30 @@ Possible actions associated with each card:
 
 /// Provides a page presenting all of the defined Gardens.
 class GardensView extends ConsumerWidget {
-  const GardensView({
+  GardensView({
     super.key,
   });
 
   final String title = 'Gardens';
   static const routeName = '/gardens';
+  BuildContext? context;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final gardensAsyncValue = ref.watch(gardensStreamProvider);
+    this.context = context;
     final String currentUserID = ref.watch(currentUserIDProvider);
+    final AsyncValue<List<Garden>> asyncGardens = ref.watch(gardensProvider);
+    return AsyncValuesAGCWidget(
+        currentUserID: currentUserID, asyncGardens: asyncGardens, data: _build);
+  }
+
+  Widget _build(
+      {String? currentUserID,
+      List<Chapter>? chapters,
+      List<Garden>? gardens,
+      List<News>? news,
+      List<User>? users}) {
+    GardenCollection gardenCollection = GardenCollection(gardens);
     return Scaffold(
       drawer: const DrawerView(),
       appBar: AppBar(
@@ -62,25 +79,18 @@ class GardensView extends ConsumerWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.restorablePushNamed(context, AddGardenView.routeName);
+          Navigator.restorablePushNamed(context!, AddGardenView.routeName);
         },
         child: const Icon(Icons.add),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: Padding(
           padding: const EdgeInsets.all(10.0),
-          // child: ListView(
-          // children: gardenDB
-          //     .getAssociatedGardenIDs(userID: currentUserID)
-          //     .map((gardenID) => GardenSummaryView(gardenID: gardenID))
-          //     .toList()
-          //     .toList())),
-
-          // TODO: only show associated gardens.
-          child: ListItemsBuilder<Garden>(
-              data: gardensAsyncValue,
-              itemBuilder: (context, garden) =>
-                  GardenSummaryView(garden: garden))),
+          child: ListView(
+              children: gardenCollection
+                  .getAssociatedGardens(userID: currentUserID)
+                  .map((garden) => GardenSummaryView(garden: garden))
+                  .toList())),
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
         child: Row(

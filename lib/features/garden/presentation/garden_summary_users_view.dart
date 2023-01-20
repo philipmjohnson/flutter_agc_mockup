@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../async_value_widget.dart';
+import '../../chapter/domain/chapter.dart';
+import '../../news/domain/news.dart';
+import '../../user/domain/user.dart';
 import '../../user/presentation/user_labeled_avatar.dart';
 import '../application/garden_provider.dart';
 import '../domain/garden.dart';
@@ -17,13 +20,15 @@ class GardenSummaryUsersView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final AsyncValue<List<Garden>> asyncGardens = ref.watch(gardensProvider);
-    double padding = 10;
-
-    return AsyncValuesAGCWidget(
-        asyncGardens: asyncGardens, data: _buildGardenSummary);
+    return AsyncValuesAGCWidget(asyncGardens: asyncGardens, data: _build);
   }
 
-  Widget _buildGardenSummary({List<Garden>? gardens}) {
+  Widget _build(
+      {String? currentUserID,
+      List<Chapter>? chapters,
+      List<Garden>? gardens,
+      List<News>? news,
+      List<User>? users}) {
     double padding = 10;
     Garden garden = GardenCollection(gardens).getGarden(gardenID);
     return Row(mainAxisAlignment: MainAxisAlignment.start, children: [

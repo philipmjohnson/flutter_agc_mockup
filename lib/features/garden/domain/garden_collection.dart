@@ -29,6 +29,18 @@ class GardenCollection {
     return [];
   }
 
+  List<Garden> getAssociatedGardens({String? userID, String? chapterID}) {
+    if (userID != null) {
+      return _gardens
+          .where((garden) => _userIsAssociated(garden.id, userID))
+          .toList();
+    }
+    if (chapterID != null) {
+      return _gardens.where((garden) => garden.chapterID == chapterID).toList();
+    }
+    return [];
+  }
+
   List<String> getAssociatedUserIDs(gardenID) {
     Garden data = getGarden(gardenID);
     return [data.ownerID, ...data.viewerIDs, ...data.editorIDs];

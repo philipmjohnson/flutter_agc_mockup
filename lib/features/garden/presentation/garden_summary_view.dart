@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../async_value_widget.dart';
 import '../../chapter/application/chapter_provider.dart';
-import '../../chapter/domain/chapter_db.dart';
+import '../../chapter/domain/chapter.dart';
+import '../../chapter/domain/chapter_collection.dart';
+import '../../news/domain/news.dart';
+import '../../user/domain/user.dart';
+import '../application/garden_provider.dart';
 import '../domain/garden.dart';
+import '../domain/garden_collection.dart';
 import 'edit_garden_view2.dart';
 import 'garden_summary_users_view.dart';
 
@@ -11,18 +17,35 @@ enum GardenAction { edit, leave }
 
 /// Provides a Card summarizing a garden.
 class GardenSummaryView extends ConsumerWidget {
-  const GardenSummaryView({Key? key, required this.garden}) : super(key: key);
+  GardenSummaryView({Key? key, required this.garden}) : super(key: key);
 
   final Garden garden;
+  BuildContext? context;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final ChapterDB chapterDB = ref.watch(chapterDBProvider);
+    this.context = context;
+    final AsyncValue<List<Chapter>> asyncChapters = ref.watch(chaptersProvider);
+    final AsyncValue<List<Garden>> asyncGardens = ref.watch(gardensProvider);
+    return AsyncValuesAGCWidget(
+        asyncChapters: asyncChapters, asyncGardens: asyncGardens, data: _build);
+  }
+
+  Widget _build(
+      {String? currentUserID,
+      List<Chapter>? chapters,
+      List<Garden>? gardens,
+      List<News>? news,
+      List<User>? users}) {
+    ChapterCollection chapterCollection = ChapterCollection(chapters);
+    GardenCollection gardenCollection = GardenCollection(gardens);
     String title = garden.name;
     String subtitle = garden.description;
     String lastUpdate = garden.lastUpdate;
     String imagePath = garden.imagePath;
-    String chapterName = chapterDB.getChapterFromGardenID(garden.id).name;
+    String chapterName = chapterCollection
+        .getChapterFromGardenID(garden.id, gardenCollection)
+        .name;
     AssetImage image = AssetImage(imagePath);
     return Card(
       elevation: 9,
@@ -38,7 +61,7 @@ class GardenSummaryView extends ConsumerWidget {
               onSelected: (GardenAction action) {
                 if (action == GardenAction.edit) {
                   Navigator.restorablePushNamed(
-                      context, EditGardenView.routeName,
+                      context!, EditGardenView.routeName,
                       arguments: garden.id);
                 }
               },
