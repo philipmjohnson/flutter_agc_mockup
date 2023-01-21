@@ -14,19 +14,19 @@ class NewsDatabase {
 
   Stream<List<News>> watchNewss() => _service.watchCollection(
       path: FirestorePath.newss(),
-      builder: (data, documentId) => News.fromFirestore(data!, documentId));
+      builder: (data, documentId) => News.fromJson(data!));
 
   Stream<News> watchNews(String newsID) => _service.watchDocument(
       path: FirestorePath.news(newsID),
-      builder: (data, documentId) => News.fromFirestore(data!, documentId));
+      builder: (data, documentId) => News.fromJson(data!));
 
   Future<List<News>> fetchNewss() => _service.fetchCollection(
       path: FirestorePath.newss(),
-      builder: (data, documentId) => News.fromFirestore(data!, documentId));
+      builder: (data, documentId) => News.fromJson(data!));
 
   Future<News> fetchNews(String newsId) => _service.fetchDocument(
       path: FirestorePath.news(newsId),
-      builder: (data, documentId) => News.fromFirestore(data!, documentId));
+      builder: (data, documentId) => News.fromJson(data!));
 
   Future<void> setNews(News news) =>
       _service.setData(path: FirestorePath.news(news.id), data: news.toJson());

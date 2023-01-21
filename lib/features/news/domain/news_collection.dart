@@ -1,3 +1,4 @@
+import '../../../logger.dart';
 import 'news.dart';
 
 /// Provides access to and operations on all defined News items.
@@ -11,6 +12,8 @@ class NewsCollection {
   }
 
   News getNews(newsID) {
+    logger.i('requesting newsID: $newsID');
+    logger.i('_newss is:  ${_newss.map((news) => news.id)}');
     return _newss.firstWhere((data) => data.id == newsID);
   }
 

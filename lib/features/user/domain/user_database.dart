@@ -14,19 +14,19 @@ class UserDatabase {
 
   Stream<List<User>> watchUsers() => _service.watchCollection(
       path: FirestorePath.users(),
-      builder: (data, documentId) => User.fromFirestore(data!, documentId));
+      builder: (data, documentId) => User.fromJson(data!));
 
   Stream<User> watchUser(String userId) => _service.watchDocument(
       path: FirestorePath.user(userId),
-      builder: (data, documentId) => User.fromFirestore(data!, documentId));
+      builder: (data, documentId) => User.fromJson(data!));
 
   Future<List<User>> fetchUsers() => _service.fetchCollection(
       path: FirestorePath.users(),
-      builder: (data, documentId) => User.fromFirestore(data!, documentId));
+      builder: (data, documentId) => User.fromJson(data!));
 
   Future<User> fetchUser(String userId) => _service.fetchDocument(
       path: FirestorePath.user(userId),
-      builder: (data, documentId) => User.fromFirestore(data!, documentId));
+      builder: (data, documentId) => User.fromJson(data!));
 
   Future<void> setUser(User user) =>
       _service.setData(path: FirestorePath.user(user.id), data: user.toJson());

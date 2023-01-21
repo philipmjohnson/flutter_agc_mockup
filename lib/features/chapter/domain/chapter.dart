@@ -6,6 +6,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'chapter.freezed.dart';
 part 'chapter.g.dart';
 
+/// Chapter data model.
+/// Be sure to tell Firestore to use the id field as the documentID.
 @freezed
 class Chapter with _$Chapter {
   const factory Chapter({
@@ -18,16 +20,6 @@ class Chapter with _$Chapter {
 
   factory Chapter.fromJson(Map<String, dynamic> json) =>
       _$ChapterFromJson(json);
-
-  factory Chapter.fromFirestore(Map<String, dynamic> json, String documentId) {
-    return Chapter(
-      id: documentId,
-      name: json['name'],
-      imagePath: json['imagePath'],
-      zipCodes: json['zipCodes'],
-      hardinessZones: json['hardinessZones'],
-    );
-  }
 
   // Test that the json file can be converted into entities.
   static Future<List<Chapter>> checkInitialData() async {

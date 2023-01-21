@@ -3,11 +3,11 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../logger.dart';
-
 part 'garden.freezed.dart';
 part 'garden.g.dart';
 
+/// Garden Document.
+/// You must tell Firestore to use the 'id' field as the documentID
 @freezed
 class Garden with _$Garden {
   const factory Garden({
@@ -23,20 +23,6 @@ class Garden with _$Garden {
   }) = _Garden;
 
   factory Garden.fromJson(Map<String, dynamic> json) => _$GardenFromJson(json);
-
-  factory Garden.fromFirestore(Map<String, dynamic> json, String documentId) {
-    logger.i(json.toString());
-    return Garden(
-        id: documentId,
-        name: json['name'],
-        description: json['description'],
-        imagePath: json['imagePath'],
-        ownerID: json['ownerID'],
-        chapterID: json['chapterID'],
-        lastUpdate: json['lastUpdate'],
-        editorIDs: json['editorIDs'],
-        viewerIDs: json['viewerIDs']);
-  }
 
   // Test that the json file can be converted into entities.
   static Future<List<Garden>> checkInitialData() async {

@@ -6,6 +6,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'news.freezed.dart';
 part 'news.g.dart';
 
+/// News Document.
+/// You must tell Firestore to use the 'id' field as the documentID
 @freezed
 class News with _$News {
   const factory News({
@@ -20,19 +22,6 @@ class News with _$News {
   }) = _News;
 
   factory News.fromJson(Map<String, dynamic> json) => _$NewsFromJson(json);
-
-  factory News.fromFirestore(Map<String, dynamic> json, String documentId) {
-    return News(
-      id: documentId,
-      userID: json['userID'],
-      chapterID: json['chapterID'],
-      gardenID: json['gardenID'],
-      iconName: json['iconName'],
-      title: json['title'],
-      body: json['body'],
-      date: json['date'],
-    );
-  }
 
   // Test that the json file can be converted into entities.
   static Future<List<News>> checkInitialData() async {

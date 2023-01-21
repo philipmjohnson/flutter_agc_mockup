@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../async_value_widget.dart';
+import '../../../logger.dart';
 import '../../chapter/domain/chapter.dart';
 import '../../garden/domain/garden.dart';
 import '../../user/application/user_providers.dart';
@@ -33,8 +34,10 @@ class NewsBodyView extends ConsumerWidget {
       List<Garden>? gardens,
       List<News>? news,
       List<User>? users}) {
+    logger.i('Creating a news collection with: $news');
     final NewsCollection newsCollection = NewsCollection(news);
     List<String> newsIDs = newsCollection.getAssociatedNewsIDs(currentUserID!);
+    logger.i('NewsIDs are: $newsIDs');
     return Padding(
         padding: const EdgeInsets.only(top: 10.0),
         child: (newsIDs.isEmpty)

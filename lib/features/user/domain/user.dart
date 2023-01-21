@@ -6,6 +6,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'user.freezed.dart';
 part 'user.g.dart';
 
+/// News Document.
+/// You must tell Firestore to use the 'id' field as the documentID
 @freezed
 class User with _$User {
   const factory User({
@@ -17,15 +19,6 @@ class User with _$User {
   }) = _User;
 
   const User._();
-
-  factory User.fromFirestore(Map<String, dynamic> json, String documentId) {
-    return User(
-        id: documentId,
-        name: json['name'],
-        username: json['username'],
-        imagePath: json['imagePath'],
-        initials: json['initials']);
-  }
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
