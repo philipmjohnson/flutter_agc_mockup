@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+
 import '../../sample_feature/presentation/sample_item.dart';
 import '../../sample_feature/presentation/sample_item_details_view.dart';
 
-/// Displays a list of Gardens.
+/// Displays a list of Chapters.
+/// Not yet implemented.
 class ChapterBodyView extends StatelessWidget {
   const ChapterBodyView({
     super.key,
@@ -14,9 +16,9 @@ class ChapterBodyView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      // Providing a restorationId allows the ListView to restore the
-      // scroll position when a user leaves and returns to the app after it
-      // has been killed while running in the background.
+        // Providing a restorationId allows the ListView to restore the
+        // scroll position when a user leaves and returns to the app after it
+        // has been killed while running in the background.
         restorationId: 'sampleItemListView',
         itemCount: items.length,
         itemBuilder: (BuildContext context, int index) {
@@ -37,7 +39,6 @@ class ChapterBodyView extends StatelessWidget {
                   SampleItemDetailsView.routeName,
                 );
               });
-        }
-    );
+        });
   }
 }

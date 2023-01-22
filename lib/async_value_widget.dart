@@ -5,7 +5,6 @@ import 'features/chapter/domain/chapter.dart';
 import 'features/garden/domain/garden.dart';
 import 'features/news/domain/news.dart';
 import 'features/user/domain/user.dart';
-import 'logger.dart';
 
 class AsyncValuesAGCWidget extends StatelessWidget {
   const AsyncValuesAGCWidget(
@@ -31,7 +30,6 @@ class AsyncValuesAGCWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    logger.i('in asyncvalueswidget');
     if (asyncChapters is AsyncError) {
       return Center(
           child: ErrorMessage(
@@ -64,18 +62,19 @@ class AsyncValuesAGCWidget extends StatelessWidget {
         (asyncUsers as AsyncError).stackTrace.toString(),
       ));
     }
-    if ((asyncGardens is AsyncLoading) ||
-        (asyncChapters is AsyncLoading) ||
-        (asyncUsers is AsyncLoading) ||
-        (asyncNews is AsyncLoading)) {
-      return const Center(child: CircularProgressIndicator());
+
+    if ((asyncGardens.hasValue) &&
+        (asyncChapters.hasValue) &&
+        (asyncUsers.hasValue) &&
+        (asyncNews.hasValue)) {
+      return data(
+          currentUserID: currentUserID,
+          chapters: asyncChapters.value as List<Chapter>,
+          gardens: asyncGardens.value as List<Garden>,
+          news: asyncNews.value as List<News>,
+          users: asyncUsers.value as List<User>);
     }
-    return data(
-        currentUserID: currentUserID,
-        chapters: asyncChapters.value as List<Chapter>,
-        gardens: asyncGardens.value as List<Garden>,
-        news: asyncNews.value as List<News>,
-        users: asyncUsers.value as List<User>);
+    return const Center(child: CircularProgressIndicator());
   }
 }
 
@@ -97,29 +96,6 @@ class AsyncValueWidget<T> extends StatelessWidget {
     );
   }
 }
-
-// class ScaffoldAsyncValueWidget<T> extends StatelessWidget {
-//   const ScaffoldAsyncValueWidget(
-//       {super.key, required this.value, required this.data});
-//
-//   final AsyncValue<T> value;
-//   final Widget Function(T) data;
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return value.when(
-//       data: data,
-//       error: (e, st) => Scaffold(
-//         appBar: AppBar(),
-//         body: Center(child: ErrorMessage(e.toString())),
-//       ),
-//       loading: () => Scaffold(
-//         appBar: AppBar(),
-//         body: const Center(child: CircularProgressIndicator()),
-//       ),
-//     );
-//   }
-// }
 
 class ErrorMessage extends StatelessWidget {
   const ErrorMessage(this.collection, this.errorMessage, this.stacktrace,

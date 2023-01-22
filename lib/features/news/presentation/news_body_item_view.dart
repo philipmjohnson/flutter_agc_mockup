@@ -9,6 +9,7 @@ import '../../garden/application/garden_provider.dart';
 import '../../garden/domain/garden.dart';
 import '../../garden/domain/garden_collection.dart';
 import '../../user/domain/user.dart';
+import '../application/news_provider.dart';
 import '../domain/news.dart';
 import '../domain/news_collection.dart';
 import 'news_body_item_actions.dart';
@@ -28,8 +29,12 @@ class NewsBodyItemView extends ConsumerWidget {
     this.context = context;
     final AsyncValue<List<Chapter>> asyncChapters = ref.watch(chaptersProvider);
     final AsyncValue<List<Garden>> asyncGardens = ref.watch(gardensProvider);
+    final AsyncValue<List<News>> asyncNews = ref.watch(newsProvider);
     return AsyncValuesAGCWidget(
-        asyncChapters: asyncChapters, asyncGardens: asyncGardens, data: _build);
+        asyncChapters: asyncChapters,
+        asyncGardens: asyncGardens,
+        asyncNews: asyncNews,
+        data: _build);
   }
 
   Widget _build(
@@ -40,7 +45,7 @@ class NewsBodyItemView extends ConsumerWidget {
       List<User>? users}) {
     ChapterCollection chapterCollection = ChapterCollection(chapters);
     GardenCollection gardenCollection = GardenCollection(gardens);
-    final NewsCollection newsCollection = NewsCollection(news);
+    NewsCollection newsCollection = NewsCollection(news);
     News data = newsCollection.getNews(newsID);
     // TODO: set the icon from the data.icon field.
     IconData icon = Icons.newspaper;
