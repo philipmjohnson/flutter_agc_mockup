@@ -6,8 +6,8 @@ import 'features/garden/domain/garden.dart';
 import 'features/news/domain/news.dart';
 import 'features/user/domain/user.dart';
 
-class AsyncValuesAGCWidget extends StatelessWidget {
-  const AsyncValuesAGCWidget(
+class MultiAsyncValuesWidget extends StatelessWidget {
+  const MultiAsyncValuesWidget(
       {super.key,
       this.currentUserID = '',
       this.asyncChapters = const AsyncValue.data(<Chapter>[]),

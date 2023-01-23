@@ -27,7 +27,7 @@ class GardenSummaryView extends ConsumerWidget {
     this.context = context;
     final AsyncValue<List<Chapter>> asyncChapters = ref.watch(chaptersProvider);
     final AsyncValue<List<Garden>> asyncGardens = ref.watch(gardensProvider);
-    return AsyncValuesAGCWidget(
+    return MultiAsyncValuesWidget(
         asyncChapters: asyncChapters, asyncGardens: asyncGardens, data: _build);
   }
 

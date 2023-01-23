@@ -20,7 +20,7 @@ class GardenSummaryUsersView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final AsyncValue<List<Garden>> asyncGardens = ref.watch(gardensProvider);
-    return AsyncValuesAGCWidget(asyncGardens: asyncGardens, data: _build);
+    return MultiAsyncValuesWidget(asyncGardens: asyncGardens, data: _build);
   }
 
   Widget _build(

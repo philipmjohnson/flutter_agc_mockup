@@ -23,7 +23,7 @@ class NewsBodyView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final String currentUserID = ref.watch(currentUserIDProvider);
     final AsyncValue<List<News>> asyncNews = ref.watch(newsProvider);
-    return AsyncValuesAGCWidget(
+    return MultiAsyncValuesWidget(
         currentUserID: currentUserID, asyncNews: asyncNews, data: _build);
   }
 

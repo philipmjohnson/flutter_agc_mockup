@@ -58,7 +58,7 @@ class UsersView extends ConsumerWidget {
     final AsyncValue<List<Chapter>> asyncChapters = ref.watch(chaptersProvider);
     final AsyncValue<List<Garden>> asyncGardens = ref.watch(gardensProvider);
     final AsyncValue<List<User>> asyncUsers = ref.watch(usersProvider);
-    return AsyncValuesAGCWidget(
+    return MultiAsyncValuesWidget(
         currentUserID: currentUserID,
         asyncChapters: asyncChapters,
         asyncGardens: asyncGardens,

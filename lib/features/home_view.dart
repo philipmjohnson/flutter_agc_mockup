@@ -44,7 +44,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
   Widget build(BuildContext context) {
     final AsyncValue<List<Garden>> asyncGardens = ref.watch(gardensProvider);
     final AsyncValue<List<News>> asyncNews = ref.watch(newsProvider);
-    return AsyncValuesAGCWidget(
+    return MultiAsyncValuesWidget(
         asyncGardens: asyncGardens, asyncNews: asyncNews, data: _build);
   }
 

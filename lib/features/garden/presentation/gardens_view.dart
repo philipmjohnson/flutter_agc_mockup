@@ -60,7 +60,7 @@ class GardensView extends ConsumerWidget {
     this.context = context;
     final String currentUserID = ref.watch(currentUserIDProvider);
     final AsyncValue<List<Garden>> asyncGardens = ref.watch(gardensProvider);
-    return AsyncValuesAGCWidget(
+    return MultiAsyncValuesWidget(
         currentUserID: currentUserID, asyncGardens: asyncGardens, data: _build);
   }
 

@@ -30,7 +30,7 @@ class NewsBodyItemView extends ConsumerWidget {
     final AsyncValue<List<Chapter>> asyncChapters = ref.watch(chaptersProvider);
     final AsyncValue<List<Garden>> asyncGardens = ref.watch(gardensProvider);
     final AsyncValue<List<News>> asyncNews = ref.watch(newsProvider);
-    return AsyncValuesAGCWidget(
+    return MultiAsyncValuesWidget(
         asyncChapters: asyncChapters,
         asyncGardens: asyncGardens,
         asyncNews: asyncNews,
