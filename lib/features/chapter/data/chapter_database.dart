@@ -16,8 +16,8 @@ class ChapterDatabase {
       path: FirestorePath.chapters(),
       builder: (data, documentId) => Chapter.fromJson(data!));
 
-  Stream<Chapter> watchChapter(String ChapterId) => _service.watchDocument(
-      path: FirestorePath.chapter(ChapterId),
+  Stream<Chapter> watchChapter(String chapterId) => _service.watchDocument(
+      path: FirestorePath.chapter(chapterId),
       builder: (data, documentId) => Chapter.fromJson(data!));
 
   Future<List<Chapter>> fetchChapters() => _service.fetchCollection(

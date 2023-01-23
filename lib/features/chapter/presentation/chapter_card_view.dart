@@ -8,7 +8,6 @@ import '../../garden/domain/garden_collection.dart';
 import '../../news/domain/news.dart';
 import '../../user/data/user_providers.dart';
 import '../../user/domain/user.dart';
-import '../../user/domain/user_collection.dart';
 import '../data/chapter_provider.dart';
 import '../domain/chapter.dart';
 import '../domain/chapter_collection.dart';
@@ -26,12 +25,10 @@ class ChapterCardView extends ConsumerWidget {
     final String currentUserID = ref.watch(currentUserIDProvider);
     final AsyncValue<List<Chapter>> asyncChapters = ref.watch(chaptersProvider);
     final AsyncValue<List<Garden>> asyncGardens = ref.watch(gardensProvider);
-    final AsyncValue<List<User>> asyncUsers = ref.watch(usersProvider);
     return MultiAsyncValuesWidget(
         currentUserID: currentUserID,
         asyncChapters: asyncChapters,
         asyncGardens: asyncGardens,
-        asyncUsers: asyncUsers,
         data: _build);
   }
 
@@ -43,7 +40,6 @@ class ChapterCardView extends ConsumerWidget {
       List<User>? users}) {
     ChapterCollection chapterCollection = ChapterCollection(chapters);
     GardenCollection gardenCollection = GardenCollection(gardens);
-    UserCollection userCollection = UserCollection(users);
     Chapter data = chapterCollection.getChapter(chapterID);
     int numGardens =
         gardenCollection.getAssociatedGardenIDs(chapterID: chapterID).length;

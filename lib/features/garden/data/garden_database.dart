@@ -16,8 +16,8 @@ class GardenDatabase {
       path: FirestorePath.gardens(),
       builder: (data, documentId) => Garden.fromJson(data!));
 
-  Stream<Garden> watchGarden(String GardenId) => _service.watchDocument(
-      path: FirestorePath.garden(GardenId),
+  Stream<Garden> watchGarden(String gardenId) => _service.watchDocument(
+      path: FirestorePath.garden(gardenId),
       builder: (data, documentId) => Garden.fromJson(data!));
 
   Future<List<Garden>> fetchGardens() => _service.fetchCollection(
