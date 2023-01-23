@@ -2,7 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../repositories/firestore/firestore_path.dart';
 import '../../../repositories/firestore/firestore_service.dart';
-import 'garden.dart';
+import '../domain/garden.dart';
 
 // Provides access to the Firestore database storing Garden documents.
 class GardenDatabase {

@@ -2,7 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../repositories/firestore/firestore_path.dart';
 import '../../../repositories/firestore/firestore_service.dart';
-import 'user.dart';
+import '../domain/user.dart';
 
 // Provides access to the Firestore database storing User documents.
 class UserDatabase {

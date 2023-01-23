@@ -2,7 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../repositories/firestore/firestore_path.dart';
 import '../../../repositories/firestore/firestore_service.dart';
-import 'chapter.dart';
+import '../domain/chapter.dart';
 
 /// Provides access to the Firestore database storing Chapter documents.
 class ChapterDatabase {
