@@ -11,7 +11,7 @@ import '../../user/domain/user.dart';
 import '../application/garden_provider.dart';
 import '../domain/garden.dart';
 import '../domain/garden_collection.dart';
-import 'add_garden_view2.dart';
+import 'add_garden_view.dart';
 import 'garden_summary_view.dart';
 
 const pageSpecification = '''

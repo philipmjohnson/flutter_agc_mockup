@@ -78,7 +78,7 @@ class MultiAsyncValuesWidget extends StatelessWidget {
   }
 }
 
-/// Handle AsyncValues from Riverpod's [FutureProvider] or [StreamProvider].
+/// Handle a single AsyncValue from Riverpod's [FutureProvider] or [StreamProvider].
 /// Thanks: https://codewithandrea.com/articles/async-value-widget-riverpod/
 class AsyncValueWidget<T> extends StatelessWidget {
   const AsyncValueWidget({super.key, required this.value, required this.data});

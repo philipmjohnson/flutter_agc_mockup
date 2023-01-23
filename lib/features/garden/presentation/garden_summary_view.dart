@@ -10,7 +10,7 @@ import '../../user/domain/user.dart';
 import '../application/garden_provider.dart';
 import '../domain/garden.dart';
 import '../domain/garden_collection.dart';
-import 'edit_garden_view2.dart';
+import 'edit_garden_view.dart';
 import 'garden_summary_users_view.dart';
 
 enum GardenAction { edit, leave }
