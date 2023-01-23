@@ -3,7 +3,7 @@
 // import 'package:flutter/services.dart';
 // import 'package:flutter_riverpod/flutter_riverpod.dart';
 //
-// import '../../garden/application/garden_provider.dart';
+// import '../../garden/data/garden_provider.dart';
 // import '../../garden/domain/garden_db.dart';
 // import 'chapter.dart';
 //

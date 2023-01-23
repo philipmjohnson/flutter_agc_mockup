@@ -6,7 +6,7 @@ import '../../chapter/domain/chapter.dart';
 import '../../news/domain/news.dart';
 import '../../user/domain/user.dart';
 import '../../user/presentation/user_labeled_avatar.dart';
-import '../application/garden_provider.dart';
+import '../data/garden_provider.dart';
 import '../domain/garden.dart';
 import '../domain/garden_collection.dart';
 

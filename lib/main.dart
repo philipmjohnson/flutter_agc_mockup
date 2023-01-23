@@ -22,7 +22,7 @@ import 'features/outcome/presentation/outcomes_view.dart';
 import 'features/page_not_found_view.dart';
 import 'features/sample_feature/presentation/sample_item_details_view.dart';
 import 'features/seed/presentation/seeds_view.dart';
-import 'features/settings/application/settings_db.dart';
+import 'features/settings/data/settings_db.dart';
 import 'features/settings/presentation/settings_view.dart';
 import 'features/user/domain/user.dart';
 import 'features/user/presentation/users_view.dart';

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../drawer_view.dart';
-import '../application/settings_db.dart';
+import '../data/settings_db.dart';
 
 /// Displays the various settings that can be customized by the user.
 class SettingsView extends ConsumerWidget {

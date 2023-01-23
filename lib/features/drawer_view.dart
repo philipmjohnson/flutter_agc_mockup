@@ -12,7 +12,7 @@ import 'home_view.dart';
 import 'outcome/presentation/outcomes_view.dart';
 import 'seed/presentation/seeds_view.dart';
 import 'settings/presentation/settings_view.dart';
-import 'user/application/user_providers.dart';
+import 'user/data/user_providers.dart';
 import 'user/domain/user.dart';
 import 'user/presentation/user_avatar.dart';
 import 'user/presentation/users_view.dart';

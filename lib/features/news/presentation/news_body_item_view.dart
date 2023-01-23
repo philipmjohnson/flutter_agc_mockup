@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../async_value_widget.dart';
-import '../../chapter/application/chapter_provider.dart';
+import '../../chapter/data/chapter_provider.dart';
 import '../../chapter/domain/chapter.dart';
 import '../../chapter/domain/chapter_collection.dart';
-import '../../garden/application/garden_provider.dart';
+import '../../garden/data/garden_provider.dart';
 import '../../garden/domain/garden.dart';
 import '../../garden/domain/garden_collection.dart';
 import '../../user/domain/user.dart';
-import '../application/news_provider.dart';
+import '../data/news_provider.dart';
 import '../domain/news.dart';
 import '../domain/news_collection.dart';
 import 'news_body_item_actions.dart';

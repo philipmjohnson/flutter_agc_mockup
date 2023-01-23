@@ -3,14 +3,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../async_value_widget.dart';
 import '../../drawer_view.dart';
-import '../../garden/application/garden_provider.dart';
+import '../../garden/data/garden_provider.dart';
 import '../../garden/domain/garden.dart';
 import '../../garden/domain/garden_collection.dart';
 import '../../help/presentation/help_button.dart';
 import '../../news/domain/news.dart';
-import '../../user/application/user_providers.dart';
+import '../../user/data/user_providers.dart';
 import '../../user/domain/user.dart';
-import '../application/chapter_provider.dart';
+import '../data/chapter_provider.dart';
 import '../domain/chapter.dart';
 import '../domain/chapter_collection.dart';
 import 'chapter_card_view.dart';

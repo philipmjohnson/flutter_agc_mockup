@@ -5,7 +5,7 @@ import '../../../async_value_widget.dart';
 import '../../chapter/domain/chapter.dart';
 import '../../garden/domain/garden.dart';
 import '../../news/domain/news.dart';
-import '../application/user_providers.dart';
+import '../data/user_providers.dart';
 import '../domain/user.dart';
 import '../domain/user_collection.dart';
 

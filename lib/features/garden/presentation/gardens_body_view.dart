@@ -4,9 +4,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../chapter/domain/chapter.dart';
 import '../../news/domain/news.dart';
-import '../../user/application/user_providers.dart';
+import '../../user/data/user_providers.dart';
 import '../../user/domain/user.dart';
-import '../application/garden_provider.dart';
+import '../data/garden_provider.dart';
 import '../domain/garden.dart';
 import '../domain/garden_collection.dart';
 import 'garden_summary_view.dart';

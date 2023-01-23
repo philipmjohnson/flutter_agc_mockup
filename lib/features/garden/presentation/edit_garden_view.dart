@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_agc_mockup/features/user/application/user_providers.dart';
+import 'package:flutter_agc_mockup/features/user/data/user_providers.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
 import '../../../async_value_widget.dart';
-import '../../chapter/application/chapter_provider.dart';
+import '../../chapter/data/chapter_provider.dart';
 import '../../chapter/domain/chapter.dart';
 import '../../chapter/domain/chapter_collection.dart';
 import '../../help/presentation/help_button.dart';
 import '../../news/domain/news.dart';
 import '../../user/domain/user.dart';
 import '../../user/domain/user_collection.dart';
-import '../application/garden_provider.dart';
+import '../data/garden_provider.dart';
 import '../domain/garden.dart';
 import '../domain/garden_collection.dart';
 import 'gardens_view.dart';
