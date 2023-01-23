@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../domain/garden.dart';
-import '../domain/garden_database.dart';
+import 'garden_database.dart';
 
 final gardenDatabaseProvider = Provider<GardenDatabase>((ref) {
   return GardenDatabase(ref);

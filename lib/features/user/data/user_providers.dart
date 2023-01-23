@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../repositories/firestore/firestore_providers.dart';
 import '../domain/user.dart';
-import '../domain/user_database.dart';
+import 'user_database.dart';
 
 final userDatabaseProvider = Provider<UserDatabase>((ref) {
   return UserDatabase(ref);

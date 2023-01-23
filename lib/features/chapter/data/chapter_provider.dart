@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../domain/chapter.dart';
-import '../domain/chapter_database.dart';
+import 'chapter_database.dart';
 
 final chapterDatabaseProvider = Provider<ChapterDatabase>((ref) {
   return ChapterDatabase(ref);

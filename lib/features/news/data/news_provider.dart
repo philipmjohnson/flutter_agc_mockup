@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../domain/news.dart';
-import '../domain/news_database.dart';
+import 'news_database.dart';
 
 final newsDatabaseProvider = Provider<NewsDatabase>((ref) {
   return NewsDatabase(ref);
