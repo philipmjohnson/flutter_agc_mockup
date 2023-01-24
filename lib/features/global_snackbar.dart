@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Provide a SnackBar that can be accessed anywhere in the system.
 class GlobalSnackBar {
   static GlobalKey<ScaffoldMessengerState> key =
       GlobalKey<ScaffoldMessengerState>();
