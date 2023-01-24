@@ -3,6 +3,7 @@ import 'package:flutter_agc_mockup/features/user/data/user_providers.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:intl/intl.dart';
 
 import '../../../async_value_widget.dart';
 import '../../chapter/data/chapter_provider.dart';
@@ -12,6 +13,7 @@ import '../../help/presentation/help_button.dart';
 import '../../news/domain/news.dart';
 import '../../user/domain/user.dart';
 import '../../user/domain/user_collection.dart';
+import '../data/garden_database.dart';
 import '../data/garden_provider.dart';
 import '../domain/garden.dart';
 import '../domain/garden_collection.dart';
@@ -50,8 +52,7 @@ class _EditGardenViewState extends ConsumerState<EditGardenView> {
   }
 
   Widget _build(
-      {BuildContext? context2,
-      String? currentUserID,
+      {String? currentUserID,
       List<Chapter>? chapters,
       List<Garden>? gardens,
       List<News>? news,
@@ -216,16 +217,21 @@ class _EditGardenViewState extends ConsumerState<EditGardenView> {
                                 _viewersFieldKey.currentState?.value ?? '';
                             List<String> viewerIDs =
                                 usernamesToIDs(viewersString);
-                            // TODO: Add the new garden.
-                            // gardenCollection.updateGarden(
-                            //     id: gardenID,
-                            //     name: name,
-                            //     description: description,
-                            //     chapterID: chapterID,
-                            //     imagePath: imagePath,
-                            //     editorIDs: editorIDs,
-                            //     ownerID: currentUserID,
-                            //     viewerIDs: viewerIDs);
+                            String lastUpdate =
+                                DateFormat.yMd().format(DateTime.now());
+                            Garden garden = Garden(
+                                id: gardenID,
+                                name: name,
+                                description: description,
+                                imagePath: imagePath,
+                                chapterID: chapterID,
+                                lastUpdate: lastUpdate,
+                                ownerID: currentUserID!,
+                                viewerIDs: viewerIDs,
+                                editorIDs: editorIDs);
+                            GardenDatabase gardenDatabase =
+                                ref.watch(gardenDatabaseProvider);
+                            gardenDatabase.setGarden(garden);
                             // Return to the list gardens page
                             Navigator.pushReplacementNamed(
                                 context, GardensView.routeName);

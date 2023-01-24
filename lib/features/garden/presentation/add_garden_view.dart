@@ -91,6 +91,10 @@ class _AddGardenViewState extends ConsumerState<AddGardenView> {
         required List<String> viewerIDs,
         required List<String> editorIDs,
         required numGardens}) {
+      // TODO: Address possible race condition on next line.
+      // If 2 users create a garden "simultaneously", the second user will
+      // overwrite the first user's document (since the garden ID will be
+      // the same.) The two adds have to happen in less than a second or so.
       String id = 'garden-${(numGardens + 1).toString().padLeft(3, '0')}';
       String imagePath = 'assets/images/$imageFileName';
       String lastUpdate = DateFormat.yMd().format(DateTime.now());
