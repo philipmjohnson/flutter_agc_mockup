@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../repositories/firestore/firestore_path.dart';
 import '../../../repositories/firestore/firestore_service.dart';
+import '../../global_snackbar.dart';
 import '../domain/garden.dart';
 
 // Provides access to the Firestore database storing Garden documents.
@@ -29,14 +29,9 @@ class GardenDatabase {
       path: FirestorePath.garden(gardenId),
       builder: (data, documentId) => Garden.fromJson(data!));
 
-  Future<void> setGarden(Garden garden, BuildContext context) => _service
+  Future<void> setGarden(Garden garden) => _service
       .setData(path: FirestorePath.garden(garden.id), data: garden.toJson())
-      .then((val) => showResult(context, 'Garden update succeeded.'))
+      .then((val) => GlobalSnackBar.show('Garden update succeeded.'))
       .catchError(
-          (e) => showResult(context, 'Garden update failed\n${e.toString()}.'));
-
-  void showResult(BuildContext context, String message) {
-    ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text(message)));
-  }
+          (e) => GlobalSnackBar.show('Garden update failed\n${e.toString()}.'));
 }

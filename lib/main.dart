@@ -14,6 +14,7 @@ import 'features/garden/domain/garden.dart';
 import 'features/garden/presentation/add_garden_view.dart';
 import 'features/garden/presentation/edit_garden_view.dart';
 import 'features/garden/presentation/gardens_view.dart';
+import 'features/global_snackbar.dart';
 import 'features/help/presentation/help_view.dart';
 import 'features/help/presentation/help_view_local.dart';
 import 'features/home_view.dart';
@@ -55,6 +56,7 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
+      scaffoldMessengerKey: GlobalSnackBar.key,
       theme: FlexThemeData.light(
           scheme: FlexScheme.gold,
           subThemesData: const FlexSubThemesData(

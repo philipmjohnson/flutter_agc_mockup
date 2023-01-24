@@ -105,7 +105,7 @@ class _AddGardenViewState extends ConsumerState<AddGardenView> {
           viewerIDs: viewerIDs,
           editorIDs: editorIDs);
       GardenDatabase gardenDatabase = ref.watch(gardenDatabaseProvider);
-      gardenDatabase.setGarden(garden, context);
+      gardenDatabase.setGarden(garden);
     }
 
     return Scaffold(
