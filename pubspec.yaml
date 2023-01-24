@@ -47,5 +47,4 @@ flutter:
   generate: true
   assets:
     - assets/images/
-    - assets/config/
     - assets/initialData/
