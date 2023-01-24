@@ -9,6 +9,10 @@ class ChapterCollection {
 
   final List<Chapter> _chapters;
 
+  int size() {
+    return _chapters.length;
+  }
+
   Chapter getChapter(String chapterID) {
     return _chapters.firstWhere((data) => data.id == chapterID);
   }

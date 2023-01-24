@@ -7,6 +7,10 @@ class UserCollection {
 
   final List<User> _users;
 
+  int size() {
+    return _users.length;
+  }
+
   User getUser(String userID) {
     return _users.firstWhere((userData) => userData.id == userID);
   }

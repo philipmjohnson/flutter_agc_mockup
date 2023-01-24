@@ -49,7 +49,6 @@ class UsersView extends ConsumerWidget {
     super.key,
   });
 
-  final String title = 'Users';
   static const routeName = '/users';
 
   @override
@@ -78,7 +77,7 @@ class UsersView extends ConsumerWidget {
     return Scaffold(
       drawer: const DrawerView(),
       appBar: AppBar(
-        title: const Text('Members'),
+        title: Text('Members (${userCollection.size()})'),
         actions: const [HelpButton(routeName: UsersView.routeName)],
       ),
       body: ListView(children: [

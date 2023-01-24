@@ -50,7 +50,7 @@ class ChaptersView extends ConsumerWidget {
   const ChaptersView({
     super.key,
   });
-  final String title = 'Chapters';
+
   static const routeName = '/chapters';
 
   @override
@@ -76,7 +76,7 @@ class ChaptersView extends ConsumerWidget {
     return Scaffold(
       drawer: const DrawerView(),
       appBar: AppBar(
-        title: const Text('Chapters'),
+        title: Text('Chapters (${chapterCollection.size()})'),
         actions: const [HelpButton(routeName: ChaptersView.routeName)],
       ),
       body: ListView(children: [

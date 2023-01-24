@@ -51,7 +51,6 @@ class GardensView extends ConsumerWidget {
     super.key,
   });
 
-  final String title = 'Gardens';
   static const routeName = '/gardens';
   BuildContext? context;
 
@@ -74,7 +73,7 @@ class GardensView extends ConsumerWidget {
     return Scaffold(
       drawer: const DrawerView(),
       appBar: AppBar(
-        title: const Text('Gardens'),
+        title: Text('Gardens (${gardenCollection.size()})'),
         actions: const [HelpButton(routeName: GardensView.routeName)],
       ),
       floatingActionButton: FloatingActionButton(

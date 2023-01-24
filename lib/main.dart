@@ -45,12 +45,12 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   FirebaseUIAuth.configureProviders([EmailAuthProvider()]);
   // await verifyInitialData();
-  runApp(const ProviderScope(child: MyApp()));
+  runApp(ProviderScope(child: MyApp()));
 }
 
 /// Top-level widget that implements routing to the appropriate page.
 class MyApp extends ConsumerWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

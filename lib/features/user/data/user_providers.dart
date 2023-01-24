@@ -9,7 +9,7 @@ final userDatabaseProvider = Provider<UserDatabase>((ref) {
   return UserDatabase(ref);
 });
 
-final usersStreamProvider = StreamProvider<List<User>>((ref) {
+final usersProvider = StreamProvider<List<User>>((ref) {
   final database = ref.watch(userDatabaseProvider);
   return database.watchUsers();
 });
@@ -19,18 +19,8 @@ final currentUserIDProvider = StateProvider<String>((ref) {
   return instance.currentUser!.email!;
 });
 
-final usersProvider = FutureProvider<List<User>>((ref) {
-  final database = ref.watch(userDatabaseProvider);
-  return database.fetchUsers();
-});
-
 final currentUserProvider = FutureProvider<User>((ref) async {
   final String currentUserId = ref.watch(currentUserIDProvider);
   final database = ref.watch(userDatabaseProvider);
   return await database.fetchUser(currentUserId);
 });
-
-////////        OLD
-// final userDBProvider = Provider<UserDB>((ref) {
-//   return UserDB(ref);
-// });

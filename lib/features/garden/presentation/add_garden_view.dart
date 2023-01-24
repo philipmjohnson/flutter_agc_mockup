@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:intl/intl.dart';
 
 import '../../../async_value_widget.dart';
 import '../../chapter/data/chapter_provider.dart';
@@ -12,6 +13,7 @@ import '../../news/domain/news.dart';
 import '../../user/data/user_providers.dart';
 import '../../user/domain/user.dart';
 import '../../user/domain/user_collection.dart';
+import '../data/garden_database.dart';
 import '../data/garden_provider.dart';
 import '../domain/garden.dart';
 import '../domain/garden_collection.dart';
@@ -50,7 +52,8 @@ class _AddGardenViewState extends ConsumerState<AddGardenView> {
   }
 
   Widget _build(
-      {String? currentUserID,
+      {BuildContext? context2,
+      String? currentUserID,
       List<Chapter>? chapters,
       List<Garden>? gardens,
       List<News>? news,
@@ -77,6 +80,32 @@ class _AddGardenViewState extends ConsumerState<AddGardenView> {
       return usernames
           .map((username) => userCollection.getUserID(username))
           .toList();
+    }
+
+    void addGarden(
+        {required String name,
+        required String description,
+        required String imageFileName,
+        required String chapterID,
+        required String ownerID,
+        required List<String> viewerIDs,
+        required List<String> editorIDs,
+        required numGardens}) {
+      String id = 'garden-${(numGardens + 1).toString().padLeft(3, '0')}';
+      String imagePath = 'assets/images/$imageFileName';
+      String lastUpdate = DateFormat.yMd().format(DateTime.now());
+      Garden garden = Garden(
+          id: id,
+          name: name,
+          description: description,
+          imagePath: imagePath,
+          chapterID: chapterID,
+          lastUpdate: lastUpdate,
+          ownerID: ownerID,
+          viewerIDs: viewerIDs,
+          editorIDs: editorIDs);
+      GardenDatabase gardenDatabase = ref.watch(gardenDatabaseProvider);
+      gardenDatabase.setGarden(garden, context);
     }
 
     return Scaffold(
@@ -205,15 +234,16 @@ class _AddGardenViewState extends ConsumerState<AddGardenView> {
                                 _viewersFieldKey.currentState?.value ?? '';
                             List<String> viewerIDs =
                                 usernamesToIDs(viewersString);
-                            // TODO: Add the new garden.
-                            // gardenCollection.addGarden(
-                            //     name: name,
-                            //     description: description,
-                            //     chapterID: chapterID,
-                            //     imageFileName: imageFileName,
-                            //     editorIDs: editorIDs,
-                            //     ownerID: currentUserID,
-                            //     viewerIDs: viewerIDs);
+                            addGarden(
+                              name: name,
+                              description: description,
+                              chapterID: chapterID,
+                              imageFileName: imageFileName,
+                              editorIDs: editorIDs,
+                              ownerID: currentUserID!,
+                              viewerIDs: viewerIDs,
+                              numGardens: gardenCollection.size(),
+                            );
                             // Return to the list gardens page
                             Navigator.pushReplacementNamed(
                                 context, GardensView.routeName);

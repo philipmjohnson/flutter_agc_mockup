@@ -11,6 +11,10 @@ class GardenCollection {
     return _gardens.firstWhere((data) => data.id == gardenID);
   }
 
+  int size() {
+    return _gardens.length;
+  }
+
   List<String> getGardenIDs() {
     return _gardens.map((data) => data.id).toList();
   }

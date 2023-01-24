@@ -50,7 +50,8 @@ class _EditGardenViewState extends ConsumerState<EditGardenView> {
   }
 
   Widget _build(
-      {String? currentUserID,
+      {BuildContext? context2,
+      String? currentUserID,
       List<Chapter>? chapters,
       List<Garden>? gardens,
       List<News>? news,
