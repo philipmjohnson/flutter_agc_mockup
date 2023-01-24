@@ -5,7 +5,7 @@ import '../../../repositories/firestore/firestore_service.dart';
 import '../../global_snackbar.dart';
 import '../domain/garden.dart';
 
-// Provides access to the Firestore database storing Garden documents.
+/// Provides access to the Firestore database storing [Garden] documents.
 class GardenDatabase {
   GardenDatabase(this.ref);
 

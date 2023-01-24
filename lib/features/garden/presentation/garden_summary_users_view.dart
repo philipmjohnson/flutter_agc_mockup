@@ -11,7 +11,7 @@ import '../data/garden_provider.dart';
 import '../domain/garden.dart';
 import '../domain/garden_collection.dart';
 
-/// Provides a row of User avatars associated with a gardenID.
+/// Builds a row of User avatars associated with a gardenID.
 class GardenSummaryUsersView extends ConsumerWidget {
   const GardenSummaryUsersView({Key? key, required this.gardenID})
       : super(key: key);

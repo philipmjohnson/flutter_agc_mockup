@@ -23,7 +23,7 @@ Would be nice to find some sort of plugin for this.
 
 ''';
 
-/// Displays Discussion information on Home Page.
+/// Builds the discussion information on Home Page.
 class DiscussionsBodyView extends StatelessWidget {
   const DiscussionsBodyView({
     super.key,

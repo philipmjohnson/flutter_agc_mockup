@@ -12,7 +12,7 @@ import '../data/chapter_provider.dart';
 import '../domain/chapter.dart';
 import '../domain/chapter_collection.dart';
 
-/// Provides a Card that summarizes a Chapter.
+/// Builds a Card that summarizes a Chapter.
 class ChapterCardView extends ConsumerWidget {
   const ChapterCardView({Key? key, required this.chapterID}) : super(key: key);
 

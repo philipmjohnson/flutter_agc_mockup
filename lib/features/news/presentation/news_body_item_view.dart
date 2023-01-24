@@ -15,7 +15,7 @@ import '../domain/news.dart';
 import '../domain/news_collection.dart';
 import 'news_body_item_actions.dart';
 
-/// Displays a news item given its ID.
+/// Builds a news item given its ID.
 class NewsBodyItemView extends ConsumerWidget {
   const NewsBodyItemView({
     super.key,

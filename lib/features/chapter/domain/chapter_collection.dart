@@ -4,6 +4,7 @@ import '../../user/domain/user.dart';
 import '../../user/domain/user_collection.dart';
 import 'chapter.dart';
 
+/// Encapsulates operations on the list of [Chapter] returned from Firestore.
 class ChapterCollection {
   ChapterCollection(chapters) : _chapters = chapters;
 

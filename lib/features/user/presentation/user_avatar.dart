@@ -9,7 +9,7 @@ import '../data/user_providers.dart';
 import '../domain/user.dart';
 import '../domain/user_collection.dart';
 
-/// Provides a CircleAvatar with either an image if available or initials, plus a label.
+/// Builds a [CircleAvatar] with either an image if available or initials, plus a label.
 class UserAvatar extends ConsumerWidget {
   const UserAvatar({Key? key, required this.userID}) : super(key: key);
 

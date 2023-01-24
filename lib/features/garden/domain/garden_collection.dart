@@ -1,7 +1,6 @@
 import 'garden.dart';
 
-// After retrieving a snapshot of the Gardens collection from Firestore, this
-// class encapsulates common operations on it.
+/// Encapsulates operations on the list of [Garden] returned from Firestore.
 class GardenCollection {
   GardenCollection(gardens) : _gardens = gardens;
 

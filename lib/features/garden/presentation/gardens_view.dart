@@ -45,7 +45,7 @@ Possible actions associated with each card:
 
 ''';
 
-/// Provides a page presenting all of the defined Gardens.
+/// Builds a page presenting all of the defined [Garden].
 class GardensView extends ConsumerWidget {
   const GardensView({
     super.key,

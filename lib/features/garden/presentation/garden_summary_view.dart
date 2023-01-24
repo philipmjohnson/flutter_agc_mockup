@@ -16,7 +16,7 @@ import 'garden_summary_users_view.dart';
 
 enum GardenAction { edit, leave }
 
-/// Provides a Card summarizing a garden.
+/// Builds a Card summarizing a [Garden].
 class GardenSummaryView extends ConsumerWidget {
   const GardenSummaryView({Key? key, required this.garden}) : super(key: key);
 

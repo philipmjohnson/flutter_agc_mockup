@@ -5,7 +5,7 @@ import 'package:flutter_agc_mockup/features/authentication/presentation/signin_v
 import '../../home_view.dart';
 import 'decorations.dart';
 
-/// Presents the page containing fields to enter a username and password, plus buttons.
+/// Builds the page to support email verification.
 class VerifyEmailView extends StatelessWidget {
   const VerifyEmailView({Key? key}) : super(key: key);
 

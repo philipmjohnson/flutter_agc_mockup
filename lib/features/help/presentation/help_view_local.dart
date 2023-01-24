@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../data/help_provider.dart';
 import '../domain/help_db.dart';
 
-/// Displays the context-sensitive Help (i.e. the ? icon in the upper right corner).
+/// Builds the context-sensitive Help (i.e. the ? icon in the upper right corner).
 class HelpViewLocal extends ConsumerWidget {
   const HelpViewLocal({
     super.key,

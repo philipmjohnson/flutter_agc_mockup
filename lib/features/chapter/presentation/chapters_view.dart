@@ -45,7 +45,7 @@ Possible actions associated with each Chapter card:
 
 ''';
 
-/// Provides a page containing [ChapterCardView]s.
+/// Builds a page containing [ChapterCardView]s.
 class ChaptersView extends ConsumerWidget {
   const ChaptersView({
     super.key,

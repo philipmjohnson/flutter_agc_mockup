@@ -25,7 +25,7 @@ For Chapter seeds, contact the person who has them to request some.
 
 ''';
 
-/// Displays Seed information. (Not yet implemented)
+/// Builds a page displaying Seed information. (Not yet implemented)
 class SeedsView extends StatelessWidget {
   const SeedsView({
     super.key,

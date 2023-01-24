@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../drawer_view.dart';
 import '../data/settings_db.dart';
 
-/// Displays the various settings that can be customized by the user.
+/// Builds a page allowing the user to toggle between dark and light themes.
 class SettingsView extends ConsumerWidget {
   const SettingsView({super.key});
 

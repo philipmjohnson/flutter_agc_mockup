@@ -19,6 +19,7 @@ import '../domain/garden.dart';
 import '../domain/garden_collection.dart';
 import 'gardens_view.dart';
 
+/// Builds a page containing a form for creation of a new [Garden].
 class AddGardenView extends ConsumerStatefulWidget {
   const AddGardenView({Key? key}) : super(key: key);
 
@@ -95,7 +96,9 @@ class _AddGardenViewState extends ConsumerState<AddGardenView> {
       // TODO: Address possible race condition on next line.
       // If 2 users create a garden "simultaneously", the second user will
       // overwrite the first user's document (since the garden ID will be
-      // the same.) The two adds have to happen in less than a second or so.
+      // the same.) The two adds have to happen in less than a second or so,
+      // before the local list of gardens is reactively updated So, highly
+      // unlikely, but still possible.
       String id = 'garden-${(numGardens + 1).toString().padLeft(3, '0')}';
       String imagePath = 'assets/images/$imageFileName';
       String lastUpdate = DateFormat.yMd().format(DateTime.now());

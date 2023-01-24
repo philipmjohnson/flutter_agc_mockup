@@ -24,7 +24,7 @@ Would be nice to find some sort of plugin for this.
 
 ''';
 
-/// Displays Chapter information.
+/// Builds a page containing information about discussions.
 class DiscussionsView extends StatelessWidget {
   const DiscussionsView({
     super.key,

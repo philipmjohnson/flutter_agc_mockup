@@ -5,7 +5,7 @@
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 
-// Customize the Header section of the Signin page.
+/// Customize the Header section of the Signin page.
 HeaderBuilder headerImage(String assetName) {
   return (context, constraints, _) {
     return Padding(

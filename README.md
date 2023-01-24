@@ -2,7 +2,7 @@
 
 [![CodeFactor](https://www.codefactor.io/repository/github/philipmjohnson/flutter_agc_mockup/badge)](https://www.codefactor.io/repository/github/philipmjohnson/flutter_agc_mockup)
 
-This repository contains a mockup of the [Agile Garden Club](https://agilegardenclub.com) application. 
+This repository contains a mockup of the [Agile Garden Club](https://agilegardenclub.com) application.
 
 ## Screen shots
 
@@ -75,12 +75,10 @@ Click on any screen shot to see it full-size.
 
 ## Installation
 
-This app can only be run locally in development mode. To install and run:
+First, clone or fork this repo and download the source code to your local computer.
 
-* Clone this repository to your computer.
-* Bring up an IDE such as IntelliJ on the repository.
-* Run the app within a simulator.
+Second, set up a Firestore database.  You can follow the [Firestore Setup Cheat Sheet](https://courses.ics.hawaii.edu/mobile-application-development/morea/data/reading-firestore-setup-cheat-sheet.html).
 
-## DartDoc
+Third, you will want to initialize your Firestore database with example data. There is example data in the assets/initialData directory. The most convenient way we know to upload JSON files to Firestore is through Firefoo.  For further information, see these [instructions for uploading data to Firestore with Firefoo](https://courses.ics.hawaii.edu/mobile-application-development/morea/data/reading-firefoo.html).
 
-Unfortunately, `dart doc` does not yet provide useful documentation for this mockup, since almost all of the code resides in the `src` directory.  This should be addressed soon, see <https://github.com/dart-lang/dartdoc/issues/3096>.
+Important note: when initializing the database with sample data, you must tell Firestore to use the "id" field in the sample data as the documentID.  The system code depends upon that equivalency.

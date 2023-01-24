@@ -43,7 +43,7 @@ Maybe you can request "messaging privilege" or something from another member, so
 
 ''';
 
-/// Displays User information.
+/// Builds a page containing [UserCardView] information.
 class UsersView extends ConsumerWidget {
   const UsersView({
     super.key,

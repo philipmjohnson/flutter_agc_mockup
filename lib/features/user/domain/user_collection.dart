@@ -1,7 +1,6 @@
 import 'user.dart';
 
-// After retrieving a snapshot of the Users collection from Firestore, this
-// class encapsulates common operations on it.
+/// Encapsulates operations on the list of [User] returned from Firestore.
 class UserCollection {
   UserCollection(users) : _users = users;
 

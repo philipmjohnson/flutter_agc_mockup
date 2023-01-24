@@ -19,6 +19,7 @@ import '../domain/garden.dart';
 import '../domain/garden_collection.dart';
 import 'gardens_view.dart';
 
+/// Builds a page containing a form allowing editing of an existing [Garden].
 class EditGardenView extends ConsumerStatefulWidget {
   const EditGardenView({Key? key}) : super(key: key);
 

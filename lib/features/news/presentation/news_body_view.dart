@@ -11,7 +11,7 @@ import '../domain/news.dart';
 import '../domain/news_collection.dart';
 import 'news_body_item_view.dart';
 
-/// Displays a list of News items (if there are any).
+/// Builds a list of [NewsBodyItemView] (if there are any).
 class NewsBodyView extends ConsumerWidget {
   const NewsBodyView({
     super.key,

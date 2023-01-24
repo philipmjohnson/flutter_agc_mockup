@@ -6,7 +6,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'user.freezed.dart';
 part 'user.g.dart';
 
-/// News Document.
+/// User Document.
 /// You must tell Firestore to use the 'id' field as the documentID
 @freezed
 class User with _$User {

@@ -24,7 +24,7 @@ You might want the ability to "drill-down" from an Outcome to the planting(s) th
 
 ''';
 
-/// Displays Outcome information. (Not yet implemented)
+/// Builds a page displaying Outcome information. (Not yet implemented)
 class OutcomesView extends StatelessWidget {
   const OutcomesView({
     super.key,

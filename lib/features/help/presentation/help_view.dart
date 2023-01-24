@@ -38,7 +38,7 @@ Note that folks will probably use this in two ways:
 
 ''';
 
-/// Displays Help information.
+/// Builds the page displaying Help information.
 class HelpView extends StatelessWidget {
   const HelpView({
     super.key,

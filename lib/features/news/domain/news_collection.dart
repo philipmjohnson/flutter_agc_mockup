@@ -1,6 +1,6 @@
 import 'news.dart';
 
-/// Provides access to and operations on all defined News items.
+/// Encapsulates operations on the list of [News] returned from Firestore.
 class NewsCollection {
   NewsCollection(news) : _newss = news;
 

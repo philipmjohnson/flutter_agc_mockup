@@ -11,7 +11,7 @@ import '../domain/garden.dart';
 import '../domain/garden_collection.dart';
 import 'garden_summary_view.dart';
 
-/// Displays a list of Gardens.
+/// Builds a list of [GardenSummaryView].
 class GardensBodyView extends ConsumerWidget {
   const GardensBodyView({
     super.key,

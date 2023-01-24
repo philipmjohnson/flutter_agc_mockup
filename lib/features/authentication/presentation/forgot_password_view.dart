@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'decorations.dart';
 
-/// Presents the page to handle a forgotten password.
+/// Builds the page to handle a forgotten password.
 class ForgotPasswordView extends StatelessWidget {
   const ForgotPasswordView({Key? key}) : super(key: key);
 

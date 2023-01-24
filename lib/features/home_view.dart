@@ -17,7 +17,7 @@ import 'news/presentation/news_body_view.dart';
 import 'user/data/user_providers.dart';
 import 'user/domain/user.dart';
 
-/// Top-level Layout for all of the "Home" related subpages.
+/// Build the home page.
 class HomeView extends ConsumerStatefulWidget {
   const HomeView({
     super.key,

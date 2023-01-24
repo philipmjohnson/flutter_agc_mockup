@@ -4,7 +4,7 @@ import '../../../repositories/firestore/firestore_path.dart';
 import '../../../repositories/firestore/firestore_service.dart';
 import '../domain/news.dart';
 
-// Provides access to the Firestore database storing News documents.
+// Provides access to the Firestore database storing [News] documents.
 class NewsDatabase {
   NewsDatabase(this.ref);
 

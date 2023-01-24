@@ -6,6 +6,64 @@ import 'garden/domain/garden.dart';
 import 'news/domain/news.dart';
 import 'user/domain/user.dart';
 
+/// MultiAsyncValuesWidget simplifies the implementation of widgets that must wait until multiple asynchronous requests have completed before building the view.
+///
+/// Consider the following scenario. Your domain model involves four collections,
+/// A, B, C, and D.  One widget requires documents from A and B. Another requires documents
+/// from A, B, C, and D. Yet another requires documents from B and C.  You want a way
+/// to implement your widgets so that there is a (relatively) simple and consistent
+/// way to obtain documents from any combination of collections, while hiding as
+/// much as possible the details of asynchronicity (i.e. displaying the
+/// [CircularProgressIndicator] while awaiting all of the requests to complete,
+/// and showing errors if they occur).
+///
+/// After a lot of googling and conversations with ChatGPT, I failed to find a
+/// pre-existing solution. The closest I got was AsyncValueWidget from Code
+/// With Andrea, which only handles a single collection, but which gave me the
+/// idea for how to support multiple collections.
+///
+/// Due to Dart's strong typing, and due to my lack of experience with Dart's
+/// generics, I did not attempt a generic solution. Instead, I created a bespoke
+/// class that builds in knowledge of the domain data types of interest. So, minor
+/// modifications are needed to adapt this code to new contexts.
+///
+/// You use MultiAsyncValuesWidget in your build() method by first obtaining
+/// the Riverpod StreamProvider or FutureProvider that accesses your Firebase
+/// collection and the desired documents within it. These providers return an
+/// [AsyncValue] that can be passed to MultiAsyncValuesWidget. You also pass a
+/// function that will be called when all of the AsyncValues have values. I find
+/// it most readable to not pass an anonymous function, but rather to explicitly
+/// create a method called _build which is called with the values.  For example:
+/// ```dart
+///   @override
+///   Widget build(BuildContext context, WidgetRef ref) {
+///     final String currentUserID = ref.watch(currentUserIDProvider);
+///     final AsyncValue<List<Chapter>> asyncChapters = ref.watch(chaptersProvider);
+///     final AsyncValue<List<Garden>> asyncGardens = ref.watch(gardensProvider);
+///     final AsyncValue<List<User>> asyncUsers = ref.watch(usersProvider);
+///     return MultiAsyncValuesWidget(
+///         context: context,
+///         currentUserID: currentUserID,
+///         asyncChapters: asyncChapters,
+///         asyncGardens: asyncGardens,
+///         asyncUsers: asyncUsers,
+///         data: _build);
+///   }
+///
+///   Widget _build(
+///       {required BuildContext context,
+///       required String currentUserID,
+///       List<Chapter>? chapters,
+///       List<Garden>? gardens,
+///       List<News>? news,
+///       List<User>? users}) {
+///     ChapterCollection chapterCollection = ChapterCollection(chapters);
+///     GardenCollection gardenCollection = GardenCollection(gardens);
+///     UserCollection userCollection = UserCollection(users);
+///     return Scaffold( ... );
+///
+/// Thus, your build() method gets whatever combination of AsyncValues needed,
+/// and the _build method does the actual UI generation.
 class MultiAsyncValuesWidget extends StatelessWidget {
   const MultiAsyncValuesWidget(
       {super.key,
