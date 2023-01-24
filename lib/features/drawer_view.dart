@@ -17,7 +17,7 @@ import 'user/domain/user.dart';
 import 'user/presentation/user_avatar.dart';
 import 'user/presentation/users_view.dart';
 
-/// Provides the drop-down Drawer with the menu of top-level pages.
+/// Builds the drop-down Drawer with the menu of top-level pages.
 class DrawerView extends ConsumerWidget {
   const DrawerView({Key? key}) : super(key: key);
 

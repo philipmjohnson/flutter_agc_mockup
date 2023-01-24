@@ -61,9 +61,13 @@ import 'user/domain/user.dart';
 ///     GardenCollection gardenCollection = GardenCollection(gardens);
 ///     UserCollection userCollection = UserCollection(users);
 ///     return Scaffold( ... );
-///
+/// ```
 /// Thus, your build() method gets whatever combination of AsyncValues needed,
 /// and the _build method does the actual UI generation.
+///
+/// Note that MultiAsyncValuesWidget requires that you pass in the currentUserID
+/// and the current context. These are passed through to the _build method, as
+/// they are frequently (but not always) needed.
 class MultiAsyncValuesWidget extends StatelessWidget {
   const MultiAsyncValuesWidget(
       {super.key,
