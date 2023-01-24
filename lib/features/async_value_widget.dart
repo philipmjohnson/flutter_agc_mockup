@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'features/chapter/domain/chapter.dart';
-import 'features/garden/domain/garden.dart';
-import 'features/news/domain/news.dart';
-import 'features/user/domain/user.dart';
+import 'chapter/domain/chapter.dart';
+import 'garden/domain/garden.dart';
+import 'news/domain/news.dart';
+import 'user/domain/user.dart';
 
 class MultiAsyncValuesWidget extends StatelessWidget {
   const MultiAsyncValuesWidget(

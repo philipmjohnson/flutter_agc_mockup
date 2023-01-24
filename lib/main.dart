@@ -28,11 +28,10 @@ import 'features/settings/presentation/settings_view.dart';
 import 'features/user/domain/user.dart';
 import 'features/user/presentation/users_view.dart';
 import 'firebase_options.dart';
-import 'logger.dart';
 
 // Check that Freezed data models and json data files are compatible.
 Future<bool> verifyInitialData() async {
-  logger.i('Verifying initial data files: Chapter, Garden, News, User');
+  // logger.i('Verifying initial data files: Chapter, Garden, News, User');
   await Chapter.checkInitialData();
   await Garden.checkInitialData();
   await News.checkInitialData();
@@ -45,7 +44,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   FirebaseUIAuth.configureProviders([EmailAuthProvider()]);
-  // await verifyInitialData();
+  await verifyInitialData();
   runApp(ProviderScope(child: MyApp()));
 }
 
