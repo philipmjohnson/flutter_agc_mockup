@@ -8,6 +8,7 @@ import '../../chapter/domain/chapter_collection.dart';
 import '../../garden/data/garden_provider.dart';
 import '../../garden/domain/garden.dart';
 import '../../garden/domain/garden_collection.dart';
+import '../../user/data/user_providers.dart';
 import '../../user/domain/user.dart';
 import '../data/news_provider.dart';
 import '../domain/news.dart';
@@ -16,21 +17,22 @@ import 'news_body_item_actions.dart';
 
 /// Displays a news item given its ID.
 class NewsBodyItemView extends ConsumerWidget {
-  NewsBodyItemView({
+  const NewsBodyItemView({
     super.key,
     required this.newsID,
   });
 
   final String newsID;
-  BuildContext? context;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    this.context = context;
+    final String currentUserID = ref.watch(currentUserIDProvider);
     final AsyncValue<List<Chapter>> asyncChapters = ref.watch(chaptersProvider);
     final AsyncValue<List<Garden>> asyncGardens = ref.watch(gardensProvider);
     final AsyncValue<List<News>> asyncNews = ref.watch(newsProvider);
     return MultiAsyncValuesWidget(
+        context: context,
+        currentUserID: currentUserID,
         asyncChapters: asyncChapters,
         asyncGardens: asyncGardens,
         asyncNews: asyncNews,
@@ -38,7 +40,8 @@ class NewsBodyItemView extends ConsumerWidget {
   }
 
   Widget _build(
-      {String? currentUserID,
+      {required BuildContext context,
+      required String currentUserID,
       List<Chapter>? chapters,
       List<Garden>? gardens,
       List<News>? news,
@@ -65,7 +68,7 @@ class NewsBodyItemView extends ConsumerWidget {
     String bodyPrefix = '$chapterName$gardenName';
     return Column(children: [
       ListTile(
-        leading: Icon(icon, color: Theme.of(context!).primaryColor),
+        leading: Icon(icon, color: Theme.of(context).primaryColor),
         title: Text('$title ($date)'),
         subtitle: Text('$bodyPrefix\n$body'),
         trailing: const NewsBodyItemActions(),

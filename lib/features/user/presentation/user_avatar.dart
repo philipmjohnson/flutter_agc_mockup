@@ -20,11 +20,15 @@ class UserAvatar extends ConsumerWidget {
     final String currentUserID = ref.watch(currentUserIDProvider);
     final AsyncValue<List<User>> asyncUsers = ref.watch(usersProvider);
     return MultiAsyncValuesWidget(
-        currentUserID: currentUserID, asyncUsers: asyncUsers, data: _build);
+        context: context,
+        currentUserID: currentUserID,
+        asyncUsers: asyncUsers,
+        data: _build);
   }
 
   Widget _build(
-      {String? currentUserID,
+      {required BuildContext context,
+      required String currentUserID,
       List<Chapter>? chapters,
       List<Garden>? gardens,
       List<News>? news,

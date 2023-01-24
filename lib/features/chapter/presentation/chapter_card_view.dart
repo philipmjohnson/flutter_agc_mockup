@@ -14,18 +14,17 @@ import '../domain/chapter_collection.dart';
 
 /// Provides a Card that summarizes a Chapter.
 class ChapterCardView extends ConsumerWidget {
-  ChapterCardView({Key? key, required this.chapterID}) : super(key: key);
+  const ChapterCardView({Key? key, required this.chapterID}) : super(key: key);
 
   final String chapterID;
-  BuildContext? context;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    this.context = context;
     final String currentUserID = ref.watch(currentUserIDProvider);
     final AsyncValue<List<Chapter>> asyncChapters = ref.watch(chaptersProvider);
     final AsyncValue<List<Garden>> asyncGardens = ref.watch(gardensProvider);
     return MultiAsyncValuesWidget(
+        context: context,
         currentUserID: currentUserID,
         asyncChapters: asyncChapters,
         asyncGardens: asyncGardens,
@@ -33,7 +32,8 @@ class ChapterCardView extends ConsumerWidget {
   }
 
   Widget _build(
-      {String? currentUserID,
+      {required BuildContext context,
+      required String currentUserID,
       List<Chapter>? chapters,
       List<Garden>? gardens,
       List<News>? news,
@@ -57,7 +57,7 @@ class ChapterCardView extends ConsumerWidget {
               ListTile(
                   trailing: const Icon(Icons.more_vert),
                   title: Text('${data.name} Chapter',
-                      style: Theme.of(context!).textTheme.headline6)),
+                      style: Theme.of(context).textTheme.headline6)),
               const SizedBox(height: 10),
               SizedBox(
                 height: 150.0,

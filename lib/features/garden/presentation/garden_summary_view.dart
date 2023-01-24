@@ -6,6 +6,7 @@ import '../../chapter/data/chapter_provider.dart';
 import '../../chapter/domain/chapter.dart';
 import '../../chapter/domain/chapter_collection.dart';
 import '../../news/domain/news.dart';
+import '../../user/data/user_providers.dart';
 import '../../user/domain/user.dart';
 import '../data/garden_provider.dart';
 import '../domain/garden.dart';
@@ -17,22 +18,26 @@ enum GardenAction { edit, leave }
 
 /// Provides a Card summarizing a garden.
 class GardenSummaryView extends ConsumerWidget {
-  GardenSummaryView({Key? key, required this.garden}) : super(key: key);
+  const GardenSummaryView({Key? key, required this.garden}) : super(key: key);
 
   final Garden garden;
-  BuildContext? context;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    this.context = context;
+    final String currentUserID = ref.watch(currentUserIDProvider);
     final AsyncValue<List<Chapter>> asyncChapters = ref.watch(chaptersProvider);
     final AsyncValue<List<Garden>> asyncGardens = ref.watch(gardensProvider);
     return MultiAsyncValuesWidget(
-        asyncChapters: asyncChapters, asyncGardens: asyncGardens, data: _build);
+        context: context,
+        currentUserID: currentUserID,
+        asyncChapters: asyncChapters,
+        asyncGardens: asyncGardens,
+        data: _build);
   }
 
   Widget _build(
-      {String? currentUserID,
+      {required BuildContext context,
+      required String currentUserID,
       List<Chapter>? chapters,
       List<Garden>? gardens,
       List<News>? news,
@@ -61,7 +66,7 @@ class GardenSummaryView extends ConsumerWidget {
               onSelected: (GardenAction action) {
                 if (action == GardenAction.edit) {
                   Navigator.restorablePushNamed(
-                      context!, EditGardenView.routeName,
+                      context, EditGardenView.routeName,
                       arguments: garden.id);
                 }
               },

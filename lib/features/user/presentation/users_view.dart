@@ -58,6 +58,7 @@ class UsersView extends ConsumerWidget {
     final AsyncValue<List<Garden>> asyncGardens = ref.watch(gardensProvider);
     final AsyncValue<List<User>> asyncUsers = ref.watch(usersProvider);
     return MultiAsyncValuesWidget(
+        context: context,
         currentUserID: currentUserID,
         asyncChapters: asyncChapters,
         asyncGardens: asyncGardens,
@@ -66,7 +67,8 @@ class UsersView extends ConsumerWidget {
   }
 
   Widget _build(
-      {String? currentUserID,
+      {required BuildContext context,
+      required String currentUserID,
       List<Chapter>? chapters,
       List<Garden>? gardens,
       List<News>? news,
@@ -83,7 +85,7 @@ class UsersView extends ConsumerWidget {
       body: ListView(children: [
         ...chapterCollection
             .getAssociatedUsersOfUserID(
-                currentUserID!, gardenCollection, userCollection)
+                currentUserID, gardenCollection, userCollection)
             .map((user) => UserCardView(user: user))
       ]),
       bottomNavigationBar: BottomNavigationBar(

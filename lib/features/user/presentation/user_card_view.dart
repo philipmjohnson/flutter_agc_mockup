@@ -9,6 +9,7 @@ import '../../garden/data/garden_provider.dart';
 import '../../garden/domain/garden.dart';
 import '../../garden/domain/garden_collection.dart';
 import '../../news/domain/news.dart';
+import '../data/user_providers.dart';
 import '../domain/user.dart';
 import 'user_avatar.dart';
 
@@ -20,14 +21,20 @@ class UserCardView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final String currentUserID = ref.watch(currentUserIDProvider);
     final AsyncValue<List<Chapter>> asyncChapters = ref.watch(chaptersProvider);
     final AsyncValue<List<Garden>> asyncGardens = ref.watch(gardensProvider);
     return MultiAsyncValuesWidget(
-        asyncChapters: asyncChapters, asyncGardens: asyncGardens, data: _build);
+        context: context,
+        currentUserID: currentUserID,
+        asyncChapters: asyncChapters,
+        asyncGardens: asyncGardens,
+        data: _build);
   }
 
   Widget _build(
-      {String? currentUserID,
+      {required BuildContext context,
+      required String currentUserID,
       List<Chapter>? chapters,
       List<Garden>? gardens,
       List<News>? news,

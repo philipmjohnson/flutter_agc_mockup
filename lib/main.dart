@@ -21,7 +21,6 @@ import 'features/home_view.dart';
 import 'features/news/domain/news.dart';
 import 'features/outcome/presentation/outcomes_view.dart';
 import 'features/page_not_found_view.dart';
-import 'features/sample_feature/presentation/sample_item_details_view.dart';
 import 'features/seed/presentation/seeds_view.dart';
 import 'features/settings/data/settings_db.dart';
 import 'features/settings/presentation/settings_view.dart';
@@ -45,12 +44,12 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   FirebaseUIAuth.configureProviders([EmailAuthProvider()]);
   await verifyInitialData();
-  runApp(ProviderScope(child: MyApp()));
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 /// Top-level widget that implements routing to the appropriate page.
 class MyApp extends ConsumerWidget {
-  MyApp({super.key});
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -79,7 +78,7 @@ class MyApp extends ConsumerWidget {
               case HomeView.routeName:
                 return const HomeView();
               case GardensView.routeName:
-                return GardensView();
+                return const GardensView();
               case AddGardenView.routeName:
                 return const AddGardenView();
               case EditGardenView.routeName:
@@ -100,8 +99,6 @@ class MyApp extends ConsumerWidget {
                 return const HelpViewLocal();
               case SettingsView.routeName:
                 return const SettingsView();
-              case SampleItemDetailsView.routeName:
-                return const SampleItemDetailsView();
               default:
                 return const PageNotFoundView();
             }

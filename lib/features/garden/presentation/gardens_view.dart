@@ -47,24 +47,26 @@ Possible actions associated with each card:
 
 /// Provides a page presenting all of the defined Gardens.
 class GardensView extends ConsumerWidget {
-  GardensView({
+  const GardensView({
     super.key,
   });
 
   static const routeName = '/gardens';
-  BuildContext? context;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    this.context = context;
     final String currentUserID = ref.watch(currentUserIDProvider);
     final AsyncValue<List<Garden>> asyncGardens = ref.watch(gardensProvider);
     return MultiAsyncValuesWidget(
-        currentUserID: currentUserID, asyncGardens: asyncGardens, data: _build);
+        context: context,
+        currentUserID: currentUserID,
+        asyncGardens: asyncGardens,
+        data: _build);
   }
 
   Widget _build(
-      {String? currentUserID,
+      {required BuildContext context,
+      required String currentUserID,
       List<Chapter>? chapters,
       List<Garden>? gardens,
       List<News>? news,
@@ -78,7 +80,7 @@ class GardensView extends ConsumerWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.restorablePushNamed(context!, AddGardenView.routeName);
+          Navigator.restorablePushNamed(context, AddGardenView.routeName);
         },
         child: const Icon(Icons.add),
       ),

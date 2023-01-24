@@ -24,17 +24,21 @@ class NewsBodyView extends ConsumerWidget {
     final String currentUserID = ref.watch(currentUserIDProvider);
     final AsyncValue<List<News>> asyncNews = ref.watch(newsProvider);
     return MultiAsyncValuesWidget(
-        currentUserID: currentUserID, asyncNews: asyncNews, data: _build);
+        context: context,
+        currentUserID: currentUserID,
+        asyncNews: asyncNews,
+        data: _build);
   }
 
   Widget _build(
-      {String? currentUserID,
+      {required BuildContext context,
+      required String currentUserID,
       List<Chapter>? chapters,
       List<Garden>? gardens,
       List<News>? news,
       List<User>? users}) {
     NewsCollection newsCollection = NewsCollection(news);
-    List<String> newsIDs = newsCollection.getAssociatedNewsIDs(currentUserID!);
+    List<String> newsIDs = newsCollection.getAssociatedNewsIDs(currentUserID);
     return Padding(
         padding: const EdgeInsets.only(top: 10.0),
         child: (newsIDs.isEmpty)

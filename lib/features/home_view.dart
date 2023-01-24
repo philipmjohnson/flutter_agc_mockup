@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'async_value_widget.dart';
 import 'chapter/domain/chapter.dart';
-import 'chapter/presentation/chapter_body_view.dart';
+import 'discussion/presentation/discussions_body_view.dart';
 import 'drawer_view.dart';
 import 'garden/data/garden_provider.dart';
 import 'garden/domain/garden.dart';
@@ -44,17 +44,22 @@ class _HomeViewState extends ConsumerState<HomeView> {
   Widget build(BuildContext context) {
     final AsyncValue<List<Garden>> asyncGardens = ref.watch(gardensProvider);
     final AsyncValue<List<News>> asyncNews = ref.watch(newsProvider);
+    final String currentUserID = ref.watch(currentUserIDProvider);
     return MultiAsyncValuesWidget(
-        asyncGardens: asyncGardens, asyncNews: asyncNews, data: _build);
+        context: context,
+        currentUserID: currentUserID,
+        asyncGardens: asyncGardens,
+        asyncNews: asyncNews,
+        data: _build);
   }
 
   Widget _build(
-      {String? currentUserID,
+      {required BuildContext context,
+      required String currentUserID,
       List<Chapter>? chapters,
       List<Garden>? gardens,
       List<News>? news,
       List<User>? users}) {
-    final String currentUserID = ref.watch(currentUserIDProvider);
     final gardenCollection = GardenCollection(gardens);
     final newsCollection = NewsCollection(news);
     String numNews =
@@ -85,8 +90,8 @@ class _HomeViewState extends ConsumerState<HomeView> {
         ),
       },
       2: {
-        'title': const Text('Chapter'),
-        'body': const ChapterBodyView(),
+        'title': const Text('Discussions'),
+        'body': const DiscussionsBodyView(),
         'navItem': BottomNavigationBarItem(
           label: 'My Discussions ($numDiscussions)',
           icon: const Icon(Icons.chat),

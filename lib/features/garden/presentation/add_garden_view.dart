@@ -44,6 +44,7 @@ class _AddGardenViewState extends ConsumerState<AddGardenView> {
     final AsyncValue<List<Garden>> asyncGardens = ref.watch(gardensProvider);
     final AsyncValue<List<User>> asyncUsers = ref.watch(usersProvider);
     return MultiAsyncValuesWidget(
+        context: context,
         currentUserID: currentUserID,
         asyncChapters: asyncChapters,
         asyncGardens: asyncGardens,
@@ -52,8 +53,8 @@ class _AddGardenViewState extends ConsumerState<AddGardenView> {
   }
 
   Widget _build(
-      {BuildContext? context2,
-      String? currentUserID,
+      {required BuildContext context,
+      required String currentUserID,
       List<Chapter>? chapters,
       List<Garden>? gardens,
       List<News>? news,
@@ -244,7 +245,7 @@ class _AddGardenViewState extends ConsumerState<AddGardenView> {
                               chapterID: chapterID,
                               imageFileName: imageFileName,
                               editorIDs: editorIDs,
-                              ownerID: currentUserID!,
+                              ownerID: currentUserID,
                               viewerIDs: viewerIDs,
                               numGardens: gardenCollection.size(),
                             );

@@ -9,20 +9,23 @@ import 'user/domain/user.dart';
 class MultiAsyncValuesWidget extends StatelessWidget {
   const MultiAsyncValuesWidget(
       {super.key,
-      this.currentUserID = '',
+      required this.context,
+      required this.currentUserID,
       this.asyncChapters = const AsyncValue.data(<Chapter>[]),
       this.asyncGardens = const AsyncValue.data(<Garden>[]),
       this.asyncNews = const AsyncValue.data(<News>[]),
       this.asyncUsers = const AsyncValue.data(<User>[]),
       required this.data});
 
+  final BuildContext context;
   final String currentUserID;
   final AsyncValue<List<Chapter>> asyncChapters;
   final AsyncValue<List<Garden>> asyncGardens;
   final AsyncValue<List<News>> asyncNews;
   final AsyncValue<List<User>> asyncUsers;
   final Widget Function(
-      {String? currentUserID,
+      {required BuildContext context,
+      required String currentUserID,
       List<Chapter>? chapters,
       List<Garden>? gardens,
       List<News>? news,
@@ -68,6 +71,7 @@ class MultiAsyncValuesWidget extends StatelessWidget {
         (asyncUsers.hasValue) &&
         (asyncNews.hasValue)) {
       return data(
+          context: this.context,
           currentUserID: currentUserID,
           chapters: asyncChapters.value as List<Chapter>,
           gardens: asyncGardens.value as List<Garden>,

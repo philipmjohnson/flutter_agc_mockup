@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../async_value_widget.dart';
 import '../../chapter/domain/chapter.dart';
 import '../../news/domain/news.dart';
+import '../../user/data/user_providers.dart';
 import '../../user/domain/user.dart';
 import '../../user/presentation/user_labeled_avatar.dart';
 import '../data/garden_provider.dart';
@@ -20,11 +21,17 @@ class GardenSummaryUsersView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final AsyncValue<List<Garden>> asyncGardens = ref.watch(gardensProvider);
-    return MultiAsyncValuesWidget(asyncGardens: asyncGardens, data: _build);
+    final String currentUserID = ref.watch(currentUserIDProvider);
+    return MultiAsyncValuesWidget(
+        context: context,
+        currentUserID: currentUserID,
+        asyncGardens: asyncGardens,
+        data: _build);
   }
 
   Widget _build(
-      {String? currentUserID,
+      {required BuildContext context,
+      required String currentUserID,
       List<Chapter>? chapters,
       List<Garden>? gardens,
       List<News>? news,

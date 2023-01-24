@@ -24,11 +24,15 @@ class GardensBodyView extends ConsumerWidget {
     final String currentUserID = ref.watch(currentUserIDProvider);
     final AsyncValue<List<Garden>> asyncGardens = ref.watch(gardensProvider);
     return MultiAsyncValuesWidget(
-        currentUserID: currentUserID, asyncGardens: asyncGardens, data: _build);
+        context: context,
+        currentUserID: currentUserID,
+        asyncGardens: asyncGardens,
+        data: _build);
   }
 
   Widget _build(
-      {String? currentUserID,
+      {required BuildContext context,
+      required String currentUserID,
       List<Chapter>? chapters,
       List<Garden>? gardens,
       List<News>? news,
