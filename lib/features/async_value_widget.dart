@@ -6,7 +6,8 @@ import 'garden/domain/garden.dart';
 import 'news/domain/news.dart';
 import 'user/domain/user.dart';
 
-/// MultiAsyncValuesWidget simplifies the implementation of widgets that must wait until multiple asynchronous requests have completed before building the view.
+/// MultiAsyncValuesWidget simplifies the implementation of widgets that must wait
+/// until multiple asynchronous requests have completed before building the view.
 ///
 /// Consider the following scenario. Your domain model involves four collections,
 /// A, B, C, and D.  One widget requires documents from A and B. Another requires documents
@@ -63,11 +64,22 @@ import 'user/domain/user.dart';
 ///     return Scaffold( ... );
 /// ```
 /// Thus, your build() method gets whatever combination of AsyncValues needed,
-/// and the _build method does the actual UI generation.
+/// and the _build method does the actual UI generation. In this example, no
+/// documents from the News collection are needed for this widget.
 ///
 /// Note that MultiAsyncValuesWidget requires that you pass in the currentUserID
 /// and the current context. These are passed through to the _build method, as
 /// they are frequently (but not always) needed.
+///
+/// There are several things I don't like about this design. For example, the
+/// _build method has to be a function with a parameter signature that specifies
+/// all possible AsyncValue return values, regardless of whether it will actually
+/// need them or not. Having the context and currentUserID parameters be required
+/// is kind of funky because they aren't always needed, but making them optional
+/// (or using an instance variable to pass them between build and _build) is
+/// (arguably) more funky.  I have the gut feeling that there is a significantly
+/// cleaner design to satisfy this use case. If you know of it, please let
+/// me know.
 class MultiAsyncValuesWidget extends StatelessWidget {
   const MultiAsyncValuesWidget(
       {super.key,

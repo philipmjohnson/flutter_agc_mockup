@@ -13,63 +13,63 @@ Click on any screen shot to see it full-size.
 ### Splash, signin, and signup pages:
 
 <p style="text-align: center">
-  <img src="./README-screenshots/splash.png" width="30%">
+  <img src="https://github.com/philipmjohnson/flutter_agc_mockup/raw/main/README-screenshots/splash.png" width="30%">
 &nbsp; &nbsp; 
-  <img src="./README-screenshots/signin.png" width="30%">
+  <img src="https://github.com/philipmjohnson/flutter_agc_mockup/raw/main/README-screenshots/signin.png" width="30%">
 &nbsp; &nbsp; 
-  <img src="./README-screenshots/signup.png" width="30%">
+  <img src="https://github.com/philipmjohnson/flutter_agc_mockup/raw/main/README-screenshots/signup.png" width="30%">
 </p>
 
 ### Home page: My News, My Gardens, My Discussions
 
 <p style="text-align: center">
-  <img src="./README-screenshots/home-my-news.png" width="30%">
+  <img src="https://github.com/philipmjohnson/flutter_agc_mockup/raw/main/README-screenshots/home-my-news.png" width="30%">
 &nbsp; &nbsp; 
-  <img src="./README-screenshots/home-my-gardens.png" width="30%">
+  <img src="https://github.com/philipmjohnson/flutter_agc_mockup/raw/main/README-screenshots/home-my-gardens.png" width="30%">
 &nbsp; &nbsp; 
-  <img src="./README-screenshots/home-my-discussions.png" width="30%">
+  <img src="https://github.com/philipmjohnson/flutter_agc_mockup/raw/main/README-screenshots/home-my-discussions.png" width="30%">
 </p>
 
 ### Navigation Drawer, Gardens, and Chapters pages
 
 <p style="text-align: center">
-  <img src="./README-screenshots/drawer.png" width="30%">
+  <img src="https://github.com/philipmjohnson/flutter_agc_mockup/raw/main/README-screenshots/drawer.png" width="30%">
 &nbsp; &nbsp; 
-  <img src="./README-screenshots/gardens.png" width="30%">
+  <img src="https://github.com/philipmjohnson/flutter_agc_mockup/raw/main/README-screenshots/gardens.png" width="30%">
 &nbsp; &nbsp; 
-  <img src="./README-screenshots/chapters.png" width="30%">
+  <img src="https://github.com/philipmjohnson/flutter_agc_mockup/raw/main/README-screenshots/chapters.png" width="30%">
 </p>
 
 ### Add Garden and Edit Garden
 
 <p style="text-align: center">
-  <img src="./README-screenshots/add-garden.png" width="30%">
+  <img src="https://github.com/philipmjohnson/flutter_agc_mockup/raw/main/README-screenshots/add-garden.png" width="30%">
 &nbsp; &nbsp; 
-  <img src="./README-screenshots/edit-garden.png" width="30%">
+  <img src="https://github.com/philipmjohnson/flutter_agc_mockup/raw/main/README-screenshots/edit-garden.png" width="30%">
 </p>
 
 ### Outcomes, Seeds, Members pages
 
 <p style="text-align: center">
-  <img src="./README-screenshots/outcomes.png" width="30%">
+  <img src="https://github.com/philipmjohnson/flutter_agc_mockup/raw/main/README-screenshots/outcomes.png" width="30%">
 &nbsp; &nbsp; 
-  <img src="./README-screenshots/seeds.png" width="30%">
+  <img src="https://github.com/philipmjohnson/flutter_agc_mockup/raw/main/README-screenshots/seeds.png" width="30%">
 &nbsp; &nbsp; 
-  <img src="./README-screenshots/members.png" width="30%">
+  <img src="https://github.com/philipmjohnson/flutter_agc_mockup/raw/main/README-screenshots/members.png" width="30%">
 </p>
 
 ### Discussions page
 
 <p style="text-align: center">
-  <img src="./README-screenshots/discussions.png" width="30%">
+  <img src="https://github.com/philipmjohnson/flutter_agc_mockup/raw/main/README-screenshots/discussions.png" width="30%">
 </p>
 
 ### Help
 
 <p style="text-align: center">
-  <img src="./README-screenshots/help.png" width="30%">
+  <img src="https://github.com/philipmjohnson/flutter_agc_mockup/raw/main/README-screenshots/help.png" width="30%">
 &nbsp; &nbsp; 
-  <img src="./README-screenshots/help-local.png" width="30%">
+  <img src="https://github.com/philipmjohnson/flutter_agc_mockup/raw/main/README-screenshots/help-local.png" width="30%">
 </p>
 
 
