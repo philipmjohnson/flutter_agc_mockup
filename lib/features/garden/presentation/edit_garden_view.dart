@@ -75,6 +75,9 @@ class _EditGardenViewState extends ConsumerState<EditGardenView> {
         .join(', ');
 
     validateUserNamesString(String val) {
+      if (val == '') {
+        return null;
+      }
       List<String> userNames = val.split(',').map((val) => val.trim()).toList();
       if (!userCollection.areUserNames(userNames)) {
         return 'Non-existent user name(s)';
